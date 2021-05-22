@@ -1,5 +1,5 @@
 TEMPLATE = app
-CONFIG += console c++11
+CONFIG += console c++17
 CONFIG -= app_bundle
 CONFIG -= qt
 INCLUDEPATH += "C:/SFML-2.5.1/include"
@@ -10,4 +10,11 @@ CONFIG(debug, debug|release){
     LIBS += -lsfml-audio -lsfml-graphics -lsfml-network -lsfml-system -lsfml-window
 }
 SOURCES += \
-        main.cpp
+        game.cpp \
+        main.cpp \
+        part.cpp
+
+HEADERS += \
+    Constants.h \
+    game.h \
+    part.h
