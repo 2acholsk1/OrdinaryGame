@@ -3,23 +3,27 @@
 #include <SFML/Window.hpp>
 #include <vector>
 
-enum class PartTypes
+
+
+
+Part::Part(sf::Vector2f& position,
+           const PartType& type,
+           CustomTexture* ctextures,
+           const MyTexture& ctexture):
+           sprite(sf::Sprite()),
+           parttype(type),
+           textures(ctextures),
+           texture(ctexture)
+
+
 {
-    Player,
-    Mob,
-    Item,
-    InterfacePart,
-    Tree,
-    Structure,
-    Minerals
+    this->sprite.setPosition(position);
+    this->sprite.setTexture(textures->GetTexture(texture));
 
-};
+}
 
-
-Part::Part()
+Part::~Part()
 {
-    sf::Sprite sprite;
-    PartTypes parttype;
 
 }
 

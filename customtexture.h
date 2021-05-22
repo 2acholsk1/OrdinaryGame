@@ -7,6 +7,7 @@
 
 enum class MyTexture
 {
+    Default,
     Player,
     Mob,
     Item,
@@ -20,7 +21,7 @@ enum class MyTexture
 class CustomTexture
 {
 private:
-    std::map<MyTexture,sf::Texture> textures;
+    std::map<MyTexture,sf::Texture> AllTextures;
 public:
     CustomTexture();
     ~CustomTexture();
