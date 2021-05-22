@@ -2,7 +2,7 @@
 #define PART_H
 #include <SFML/Graphics.hpp>
 
-#include "game.h"
+#include "animation.h"
 #include "customtexture.h"
 
 
@@ -26,6 +26,7 @@ protected:
     PartType parttype;
     CustomTexture* textures;
     MyTexture texture;
+    Animation animation;
 
 
 
@@ -33,8 +34,10 @@ public:
     Part(sf::Vector2f& position,
          const PartType& type,
          CustomTexture* textures,
-         const MyTexture& texture=MyTexture::Default
-            );
+         const MyTexture& texture=MyTexture::Default,
+         const sf::Vector2u& animationMaxSize={1,1},
+         const double& animationTime=1.0f);
+
     virtual ~Part();
 
 

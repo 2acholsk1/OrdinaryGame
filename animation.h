@@ -15,6 +15,7 @@ public:
     Animation(sf::Texture& texture,const sf::Vector2u& canimationMaxSize,const double& canimationTime);
     virtual ~Animation();
 
+    sf::IntRect GetFrameIntRect();
 };
 
 #endif // ANIMATION_H

@@ -44,3 +44,8 @@ void Game::Update()
 {
     this->HereWindowEvents();
 }
+
+void Game::DrawParts()
+{
+
+}
