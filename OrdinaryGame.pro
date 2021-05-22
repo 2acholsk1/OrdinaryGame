@@ -10,11 +10,13 @@ CONFIG(debug, debug|release){
     LIBS += -lsfml-audio -lsfml-graphics -lsfml-network -lsfml-system -lsfml-window
 }
 SOURCES += \
+        customtexture.cpp \
         game.cpp \
         main.cpp \
         part.cpp
 
 HEADERS += \
     Constants.h \
+    customtexture.h \
     game.h \
     part.h
