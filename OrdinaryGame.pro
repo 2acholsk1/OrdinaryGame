@@ -11,16 +11,24 @@ CONFIG(debug, debug|release){
 }
 SOURCES += \
         animation.cpp \
+        bars.cpp \
         customtexture.cpp \
         environment.cpp \
         game.cpp \
+        interface.cpp \
+        inventory.cpp \
         main.cpp \
+        mypointofview.cpp \
         part.cpp
 
 HEADERS += \
     Constants.h \
     animation.h \
+    bars.h \
     customtexture.h \
     environment.h \
     game.h \
+    interface.h \
+    inventory.h \
+    mypointofview.h \
     part.h

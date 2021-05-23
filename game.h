@@ -4,7 +4,10 @@
 #include <SFML/Graphics.hpp>
 
 #include "part.h"
+#include "environment.h"
 #include "Constants.h"
+#include "customtexture.h"
+#include "mypointofview.h"
 
 
 class Game
@@ -15,6 +18,7 @@ private:
     std::vector<Part*> AllParts;
     CustomTexture AllTextures;
     sf::Clock clock;
+    //MyPointOfView MyView;
 
 
 public:
@@ -28,6 +32,7 @@ public:
     void Update();
     void DrawParts();
     void LoadTextures();
+    void SetPoinOfView();
 
 
 };

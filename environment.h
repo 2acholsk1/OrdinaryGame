@@ -2,30 +2,45 @@
 #define ENVIRONMENT_H
 #include "part.h"
 
-enum class EnvParts
+
+enum class IncludedItem
 {
     Default,
-    Tree,
-    Stone,
-    IronOre,
-    CoalOre,
-    GoldenOre,
-    CooperOre
+    Wood,
+    SmallStones,
+    Iron,
+    Coal,
+    Gold
 };
 
 
 class environment: public Part
 {
 protected:
-    EnvPart envpart;
+    float strength;
+    IncludedItem includedItem;
+    sf::RectangleShape EnvShape;
+
 public:
-    environment(sf::Vector2f& position,
+    environment(const sf::Vector2f& position,
                 CustomTexture* ctextures,
-                const MyTexture& ctexture,
-                const PartType& cparttype,
-                const sf::Vector2u& canimationMaxSize,
-                const double& canimationTime);
+                const PartType& cparttype=PartType::Default,
+                const IncludedItem& cincludedItem=IncludedItem::Default,
+                const MyTexture& ctexture=MyTexture::Default,
+                const float& cstrength=1.0f,
+                const sf::Vector2u& canimationMaxSize=sf::Vector2u(1,1),
+                const float& canimationTime=1.0f);
     ~environment();
+    virtual void Draw(sf::RenderWindow& window) override;
+
+
+
+
+    static environment* PrintEnvironment(const sf::Vector2f& cexistingPosition,CustomTexture* ctextures,
+                                         const PartType& cparttype,const MyTexture& ctexture);
+    static IncludedItem GetIncludedItem(const PartType& parttype);
+
+
 };
 
 #endif // ENVIRONMENT_H

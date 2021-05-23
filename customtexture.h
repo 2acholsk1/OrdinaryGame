@@ -16,19 +16,21 @@ enum class MyTexture
     InterfacePart,
     Tree,
     Structure,
-    Minerals
+    IronOre,
+    GoldenOre,
+    CoalOre
 };
 
 
 class CustomTexture
 {
 private:
-    std::map<MyTexture,sf::Texture> AllTextures;
+    std::map<MyTexture,sf::Texture> Textures;
 public:
     CustomTexture();
     ~CustomTexture();
     void AddTexture(const MyTexture& textureKey,const std::string& filename);
-    sf::Texture& GetTexture(const MyTexture& textureKey);
+    sf::Texture& GettTexture(const MyTexture& textureKey);
 };
 
 #endif // CUSTOMTEXTURE_H

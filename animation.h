@@ -7,12 +7,12 @@ class Animation
 private:
     sf::Vector2u animationMaxSize;
     sf::Vector2u currentFrame;
-    double animationTime;
-    double elapsed;
+    float animationTime;
+    float elapsed;
     sf::IntRect frameSize;
 
 public:
-    Animation(sf::Texture& texture,const sf::Vector2u& canimationMaxSize,const double& canimationTime);
+    Animation(sf::Texture& texture,const sf::Vector2u& canimationMaxSize,const float& canimationTime);
     virtual ~Animation();
 
     sf::IntRect GetFrameIntRect();

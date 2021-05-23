@@ -1,6 +1,6 @@
 #include "animation.h"
 
-Animation::Animation(sf::Texture& texture,const sf::Vector2u& canimationMaxSize,const double& canimationTime):
+Animation::Animation(sf::Texture& texture,const sf::Vector2u& canimationMaxSize,const float& canimationTime):
     animationMaxSize(canimationMaxSize),
     elapsed(0.0f),
     currentFrame(0,0)

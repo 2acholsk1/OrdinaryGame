@@ -13,9 +13,13 @@ enum class PartType
     Mob,
     Item,
     InterfacePart,
-    Tree,
     Structure,
-    Minerals
+    Tree,
+    Stone,
+    IronOre,
+    CoalOre,
+    GoldenOre,
+    CooperOre
 
 };
 
@@ -31,14 +35,16 @@ protected:
 
 
 public:
-    Part(sf::Vector2f& position,
+    Part(const sf::Vector2f& position,
          const PartType& type,
          CustomTexture* textures,
          const MyTexture& texture=MyTexture::Default,
          const sf::Vector2u& animationMaxSize={1,1},
-         const double& animationTime=1.0f);
+         const float& animationTime=1.0f);
 
     virtual ~Part();
+    virtual void Draw(sf::RenderWindow& window)=0;
+
 
 
 };

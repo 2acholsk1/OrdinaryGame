@@ -6,22 +6,22 @@
 
 
 
-Part::Part(sf::Vector2f& position,
+Part::Part(const sf::Vector2f& position,
            const PartType& type,
            CustomTexture* ctextures,
            const MyTexture& ctexture,
            const sf::Vector2u& canimationMaxSize,
-           const double& canimationTime):
+           const float& canimationTime):
 
            sprite(sf::Sprite()),
            parttype(type),
            textures(ctextures),
            texture(ctexture),
-           animation(ctextures->GetTexture(ctexture),canimationMaxSize,canimationTime)
+           animation(ctextures->GettTexture(ctexture),canimationMaxSize,canimationTime)
 
 {
     this->sprite.setPosition(position);
-    this->sprite.setTexture(textures->GetTexture(texture));
+    this->sprite.setTexture(textures->GettTexture(texture));
     this->sprite.setTextureRect(this->animation.GetFrameIntRect());
 
 }
