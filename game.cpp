@@ -49,3 +49,8 @@ void Game::DrawParts()
 {
 
 }
+
+void Game::LoadTextures()
+{
+    this->AllTextures.AddTexture(MyTexture::Grass,"textures/grass.png");
+}

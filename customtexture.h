@@ -8,6 +8,8 @@
 enum class MyTexture
 {
     Default,
+    Grass,
+    Stones,
     Player,
     Mob,
     Item,

@@ -12,6 +12,9 @@ class Game
 private:
     sf::RenderWindow window;
     float time;
+    std::vector<Part*> AllParts;
+    CustomTexture AllTextures;
+    sf::Clock clock;
 
 
 public:
@@ -23,6 +26,8 @@ public:
     void DisplayWindow();
     void Draw();
     void Update();
+    void DrawParts();
+    void LoadTextures();
 
 
 };
