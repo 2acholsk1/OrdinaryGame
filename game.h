@@ -8,6 +8,7 @@
 #include "Constants.h"
 #include "customtexture.h"
 #include "mypointofview.h"
+#include "mousecontrol.h"
 
 
 class Game
@@ -19,6 +20,7 @@ private:
     CustomTexture AllTextures;
     sf::Clock dTclock;
     MyPointOfView MyView;
+    sf::Text te;
 
 
 public:

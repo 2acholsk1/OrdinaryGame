@@ -18,6 +18,7 @@ SOURCES += \
         interface.cpp \
         inventory.cpp \
         main.cpp \
+        mousecontrol.cpp \
         mypointofview.cpp \
         part.cpp
 
@@ -30,5 +31,6 @@ HEADERS += \
     game.h \
     interface.h \
     inventory.h \
+    mousecontrol.h \
     mypointofview.h \
     part.h

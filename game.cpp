@@ -47,6 +47,7 @@ void Game::Draw()
     this->SetPointOfView();
     this->DrawParts();
     this->window.setView(window.getDefaultView());
+
     this->DisplayWindow();
 
 }
@@ -54,8 +55,10 @@ void Game::Draw()
 void Game::Update()
 {
     this->SetdtTime();
-    this->HereWindowEvents();
     this->MyViewControl();
+    this->HereWindowEvents();
+
+
 }
 
 void Game::DrawParts()
@@ -80,8 +83,7 @@ void Game::MyViewControl()
 {
     this->MyView.Moving(dtime);
     this->MyView.MouseControl(this->window);
-    this->MyView.PrintPosition();
-
+    this->MyView.PrintPosition(this->window);
 
 }
 

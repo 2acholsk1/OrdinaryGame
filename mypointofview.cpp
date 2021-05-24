@@ -43,7 +43,6 @@ void MyPointOfView::MouseControl(sf::RenderWindow& window)
     }
     window.setView(window.getDefaultView());
 
-    std::stringstream ss;
     ss<<"Screen: "<<mousePositionScreen.x<<" "<<mousePositionScreen.y<<"\n"
       <<"Window: "<<mousePosWindow.x<<" "<<mousePosWindow.y<<"\n"
       <<"View: "<<mousePosView.x<<" "<<mousePosView.y<<"\n"
@@ -59,7 +58,11 @@ void MyPointOfView::PrintPosition(sf::RenderWindow& window)
     this->text.setCharacterSize(100);
     this->text.setFillColor(sf::Color::White);
     this->text.setFont(fontinio);
-    this->text.setPosition(20.f,20.f);
+    this->text.setPosition(200.f,200.f);
     this->text.setString(ss.str());
-    window.draw(text);
+    window.draw(this->text);
 }
+
+
+
+

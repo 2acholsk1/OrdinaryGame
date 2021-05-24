@@ -9,7 +9,7 @@
 class MyPointOfView: public sf::View
 {
 protected:
-    float movingSpeed=100.f;
+    float movingSpeed=300.f;
     sf::Vector2i mousePositionScreen=sf::Mouse::getPosition();
     sf::Vector2i mousePosWindow;
     sf::Vector2f mousePosView;
@@ -21,7 +21,7 @@ public:
     MyPointOfView(sf::RenderWindow& window);
     void Moving(float& dtime);
     void MouseControl(sf::RenderWindow& window);
-    void PrintPosition();
+    void PrintPosition(sf::RenderWindow& window);
 };
 
 #endif // MYPOINTOFVIEW_H
