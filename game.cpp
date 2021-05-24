@@ -1,8 +1,10 @@
 #include "game.h"
 
 
-Game::Game():window(sf::VideoMode(CONSTANTS::WINDOW_WIDTH, CONSTANTS::WINDOW_HEIGHT), "OrdinaryGame"),time(0.0f)
+Game::Game():window(sf::VideoMode(CONSTANTS::WINDOW_WIDTH, CONSTANTS::WINDOW_HEIGHT), "OrdinaryGame"),dtime(0.0f),MyView(window)
 {
+
+
     this->LoadTextures();
     environment* test2=environment::PrintEnvironment({100.0,200.0},&this->AllTextures,PartType::Tree,MyTexture::Grass);
     this->AllParts.emplace_back(test2);
@@ -42,15 +44,18 @@ void Game::DisplayWindow()
 void Game::Draw()
 {
     this->ClearWindow();
-    this->SetPoinOfView();
+    this->SetPointOfView();
     this->DrawParts();
+    this->window.setView(window.getDefaultView());
     this->DisplayWindow();
 
 }
 
 void Game::Update()
 {
+    this->SetdtTime();
     this->HereWindowEvents();
+    this->MyViewControl();
 }
 
 void Game::DrawParts()
@@ -61,10 +66,23 @@ void Game::DrawParts()
     }
 }
 
-void Game::SetPoinOfView()
+void Game::SetPointOfView()
 {
-    //this->window.setView(MyView);
-    this->window.setView(window.getDefaultView());
+    this->window.setView(MyView);
+
+}
+
+void Game::SetdtTime()
+{
+    this->dtime=this->dTclock.restart().asSeconds();
+}
+void Game::MyViewControl()
+{
+    this->MyView.Moving(dtime);
+    this->MyView.MouseControl(this->window);
+    this->MyView.PrintPosition();
+
+
 }
 
 void Game::LoadTextures()

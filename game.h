@@ -14,11 +14,11 @@ class Game
 {
 private:
     sf::RenderWindow window;
-    float time;
+    float dtime=0.f;
     std::vector<Part*> AllParts;
     CustomTexture AllTextures;
-    sf::Clock clock;
-    //MyPointOfView MyView;
+    sf::Clock dTclock;
+    MyPointOfView MyView;
 
 
 public:
@@ -32,7 +32,9 @@ public:
     void Update();
     void DrawParts();
     void LoadTextures();
-    void SetPoinOfView();
+    void SetPointOfView();
+    void SetdtTime();
+    void MyViewControl();
 
 
 };
