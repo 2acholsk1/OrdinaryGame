@@ -17,12 +17,9 @@ void PrintPosition(sf::RenderWindow& window)
 void MouseControl(sf::RenderWindow& window)
 {
     sf::Vector2i mousePositionScreen=sf::Mouse::getPosition();
-    sf::Vector2i mousePosWindow;
-    sf::Vector2f mousePosView;
+    sf::Vector2i mousePosWindow=sf::Mouse::getPosition(window);
+    sf::Vector2f mousePosView=window.mapPixelToCoords(mousePosWindow);
     sf::Vector2u mousePosGrid;
-    mousePositionScreen=sf::Mouse::getPosition();
-    mousePosWindow=sf::Mouse::getPosition(window);
-    mousePosView=window.mapPixelToCoords(mousePosWindow);
     if(mousePosView.x>=0.f)
     {
         mousePosGrid.x=mousePosView.x/CONSTANTS::GRID_SIZE_U;

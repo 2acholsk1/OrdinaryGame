@@ -18,9 +18,11 @@ SOURCES += \
         interface.cpp \
         inventory.cpp \
         main.cpp \
+        map.cpp \
         mousecontrol.cpp \
         mypointofview.cpp \
-        part.cpp
+        part.cpp \
+        player.cpp
 
 HEADERS += \
     Constants.h \
@@ -31,6 +33,8 @@ HEADERS += \
     game.h \
     interface.h \
     inventory.h \
+    map.h \
     mousecontrol.h \
     mypointofview.h \
-    part.h
+    part.h \
+    player.h

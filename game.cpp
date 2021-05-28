@@ -3,13 +3,13 @@
 
 Game::Game():window(sf::VideoMode(CONSTANTS::WINDOW_WIDTH, CONSTANTS::WINDOW_HEIGHT), "OrdinaryGame"),dtime(0.0f),MyView(window)
 {
-
-
+    window.setFramerateLimit(120);
     this->LoadTextures();
-    environment* test2=environment::PrintEnvironment({100.0,200.0},&this->AllTextures,PartType::Tree,MyTexture::Grass);
-    this->AllParts.emplace_back(test2);
-    environment* test1=environment::PrintEnvironment({100.0,200.0},&this->AllTextures,PartType::Tree,MyTexture::Stones);
-    this->AllParts.emplace_back(test1);
+//    environment* test2=environment::PrintEnvironment({100.0,200.0},&this->AllTextures,PartType::Tree,MyTexture::Grass);
+//    this->AllParts.emplace_back(test2);
+//    environment* test1=environment::PrintEnvironment({100.0,200.0},&this->AllTextures,PartType::Tree,MyTexture::Stones);
+//    this->AllParts.emplace_back(test1);
+      MainMap.SetMyMap(&this->AllTextures);
 
 }
 
@@ -45,7 +45,10 @@ void Game::Draw()
 {
     this->ClearWindow();
     this->SetPointOfView();
+
     this->DrawParts();
+    this->MapRender();
+    this->MyView.PrintPosition(this->window);//printuje pozycje
     this->window.setView(window.getDefaultView());
 
     this->DisplayWindow();
@@ -81,10 +84,17 @@ void Game::SetdtTime()
 }
 void Game::MyViewControl()
 {
-    this->MyView.Moving(dtime);
+    this->MyView.SetRect();
+
     this->MyView.MouseControl(this->window);
     this->MyView.PrintPosition(this->window);
+    this->MyView.Moving(dtime);
 
+}
+
+void Game::MapRender()
+{
+    MainMap.Draw(this->window);
 }
 
 void Game::LoadTextures()
@@ -96,4 +106,8 @@ void Game::LoadTextures()
     this->AllTextures.AddTexture(MyTexture::CoalOre,"textures/coalore.png");
     this->AllTextures.AddTexture(MyTexture::IronOre,"textures/ironore.png");
     this->AllTextures.AddTexture(MyTexture::GoldenOre,"textures/goldenore.png");
+    this->AllTextures.AddTexture(MyTexture::Player,"textures/player.png");
 }
+
+
+

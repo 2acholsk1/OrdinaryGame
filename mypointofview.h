@@ -17,11 +17,13 @@ protected:
     std::stringstream ss;
     sf::Text text;
     sf::Font fontinio;
+    sf::RectangleShape tileSelect;
 public:
     MyPointOfView(sf::RenderWindow& window);
     void Moving(float& dtime);
     void MouseControl(sf::RenderWindow& window);
     void PrintPosition(sf::RenderWindow& window);
+    void SetRect();
 };
 
 #endif // MYPOINTOFVIEW_H

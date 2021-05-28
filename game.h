@@ -9,6 +9,7 @@
 #include "customtexture.h"
 #include "mypointofview.h"
 #include "mousecontrol.h"
+#include "map.h"
 
 
 class Game
@@ -21,6 +22,7 @@ private:
     sf::Clock dTclock;
     MyPointOfView MyView;
     sf::Text te;
+    Mymap MainMap;
 
 
 public:
@@ -37,6 +39,7 @@ public:
     void SetPointOfView();
     void SetdtTime();
     void MyViewControl();
+    void MapRender();
 
 
 };
