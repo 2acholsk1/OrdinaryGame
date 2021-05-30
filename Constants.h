@@ -1,5 +1,6 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
+#include <SFML/Graphics.hpp>
 
 namespace CONSTANTS
 {
@@ -13,6 +14,9 @@ namespace CONSTANTS
     const unsigned GRID_SIZE_U=static_cast<unsigned>(GRID_SIZE_F);
 
     const int MAP_SIZE=1000;
+
+    const sf::Vector2f PLAYER_MIDDLE_POSITION=sf::Vector2f(WINDOW_WIDTH/2.f,WINDOW_HEIGHT/2.f);
+    const float PLAYER_MOVING_SPEED=300.f;
 
 }
 

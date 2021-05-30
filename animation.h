@@ -8,7 +8,7 @@ private:
     sf::Vector2u animationMaxSize;
     sf::Vector2u currentFrame;
     float animationTime;
-    float elapsed;
+    float elapsedT;
     sf::IntRect frameSize;
 
 public:

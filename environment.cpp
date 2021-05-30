@@ -66,3 +66,8 @@ environment::~environment()
 {
 
 }
+
+void environment::Update(float& dtime)
+{
+
+}

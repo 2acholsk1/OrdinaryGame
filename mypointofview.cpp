@@ -12,23 +12,23 @@ void MyPointOfView::Moving(float& dtime)
 {
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))//left
     {
-        this->move(-movingSpeed*dtime,0.f);
-        this->text.move(-movingSpeed*dtime,0.f);
+        this->move(-CONSTANTS::PLAYER_MOVING_SPEED*dtime,0.f);
+        this->text.move(-CONSTANTS::PLAYER_MOVING_SPEED*dtime,0.f);
     }
     else if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))//right
     {
-        this->move(movingSpeed*dtime,0.f);
-        this->text.move(movingSpeed*dtime,0.f);
+        this->move(CONSTANTS::PLAYER_MOVING_SPEED*dtime,0.f);
+        this->text.move(CONSTANTS::PLAYER_MOVING_SPEED*dtime,0.f);
     }
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))//Down
     {
-        this->move(0.f,movingSpeed*dtime);
-        this->text.move(0.f,movingSpeed*dtime);
+        this->move(0.f,CONSTANTS::PLAYER_MOVING_SPEED*dtime);
+        this->text.move(0.f,CONSTANTS::PLAYER_MOVING_SPEED*dtime);
     }
     else if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))//Up
     {
-        this->move(0.f,-movingSpeed*dtime);
-        this->text.move(0.f,-movingSpeed*dtime);
+        this->move(0.f,-CONSTANTS::PLAYER_MOVING_SPEED*dtime);
+        this->text.move(0.f,-CONSTANTS::PLAYER_MOVING_SPEED*dtime);
     }
 }
 

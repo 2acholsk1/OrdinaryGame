@@ -44,6 +44,7 @@ public:
 
     virtual ~Part();
     virtual void Draw(sf::RenderWindow& window)=0;
+    virtual void Update(float& dtime)=0;
 
 
 

@@ -10,6 +10,7 @@
 #include "mypointofview.h"
 #include "mousecontrol.h"
 #include "map.h"
+#include "player.h"
 
 
 class Game
@@ -35,11 +36,13 @@ public:
     void Draw();
     void Update();
     void DrawParts();
+    void UpdateParts();
     void LoadTextures();
     void SetPointOfView();
     void SetdtTime();
     void MyViewControl();
     void MapRender();
+    void CreatePlayer();
 
 
 };

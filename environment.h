@@ -39,6 +39,7 @@ public:
     static environment* PrintEnvironment(const sf::Vector2f& cexistingPosition,CustomTexture* ctextures,
                                          const PartType& cparttype,const MyTexture& ctexture);
     static IncludedItem GetIncludedItem(const PartType& parttype);
+    virtual void Update(float& dtime);
 
 
 };

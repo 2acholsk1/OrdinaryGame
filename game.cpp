@@ -5,12 +5,19 @@ Game::Game():window(sf::VideoMode(CONSTANTS::WINDOW_WIDTH, CONSTANTS::WINDOW_HEI
 {
     window.setFramerateLimit(120);
     this->LoadTextures();
+    this->CreatePlayer();
 //    environment* test2=environment::PrintEnvironment({100.0,200.0},&this->AllTextures,PartType::Tree,MyTexture::Grass);
 //    this->AllParts.emplace_back(test2);
 //    environment* test1=environment::PrintEnvironment({100.0,200.0},&this->AllTextures,PartType::Tree,MyTexture::Stones);
 //    this->AllParts.emplace_back(test1);
       MainMap.SetMyMap(&this->AllTextures);
 
+}
+
+void Game::CreatePlayer()
+{
+    Player* player=Player::PrintPlayer(CONSTANTS::PLAYER_MIDDLE_POSITION,&this->AllTextures,PartType::Player,MyTexture::Player);
+    this->AllParts.emplace_back(player);
 }
 
 
@@ -46,8 +53,9 @@ void Game::Draw()
     this->ClearWindow();
     this->SetPointOfView();
 
-    this->DrawParts();
+
     this->MapRender();
+    this->DrawParts();
     this->MyView.PrintPosition(this->window);//printuje pozycje
     this->window.setView(window.getDefaultView());
 
@@ -59,6 +67,7 @@ void Game::Update()
 {
     this->SetdtTime();
     this->MyViewControl();
+    this->UpdateParts();
     this->HereWindowEvents();
 
 
@@ -69,6 +78,14 @@ void Game::DrawParts()
     for(auto& part:this->AllParts)
     {
         part->Draw(this->window);
+    }
+}
+
+void Game::UpdateParts()
+{
+    for(auto& part:this->AllParts)
+    {
+        part->Update(this->dtime);
     }
 }
 
@@ -106,7 +123,7 @@ void Game::LoadTextures()
     this->AllTextures.AddTexture(MyTexture::CoalOre,"textures/coalore.png");
     this->AllTextures.AddTexture(MyTexture::IronOre,"textures/ironore.png");
     this->AllTextures.AddTexture(MyTexture::GoldenOre,"textures/goldenore.png");
-    this->AllTextures.AddTexture(MyTexture::Player,"textures/player.png");
+    this->AllTextures.AddTexture(MyTexture::Player,"textures/Player/PlayerMoveRight.png");
 }
 
 
