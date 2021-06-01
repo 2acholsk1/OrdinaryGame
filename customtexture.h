@@ -21,6 +21,8 @@ enum class MyTexture
     Player,
     PlayerML,
     PlayerMR,
+    PlayerMD,
+    PlayerMU,
     HpBar,
     ExpBar,
     StarveBar,

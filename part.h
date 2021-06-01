@@ -1,11 +1,16 @@
 #ifndef PART_H
 #define PART_H
 #include <SFML/Graphics.hpp>
+#include <SFML/Window.hpp>
 
 #include "animation.h"
 #include "customtexture.h"
 #include "inventory.h"
 #include "Constants.h"
+#include "functions.h"
+#include "collider.h"
+
+#include <vector>
 
 
 enum class PartType
@@ -51,6 +56,10 @@ public:
     virtual ~Part();
     virtual void Draw(sf::RenderWindow& window)=0;
     virtual void Update(float& dtime)=0;
+    friend void OriginSet(sf::Sprite& sprite);
+    virtual Collider GetCollider()=0;
+    virtual sf::Vector2f GetPositionCol()=0;
+    PartType GetPartType();
 
 
 

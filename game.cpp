@@ -5,13 +5,14 @@ Game::Game():window(sf::VideoMode(CONSTANTS::WINDOW_WIDTH, CONSTANTS::WINDOW_HEI
 {
     window.setFramerateLimit(120);
     this->LoadTextures();
-    this->CreatePlayer();
-    this->CreateInterface();
+
 //    environment* test2=environment::PrintEnvironment({100.0,200.0},&this->AllTextures,PartType::Tree,MyTexture::Grass);
 //    this->AllParts.emplace_back(test2);
-//    environment* test1=environment::PrintEnvironment({100.0,200.0},&this->AllTextures,PartType::Tree,MyTexture::Stones);
-//    this->AllParts.emplace_back(test1);
+    environment* test1=environment::PrintEnvironment({100.0,200.0},&this->AllTextures,PartType::Tree,MyTexture::Stones);
+    this->AllParts.emplace_back(test1);
       MainMap.SetMyMap(&this->AllTextures);
+      this->CreatePlayer();
+      this->CreateInterface();
 
 }
 
@@ -116,6 +117,14 @@ void Game::UpdateParts()
     }
 }
 
+void Game::Collisions()
+{
+    for(auto& part:this->AllParts)
+    {
+
+    }
+}
+
 void Game::SetPointOfView()
 {
     this->window.setView(MyView);
@@ -153,6 +162,8 @@ void Game::LoadTextures()
     this->AllTextures.AddTexture(MyTexture::Player,"textures/Player/Player.png");
     this->AllTextures.AddTexture(MyTexture::PlayerMR,"textures/Player/PlayerMoveRight.png");
     this->AllTextures.AddTexture(MyTexture::PlayerML,"textures/Player/PlayerMoveLeft.png");
+    this->AllTextures.AddTexture(MyTexture::PlayerMD,"textures/Player/PlayerMoveDown.png");
+    this->AllTextures.AddTexture(MyTexture::PlayerMU,"textures/Player/PlayerMoveUp.png");
     this->AllTextures.AddTexture(MyTexture::InterfaceDown,"textures/interface/down.png");
     this->AllTextures.AddTexture(MyTexture::HpBar,"textures/bars/hpbar.png");
     this->AllTextures.AddTexture(MyTexture::ExpBar,"textures/bars/expbar.png");

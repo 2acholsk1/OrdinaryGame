@@ -1,7 +1,5 @@
 #include "part.h"
-#include <SFML/Graphics.hpp>
-#include <SFML/Window.hpp>
-#include <vector>
+
 
 
 
@@ -24,6 +22,13 @@ Part::Part(const sf::Vector2f& position,
     this->sprite.setTexture(textures->GettTexture(texture));
     this->sprite.setTextureRect(this->animation.GetFrameIntRect());
 
+
+
+}
+
+PartType Part::GetPartType()
+{
+    return this->parttype;
 }
 
 Part::~Part()

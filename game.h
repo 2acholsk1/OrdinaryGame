@@ -4,16 +4,13 @@
 #include <SFML/Graphics.hpp>
 
 #include "part.h"
-#include "environment.h"
-#include "Constants.h"
-#include "customtexture.h"
 #include "mypointofview.h"
 #include "mousecontrol.h"
 #include "map.h"
 #include "player.h"
-#include "interface.h"
 #include "bars.h"
-#include "inventory.h"
+#include "interface.h"
+#include "environment.h"
 
 
 class Game
@@ -48,6 +45,7 @@ public:
     void MapRender();
     void CreatePlayer();
     void CreateInterface();
+    void Collisions();
 
 
 };

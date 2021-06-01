@@ -2,6 +2,8 @@
 #define PLAYER_H
 #include "part.h"
 #include "bars.h"
+#include "math.h"
+
 
 
 class Player: public Part
@@ -12,6 +14,12 @@ public:
     float exp=0;
     float starve=100;
     float water=100;
+    float acceleration=0;
+    bool isMove=0;
+    sf::RectangleShape body;
+    sf::Vector2f currentPosition;
+    sf::Vector2f lastPosition;
+    float displacment;
 private:
 
     Inventory slot_1;
@@ -24,7 +32,7 @@ public:
            CustomTexture* ctextures,
            const PartType& cparttype=PartType::Default,
            const MyTexture& ctexture=MyTexture::Default,
-           const sf::Vector2u& canimationMaxSize=sf::Vector2u(1,1),
+           const sf::Vector2u& canimationMaxSize=sf::Vector2u(2,1),
            const float& canimationTime=1.0f);
     virtual void Draw(sf::RenderWindow &window);
     ~Player();
@@ -32,6 +40,9 @@ public:
                                          const PartType& cparttype,const MyTexture& ctexture);
     void Update(float& dtime);
     void UpdateBars(float& dtime,float& hp,float& exp,float& starve,float& water);
+    void ShowPosition();
+    void IsMoving();
+
 
 };
 

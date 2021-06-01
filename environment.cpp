@@ -17,7 +17,7 @@ environment::environment(const sf::Vector2f& position,
                         strength(cstrength),
                         includedItem(cincludedItem)
 {
-
+    OriginSet(this->sprite);
 }
 
 

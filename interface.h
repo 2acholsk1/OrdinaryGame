@@ -2,9 +2,6 @@
 #define INTERFACE_H
 #include <SFML/Graphics.hpp>
 #include "part.h"
-#include "bars.h"
-#include "inventory.h"
-#include "Constants.h"
 
 
 
@@ -25,6 +22,8 @@ public:
     void InitializeInterface();
     virtual void Update(float& dtime);
     virtual void Draw(sf::RenderWindow& window);
+//    virtual Collider GetCollider();
+//    virtual sf::Vector2f GetPositionCol();
 public:
     sf::RectangleShape box;
 

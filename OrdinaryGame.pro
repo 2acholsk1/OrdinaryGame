@@ -12,6 +12,7 @@ CONFIG(debug, debug|release){
 SOURCES += \
         animation.cpp \
         bars.cpp \
+        collider.cpp \
         customtexture.cpp \
         environment.cpp \
         functions.cpp \
@@ -29,6 +30,7 @@ HEADERS += \
     Constants.h \
     animation.h \
     bars.h \
+    collider.h \
     customtexture.h \
     environment.h \
     functions.h \
