@@ -11,6 +11,9 @@
 #include "mousecontrol.h"
 #include "map.h"
 #include "player.h"
+#include "interface.h"
+#include "bars.h"
+#include "inventory.h"
 
 
 class Game
@@ -24,6 +27,7 @@ private:
     MyPointOfView MyView;
     sf::Text te;
     Mymap MainMap;
+    Player* MainPlayer;
 
 
 public:
@@ -43,6 +47,7 @@ public:
     void MyViewControl();
     void MapRender();
     void CreatePlayer();
+    void CreateInterface();
 
 
 };

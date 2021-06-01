@@ -87,5 +87,11 @@ void MyPointOfView::SetRect()
 }
 
 
+void MyPointOfView::Resize(sf::RenderWindow &window)
+{
+    float ratio=static_cast<float>(window.getSize().x)/static_cast<float>(window.getSize().y);
+    this->setSize(sf::Vector2f(ratio*CONSTANTS::MY_POINT_OF_VIEW_HEIGHT,CONSTANTS::MY_POINT_OF_VIEW_HEIGHT));
+}
+
 
 

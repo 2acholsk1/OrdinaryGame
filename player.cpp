@@ -30,18 +30,32 @@ Player* Player::PrintPlayer(const sf::Vector2f& cexistingPosition,CustomTexture*
                 cexistingPosition,
                 ctextures,
                 cparttype,
-                ctexture);
+                ctexture,
+                sf::Vector2u(1,1),
+                0.1f);
 }
 
 void Player::Update(float& dtime)
 {
+
+    int i=0;
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))//left
     {
+        this->sprite.setTexture(this->textures->GettTexture(MyTexture::PlayerML));
+        this->animation.animationMaxSize=sf::Vector2u(2,1);
+        this->animation.Initialize(this->textures->GettTexture(MyTexture::PlayerML));
+        this->animation.Update(i,dtime);
+        sprite.setTextureRect(animation.GetFrameIntRect());
         this->sprite.move(-CONSTANTS::PLAYER_MOVING_SPEED*dtime,0.f);
     }
     else if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))//right
     {
+        this->sprite.setTexture(this->textures->GettTexture(MyTexture::PlayerMR));
+        this->animation.animationMaxSize=sf::Vector2u(2,1);
+        this->animation.Initialize(this->textures->GettTexture(MyTexture::PlayerMR));
         this->sprite.move(CONSTANTS::PLAYER_MOVING_SPEED*dtime,0.f);
+        this->animation.Update(i,dtime);
+        sprite.setTextureRect(animation.GetFrameIntRect());
     }
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))//Down
     {
@@ -52,3 +66,9 @@ void Player::Update(float& dtime)
         this->sprite.move(0.f,-CONSTANTS::PLAYER_MOVING_SPEED*dtime);
     }
 }
+
+void Player::UpdateBars(float &dtime, float &hp, float &exp, float &starve, float &water)
+{
+
+}
+

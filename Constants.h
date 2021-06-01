@@ -18,6 +18,11 @@ namespace CONSTANTS
     const sf::Vector2f PLAYER_MIDDLE_POSITION=sf::Vector2f(WINDOW_WIDTH/2.f,WINDOW_HEIGHT/2.f);
     const float PLAYER_MOVING_SPEED=300.f;
 
+    const sf::Vector2f INTERFACE_POSITION=sf::Vector2f(-200,WINDOW_HEIGHT*6.f/7.f);
+    const sf::Vector2f HP_BAR_POSITION=sf::Vector2f(100,WINDOW_HEIGHT*6.f/7.f+10);
+    const sf::Vector2f EXP_BAR_POSITION=sf::Vector2f(100,WINDOW_HEIGHT*6.f/7.f+40);
+    const sf::Vector2f STARVE_BAR_POSITION=sf::Vector2f(100,WINDOW_HEIGHT*6.f/7.f+70);
+    const sf::Vector2f WATER_BAR_POSITION=sf::Vector2f(100,WINDOW_HEIGHT*6.f/7.f+100);
 }
 
 #endif // CONSTANTS_H

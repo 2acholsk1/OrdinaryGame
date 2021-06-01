@@ -23,6 +23,7 @@ public:
     void MouseControl(sf::RenderWindow& window);
     void PrintPosition(sf::RenderWindow& window);
     void SetRect();
+    void Resize(sf::RenderWindow& window);
 };
 
 #endif // MYPOINTOFVIEW_H

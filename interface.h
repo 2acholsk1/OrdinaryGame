@@ -4,6 +4,7 @@
 #include "part.h"
 #include "bars.h"
 #include "inventory.h"
+#include "Constants.h"
 
 
 
@@ -18,17 +19,19 @@ public:
               const MyTexture& texture=MyTexture::Default,
               const sf::Vector2u& animationMaxSize={1,1},
               const float& animationTime=1.0f);
+    ~Interface();
+    static Interface* PrintInterface(const sf::Vector2f& cexistingPosition,CustomTexture* ctextures,
+                                     const PartType& cparttype,const MyTexture& ctexture);
+    void InitializeInterface();
+    virtual void Update(float& dtime);
+    virtual void Draw(sf::RenderWindow& window);
+public:
+    sf::RectangleShape box;
+
+private:
 
 
-    Bars HP_bar;
-    Bars MANA_bar;
-    Bars STARVE_bar;
-    Bars WATER_bar;
-    Bars EXP_bar;
-    Inventory slot_1;
-    Inventory slot_2;
-    Inventory slot_3;
-    Inventory slot_4;
+
 };
 
 #endif // INTERFACE_H

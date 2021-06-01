@@ -10,15 +10,22 @@ enum class MyTexture
     Default,
     Grass,
     Stones,
-    Player,
     Mob,
     Item,
-    InterfacePart,
+    InterfaceDown,
     Tree,
     Structure,
     IronOre,
     GoldenOre,
-    CoalOre
+    CoalOre,
+    Player,
+    PlayerML,
+    PlayerMR,
+    HpBar,
+    ExpBar,
+    StarveBar,
+    WaterBar
+
 };
 
 

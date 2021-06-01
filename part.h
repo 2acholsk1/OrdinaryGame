@@ -4,6 +4,8 @@
 
 #include "animation.h"
 #include "customtexture.h"
+#include "inventory.h"
+#include "Constants.h"
 
 
 enum class PartType
@@ -19,7 +21,11 @@ enum class PartType
     IronOre,
     CoalOre,
     GoldenOre,
-    CooperOre
+    CooperOre,
+    HpBar,
+    ExpBar,
+    StarveBar,
+    WaterBar
 
 };
 

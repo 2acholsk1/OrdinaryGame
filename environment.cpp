@@ -1,5 +1,5 @@
 #include "environment.h"
-#include <SFML/Graphics.hpp>
+
 
 //GRASS  TREE   STONES   IRON ORE    COAL ORE    GOLDEN ORE
 

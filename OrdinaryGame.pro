@@ -14,6 +14,7 @@ SOURCES += \
         bars.cpp \
         customtexture.cpp \
         environment.cpp \
+        functions.cpp \
         game.cpp \
         interface.cpp \
         inventory.cpp \
@@ -30,6 +31,7 @@ HEADERS += \
     bars.h \
     customtexture.h \
     environment.h \
+    functions.h \
     game.h \
     interface.h \
     inventory.h \
