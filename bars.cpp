@@ -8,9 +8,11 @@ Bars::Bars(const sf::Vector2f& position,
            const float& canimationTime,
            const BarType& cbartype,
            const float& cfilling,
-           const float& cmaxFilling
+           const float& cmaxFilling,
+           const float& cpushBackForce
+
            ):
-Part(position,cparttype,ctextures,ctexture,canimationMaxSize,canimationTime),
+Part(position,cparttype,ctextures,ctexture,canimationMaxSize,canimationTime,cpushBackForce),
   type(cbartype),
   filling(cfilling),
   maxFilling(cmaxFilling)

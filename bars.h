@@ -27,7 +27,8 @@ public:
          const float& canimationTime=1.0f,
          const BarType& cbartype=BarType::Default,
          const float& cfilling=0.f,
-         const float& cmaxFilling=0.f
+         const float& cmaxFilling=0.f,
+         const float& pushBackForce=0.5f
          );
 
     ~Bars();

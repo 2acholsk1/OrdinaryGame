@@ -33,7 +33,8 @@ public:
            const PartType& cparttype=PartType::Default,
            const MyTexture& ctexture=MyTexture::Default,
            const sf::Vector2u& canimationMaxSize=sf::Vector2u(2,1),
-           const float& canimationTime=1.0f);
+           const float& canimationTime=1.0f,
+           const float& pushBackForce=1.0f);
     virtual void Draw(sf::RenderWindow &window);
     ~Player();
     static Player* PrintPlayer(const sf::Vector2f& cexistingPosition,CustomTexture* ctextures,
@@ -42,6 +43,8 @@ public:
     void UpdateBars(float& dtime,float& hp,float& exp,float& starve,float& water);
     void ShowPosition();
     void IsMoving();
+//    Collider GetCollider();
+//    sf::Vector2f GetPositionCol();
 
 
 };

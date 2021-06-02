@@ -2,21 +2,19 @@
 #define COLLIDER_H
 #include <SFML/Graphics.hpp>
 #include <math.h>
-#include "player.h"
 
 class Collider
 {
 private:
-    sf::RectangleShape& MainBody;
+    sf::Sprite& MainSprite;
 
 
 public:
-    Collider(sf::RectangleShape& body);
+    Collider(sf::Sprite& sprite);
     ~Collider();
 
-    bool CheckCollision(Collider& other,Player& some);
-    sf::Vector2f GetBodyPosition(){return MainBody.getPosition();}
-    sf::Vector2f GetBodyHalfSize(){return MainBody.getSize()/2.0f;}
+    bool CheckCollision(Collider& other,float& pushForce);
+    void Move(sf::Vector2f& direction);
 };
 
 #endif // COLLIDER_H

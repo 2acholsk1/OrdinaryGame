@@ -5,9 +5,11 @@ Interface::Interface(const sf::Vector2f& position,
                      CustomTexture* ctextures,
                      const MyTexture& ctexture,
                      const sf::Vector2u& canimationMaxSize,
-                     const float& canimationTime):
+                     const float& canimationTime,
+                     const float& cpushBackForce
+                     ):
 
-                    Part(position,cparttype,ctextures,ctexture,canimationMaxSize,canimationTime)
+                    Part(position,cparttype,ctextures,ctexture,canimationMaxSize,canimationTime,cpushBackForce)
 {
 
 }

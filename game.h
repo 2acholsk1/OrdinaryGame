@@ -11,6 +11,7 @@
 #include "bars.h"
 #include "interface.h"
 #include "environment.h"
+#include "collider.h"
 
 
 class Game
@@ -19,6 +20,7 @@ private:
     sf::RenderWindow window;
     float dtime=0.f;
     std::vector<Part*> AllParts;
+    std::vector<environment*> AllEnvironments;
     CustomTexture AllTextures;
     sf::Clock dTclock;
     MyPointOfView MyView;

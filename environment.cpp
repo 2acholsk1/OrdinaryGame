@@ -10,10 +10,12 @@ environment::environment(const sf::Vector2f& position,
                          const MyTexture& ctexture,
                          const float& cstrength,
                          const sf::Vector2u& canimationMaxSize,
-                         const float& canimationTime
+                         const float& canimationTime,
+                         const float& cpushBackForce
+
                          ):
 
-                        Part(position,cparttype,ctextures,ctexture,canimationMaxSize,canimationTime),
+                        Part(position,cparttype,ctextures,ctexture,canimationMaxSize,canimationTime,cpushBackForce),
                         strength(cstrength),
                         includedItem(cincludedItem)
 {

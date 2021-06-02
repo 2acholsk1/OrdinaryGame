@@ -42,6 +42,7 @@ protected:
     CustomTexture* textures;
     MyTexture texture;
     Animation animation;
+    float pushBackForce;
 
 
 
@@ -51,15 +52,17 @@ public:
          CustomTexture* textures,
          const MyTexture& texture=MyTexture::Default,
          const sf::Vector2u& animationMaxSize={1,1},
-         const float& animationTime=1.0f);
+         const float& animationTime=1.0f,
+         const float& pushBackForce=0.5f);
 
     virtual ~Part();
     virtual void Draw(sf::RenderWindow& window)=0;
     virtual void Update(float& dtime)=0;
     friend void OriginSet(sf::Sprite& sprite);
-    virtual Collider GetCollider()=0;
-    virtual sf::Vector2f GetPositionCol()=0;
     PartType GetPartType();
+    Collider GetCollider();
+    float GetPushForce();
+
 
 
 

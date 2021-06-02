@@ -29,7 +29,9 @@ public:
                 const MyTexture& ctexture=MyTexture::Default,
                 const float& cstrength=1.0f,
                 const sf::Vector2u& canimationMaxSize=sf::Vector2u(1,1),
-                const float& canimationTime=1.0f);
+                const float& canimationTime=1.0f,
+                const float& pushBackForce=0.0f
+                );
     ~environment();
     virtual void Draw(sf::RenderWindow& window) override;
 
@@ -40,8 +42,8 @@ public:
                                          const PartType& cparttype,const MyTexture& ctexture);
     static IncludedItem GetIncludedItem(const PartType& parttype);
     virtual void Update(float& dtime);
-    virtual Collider GetCollider();
-    virtual sf::Vector2f GetPositionCol();
+//    virtual Collider GetCollider();
+//    virtual sf::Vector2f GetPositionCol();
 
 
 

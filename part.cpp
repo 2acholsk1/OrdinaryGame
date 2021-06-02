@@ -9,13 +9,16 @@ Part::Part(const sf::Vector2f& position,
            CustomTexture* ctextures,
            const MyTexture& ctexture,
            const sf::Vector2u& canimationMaxSize,
-           const float& canimationTime):
+           const float& canimationTime,
+           const float& cpushBackForce
+           ):
 
            sprite(sf::Sprite()),
            parttype(type),
            textures(ctextures),
            texture(ctexture),
-           animation(ctextures->GettTexture(ctexture),canimationMaxSize,canimationTime)
+           animation(ctextures->GettTexture(ctexture),canimationMaxSize,canimationTime),
+           pushBackForce(cpushBackForce)
 
 {
     this->sprite.setPosition(position);
@@ -29,6 +32,16 @@ Part::Part(const sf::Vector2f& position,
 PartType Part::GetPartType()
 {
     return this->parttype;
+}
+
+Collider Part::GetCollider()
+{
+    return Collider(this->sprite);
+}
+
+float Part::GetPushForce()
+{
+    return this->pushBackForce;
 }
 
 Part::~Part()

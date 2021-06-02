@@ -5,9 +5,10 @@ Player::Player(const sf::Vector2f& position,
                const PartType& cparttype,
                const MyTexture& ctexture,
                const sf::Vector2u& canimationMaxSize,
-               const float& canimationTime
+               const float& canimationTime,
+               const float& cpushBackForce
                ):
-    Part(position,cparttype,ctextures,ctexture,canimationMaxSize,canimationTime)
+    Part(position,cparttype,ctextures,ctexture,canimationMaxSize,canimationTime,cpushBackForce)
 {
     this->sprite.setTexture(ctextures->GettTexture(this->texture));
     OriginSet(this->sprite);

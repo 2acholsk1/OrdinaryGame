@@ -9,7 +9,7 @@ Game::Game():window(sf::VideoMode(CONSTANTS::WINDOW_WIDTH, CONSTANTS::WINDOW_HEI
 //    environment* test2=environment::PrintEnvironment({100.0,200.0},&this->AllTextures,PartType::Tree,MyTexture::Grass);
 //    this->AllParts.emplace_back(test2);
     environment* test1=environment::PrintEnvironment({100.0,200.0},&this->AllTextures,PartType::Tree,MyTexture::Stones);
-    this->AllParts.emplace_back(test1);
+    this->AllEnvironments.emplace_back(test1);
       MainMap.SetMyMap(&this->AllTextures);
       this->CreatePlayer();
       this->CreateInterface();
@@ -19,7 +19,6 @@ Game::Game():window(sf::VideoMode(CONSTANTS::WINDOW_WIDTH, CONSTANTS::WINDOW_HEI
 void Game::CreatePlayer()
 {
     Player* player=Player::PrintPlayer(CONSTANTS::PLAYER_MIDDLE_POSITION,&this->AllTextures,PartType::Player,MyTexture::Player);
-    this->AllParts.emplace_back(player);
     this->MainPlayer=player;
 }
 
@@ -95,6 +94,7 @@ void Game::Update()
     this->SetdtTime();
     this->MyViewControl();
     this->UpdateParts();
+
     this->HereWindowEvents();
 
 
@@ -106,6 +106,11 @@ void Game::DrawParts()
     {
         part->Draw(this->window);
     }
+    for(auto& part: this->AllEnvironments)
+    {
+        part->Draw(this->window);
+    }
+    this->MainPlayer->Draw(this->window);
 }
 
 void Game::UpdateParts()
@@ -115,13 +120,34 @@ void Game::UpdateParts()
         part->Update(this->dtime);
 
     }
+    for(auto& part:this->AllEnvironments)
+    {
+        part->Update(this->dtime);
+
+    }
+    this->MainPlayer->Update(this->dtime);
+
+    this->Collisions();
 }
 
 void Game::Collisions()
 {
-    for(auto& part:this->AllParts)
-    {
+    Collider PlayerCollider=this->MainPlayer->GetCollider();
+    float PLayerPF=this->MainPlayer->GetPushForce();
 
+    for(auto& part:this->AllEnvironments)
+    {
+        Collider partCollider=part->GetCollider();
+        float partPF=part->GetPushForce();
+
+        if(PLayerPF>partPF)
+        {
+            PlayerCollider.CheckCollision(partCollider,PLayerPF);
+        }
+        else
+        {
+            partCollider.CheckCollision(PlayerCollider,partPF);
+        }
     }
 }
 
