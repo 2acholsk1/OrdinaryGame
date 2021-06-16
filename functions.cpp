@@ -14,7 +14,7 @@ void OriginSet(sf::Sprite& sprite)
 }
 
 
-void TExt(sf::Text &Object, int& CharacterSize,std::string& textme,sf::Color& c)
+void PrintTExt(sf::Text &Object, int& CharacterSize,std::string& textme,sf::Color& c)
 {
     sf::Font fontino;
     fontino.loadFromFile("fonts/Aspergit Bold.otf");

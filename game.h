@@ -32,6 +32,7 @@ private:
     minimap MiniMapView;
     Player* MainPlayer;
     std::vector<Inventory*> slots;
+    Inventory inventory;
 
 
 public:

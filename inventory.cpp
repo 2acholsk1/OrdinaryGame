@@ -1,5 +1,108 @@
 #include "inventory.h"
 
+Inventory::Inventory()
+{
+
+    this->fontinio.loadFromFile("fonts/Ace Records.ttf");
+    for(int i=0;i<8;i++)
+    {
+        howMuch.emplace_back(0);
+    }
+    for(int i=0;i<8;i++)
+    {
+        if(i==4)
+        {
+            this->startTextPosition+=switchingTextY;
+        }
+        this->text.setString("0");
+        this->text.setCharacterSize(20);
+        this->text.setFillColor(sf::Color::White);
+        this->text.setFont(this->fontinio);
+
+
+        if(i>3)
+        {
+            this->text.setPosition(this->startTextPosition+((i-4)*switchingTextX));
+        }
+        else
+        {
+            this->text.setPosition(this->startTextPosition+(i*switchingTextX));
+        }
+
+        this->StartingPositions.emplace_back(this->text.getPosition());
+        this->statesInv.emplace_back(this->text);
+    }
+
+
+}
+
+sf::Vector2f operator*(const int& l, sf::Vector2f& hector)
+{
+    sf::Vector2f out;
+    out.x+=hector.x*l;
+
+    return out;
+}
+
+void Inventory::Draw(sf::RenderWindow& window)
+{
+    for(auto &i:statesInv)
+    {
+        window.draw(i);
+    }
+}
+
+
+void Inventory::UpdatePos(Part* Player)
+{
+    sf::Vector2f Position=Player->GetPosition();
+    int j=0;
+    for(auto &i:statesInv)
+    {
+        i.setPosition(Position+this->StartingPositions[j]);
+        j++;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //Inventory::Inventory(const sf::Vector2f& position,
 //                     const PartType& cparttype,
 //                     CustomTexture* ctextures,

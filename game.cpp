@@ -32,6 +32,9 @@ void Game::CreateInterface()
     this->AllParts.emplace_back(StarveBar);
     Bars* WaterBar=Bars::PrintBar(CONSTANTS::WATER_BAR_POSITION,&this->AllTextures,PartType::WaterBar,MyTexture::WaterBar,BarType::WaterBar,100.f);
     this->AllParts.emplace_back(WaterBar);
+
+
+
 //    Inventory* Slot1=Inventory::PrintInventorySlot(CONSTANTS::SLOT_1_POSITION,&this->AllTextures,PartType::Slot1,MyTexture::Slot);
 //    this->AllParts.emplace_back(Slot1);
 //    Inventory* Slot2=Inventory::PrintInventorySlot(CONSTANTS::SLOT_2_POSITION,&this->AllTextures,PartType::Slot2,MyTexture::Slot);
@@ -107,7 +110,7 @@ void Game::Draw()
 
     this->MapRender();
     this->DrawParts();
-    this->MyView.PrintPosition(this->window);//printuje pozycje
+    this->inventory.Draw(this->window);
     this->window.setView(window.getDefaultView());
 
     this->DisplayWindow();
@@ -160,6 +163,7 @@ void Game::UpdateParts()
     this->MainPlayer->Update(this->dtime,this->window);
 
     this->Collisions();
+    this->inventory.UpdatePos(this->MainPlayer);
 }
 
 void Game::Collisions()
