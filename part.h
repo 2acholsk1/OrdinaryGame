@@ -5,7 +5,6 @@
 
 #include "animation.h"
 #include "customtexture.h"
-#include "inventory.h"
 #include "Constants.h"
 #include "functions.h"
 #include "collider.h"
@@ -30,7 +29,13 @@ enum class PartType
     HpBar,
     ExpBar,
     StarveBar,
-    WaterBar
+    WaterBar,
+    GPSArrow,
+    Slot1,
+    Slot2,
+    Slot3,
+    Slot4,
+    Slot5
 
 };
 
@@ -57,11 +62,13 @@ public:
 
     virtual ~Part();
     virtual void Draw(sf::RenderWindow& window)=0;
-    virtual void Update(float& dtime)=0;
+    virtual void Update(float& dtime,sf::RenderWindow& window)=0;
+    void UpdatePos(Part* PlaySpri,Part *partSpri);
     friend void OriginSet(sf::Sprite& sprite);
     PartType GetPartType();
     Collider GetCollider();
     float GetPushForce();
+    sf::Vector2f GetPosition();
 
 
 

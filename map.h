@@ -18,6 +18,9 @@ private:
     int toX=0;
     int fromY=0;
     int toY=0;
+    sf::RectangleShape BigBox;
+    sf::RectangleShape Landscape;
+    sf::Texture textureWater;
 public:
     Mymap();
     void Draw(sf::RenderWindow& window);

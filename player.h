@@ -20,12 +20,7 @@ public:
     sf::Vector2f currentPosition;
     sf::Vector2f lastPosition;
     float displacment;
-private:
 
-    Inventory slot_1;
-    Inventory slot_2;
-    Inventory slot_3;
-    Inventory slot_4;
 
 public:
     Player(const sf::Vector2f& position,
@@ -39,7 +34,7 @@ public:
     ~Player();
     static Player* PrintPlayer(const sf::Vector2f& cexistingPosition,CustomTexture* ctextures,
                                          const PartType& cparttype,const MyTexture& ctexture);
-    void Update(float& dtime);
+    void Update(float& dtime,sf::RenderWindow& window);
     void UpdateBars(float& dtime,float& hp,float& exp,float& starve,float& water);
     void ShowPosition();
     void IsMoving();

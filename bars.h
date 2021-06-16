@@ -32,7 +32,7 @@ public:
          );
 
     ~Bars();
-    virtual void Update(float& dtime);
+    virtual void Update(float& dtime,sf::RenderWindow& window);
     virtual void Draw(sf::RenderWindow& window);
     static Bars* PrintBar(const sf::Vector2f& cexistingPosition,CustomTexture* ctextures,
                           const PartType& cparttype,const MyTexture& ctexture,const BarType& cbartype,

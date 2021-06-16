@@ -14,11 +14,6 @@ Interface::Interface(const sf::Vector2f& position,
 
 }
 
-void Interface::InitializeInterface()
-{
-     this->sprite.setTexture(textures->GettTexture(this->texture));
-    box.setSize(sf::Vector2f(CONSTANTS::WINDOW_WIDTH,CONSTANTS::WINDOW_HEIGHT/8.f));
-}
 
 Interface* Interface::PrintInterface(const sf::Vector2f& cexistingPosition,CustomTexture* ctextures,
                                      const PartType& cparttype,const MyTexture& ctexture)
@@ -42,22 +37,10 @@ void Interface::Draw(sf::RenderWindow &window)
     window.draw(this->sprite);
 }
 
-void Interface::Update(float &dtime)
+
+
+void Interface::Update(float &dtime,sf::RenderWindow& window)
 {
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))//left
-    {
-        this->sprite.move(-CONSTANTS::PLAYER_MOVING_SPEED*dtime,0.f);
-    }
-    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))//right
-    {
-        this->sprite.move(CONSTANTS::PLAYER_MOVING_SPEED*dtime,0.f);
-    }
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))//Down
-    {
-        this->sprite.move(0.f,CONSTANTS::PLAYER_MOVING_SPEED*dtime);
-    }
-    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))//Up
-    {
-        this->sprite.move(0.f,-CONSTANTS::PLAYER_MOVING_SPEED*dtime);
-    }
+
 }
+

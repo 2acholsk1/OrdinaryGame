@@ -69,7 +69,8 @@ environment::~environment()
 
 }
 
-void environment::Update(float& dtime)
+void environment::Update(float& dtime,sf::RenderWindow& window)
 {
 
 }
+

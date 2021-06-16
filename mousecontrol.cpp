@@ -1,18 +1,18 @@
 #include "mousecontrol.h"
 
-void PrintPosition(sf::RenderWindow& window)
-{
-    std::stringstream ss;
-    sf::Text text;
-    sf::Font fontinio;
-    fontinio.loadFromFile("fonts/Ace Records.ttf");
-    text.setCharacterSize(100);
-    text.setFillColor(sf::Color::White);
-    text.setFont(fontinio);
-    text.setPosition(20.f,20.f);
-    text.setString(ss.str());
-    window.draw(text);
-}
+//void PrintPosition(sf::RenderWindow& window)
+//{
+//    std::stringstream ss;
+//    sf::Text text;
+//    sf::Font fontinio;
+//    fontinio.loadFromFile("fonts/Ace Records.ttf");
+//    text.setCharacterSize(100);
+//    text.setFillColor(sf::Color::White);
+//    text.setFont(fontinio);
+//    text.setPosition(20.f,20.f);
+//    text.setString(ss.str());
+//    window.draw(text);
+//}
 
 void MouseControl(sf::RenderWindow& window)
 {

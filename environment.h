@@ -41,7 +41,7 @@ public:
     static environment* PrintEnvironment(const sf::Vector2f& cexistingPosition,CustomTexture* ctextures,
                                          const PartType& cparttype,const MyTexture& ctexture);
     static IncludedItem GetIncludedItem(const PartType& parttype);
-    virtual void Update(float& dtime);
+    virtual void Update(float& dtime,sf::RenderWindow& window);
 //    virtual Collider GetCollider();
 //    virtual sf::Vector2f GetPositionCol();
 

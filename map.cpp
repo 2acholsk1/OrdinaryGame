@@ -23,11 +23,21 @@ void Mymap::SetMyMap(CustomTexture* AllTextures)
 
         }
     }
+    this->BigBox.setSize(sf::Vector2f(CONSTANTS::GRID_SIZE_F*CONSTANTS::MAP_SIZE,CONSTANTS::GRID_SIZE_F*CONSTANTS::MAP_SIZE));
+    this->Landscape.setSize(sf::Vector2f(CONSTANTS::GRID_SIZE_F*CONSTANTS::MAP_SIZE*1.25f,CONSTANTS::GRID_SIZE_F*CONSTANTS::MAP_SIZE*1.25f));
+    this->textureWater=AllTextures->GettTexture(MyTexture::Water);
+    this->textureWater.setRepeated(true);
+    this->Landscape.setTexture(&textureWater);
+    this->Landscape.setOrigin(this->Landscape.getSize().x/2.f,this->Landscape.getSize().y/2.f);
+    this->Landscape.setPosition(sf::Vector2f(CONSTANTS::GRID_SIZE_F*CONSTANTS::MAP_SIZE/2.f,CONSTANTS::GRID_SIZE_F*CONSTANTS::MAP_SIZE/2.f));
+
 }
 
 void Mymap::Draw(sf::RenderWindow& window)
 {
 
+    window.draw(this->BigBox);
+    window.draw(this->Landscape);
     sf::Vector2i PlayerCenterPoint(CONSTANTS::WINDOW_WIDTH/2.f,CONSTANTS::WINDOW_HEIGHT/2.f);
     sf::Vector2f PlayerPosView=window.mapPixelToCoords(PlayerCenterPoint);
     sf::Vector2u PlayerPosGrid;
@@ -40,8 +50,8 @@ void Mymap::Draw(sf::RenderWindow& window)
         PlayerPosGrid.y=PlayerPosView.y/CONSTANTS::GRID_SIZE_U;
     }
 
-    fromX=PlayerPosGrid.x-9;
-    toX=PlayerPosGrid.x+9;
+    fromX=PlayerPosGrid.x-12;
+    toX=PlayerPosGrid.x+12;
     fromY=PlayerPosGrid.y-6;
     toY=PlayerPosGrid.y+6;
 

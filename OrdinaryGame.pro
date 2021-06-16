@@ -21,6 +21,7 @@ SOURCES += \
         inventory.cpp \
         main.cpp \
         map.cpp \
+        minimap.cpp \
         mousecontrol.cpp \
         mypointofview.cpp \
         part.cpp \
@@ -38,6 +39,7 @@ HEADERS += \
     interface.h \
     inventory.h \
     map.h \
+    minimap.h \
     mousecontrol.h \
     mypointofview.h \
     part.h \

@@ -2,14 +2,17 @@
 #define GAME_H
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
+#include <ctime>
 
 #include "part.h"
 #include "mypointofview.h"
 #include "mousecontrol.h"
 #include "map.h"
+#include "minimap.h"
 #include "player.h"
 #include "bars.h"
 #include "interface.h"
+#include "inventory.h"
 #include "environment.h"
 #include "collider.h"
 
@@ -26,12 +29,14 @@ private:
     MyPointOfView MyView;
     sf::Text te;
     Mymap MainMap;
+    minimap MiniMapView;
     Player* MainPlayer;
+    std::vector<Inventory*> slots;
 
 
 public:
     Game();
-    virtual ~Game()=default;
+    virtual ~Game();
     bool IsWorking();
     void HereWindowEvents();
     void ClearWindow();
@@ -47,6 +52,8 @@ public:
     void MapRender();
     void CreatePlayer();
     void CreateInterface();
+    void CreateEnvironment();
+    void CreateMiniMap();
     void Collisions();
 
 

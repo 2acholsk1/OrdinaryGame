@@ -19,7 +19,6 @@ protected:
     sf::RectangleShape tileSelect;
 public:
     MyPointOfView(sf::RenderWindow& window);
-    void Moving(float& dtime);
     void MouseControl(sf::RenderWindow& window);
     void PrintPosition(sf::RenderWindow& window);
     void SetRect();

@@ -9,6 +9,7 @@ enum class MyTexture
 {
     Default,
     Grass,
+    Water,
     Stones,
     Mob,
     Item,
@@ -23,10 +24,24 @@ enum class MyTexture
     PlayerMR,
     PlayerMD,
     PlayerMU,
+    PlayerShovelL,
+    PlayerShovelR,
+    PlayerSwordL,
+    PlayerSwordR,
+    PlayerPickaxeL,
+    PlayerPickaxeR,
+    PlayerAxeL,
+    PlayerAxeR,
+    GPSArrow,
     HpBar,
     ExpBar,
     StarveBar,
-    WaterBar
+    WaterBar,
+    Slot,
+    Shovel,
+    Axe,
+    Pickaxe,
+    Sword
 
 };
 
