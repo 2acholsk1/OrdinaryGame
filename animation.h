@@ -5,16 +5,19 @@
 class Animation
 {
 private:
-    sf::Vector2u animationMaxSize;
+
     sf::Vector2u currentFrame;
-    double animationTime;
-    double elapsed;
+    float totalTime;
+    float switchTime;
     sf::IntRect frameSize;
 
 public:
-    Animation(sf::Texture& texture,const sf::Vector2u& canimationMaxSize,const double& canimationTime);
+    sf::Vector2u animationMaxSize;
+public:
+    Animation(sf::Texture& texture,const sf::Vector2u& canimationMaxSize,const float& switchTime);
     virtual ~Animation();
-
+    void Update(int& row,float& deltaTime);
+    void Initialize(sf::Texture& texture);
     sf::IntRect GetFrameIntRect();
 };
 

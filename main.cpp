@@ -11,8 +11,9 @@ int main()
     Game game;
     while(game.IsWorking())
     {
-        game.Draw();
         game.Update();
+        game.Draw();
+
     }
 
 

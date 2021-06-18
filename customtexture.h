@@ -9,26 +9,54 @@ enum class MyTexture
 {
     Default,
     Grass,
+    Water,
     Stones,
-    Player,
     Mob,
     Item,
-    InterfacePart,
+    InterfaceDown,
     Tree,
     Structure,
-    Minerals
+    IronOre,
+    GoldenOre,
+    CoalOre,
+    Player,
+    PlayerML,
+    PlayerMR,
+    PlayerMD,
+    PlayerMU,
+    PlayerShovelL,
+    PlayerShovelR,
+    PlayerSwordL,
+    PlayerSwordR,
+    PlayerPickaxeL,
+    PlayerPickaxeR,
+    PlayerAxeL,
+    PlayerAxeR,
+    GPSArrow,
+    HpBar,
+    ExpBar,
+    StarveBar,
+    WaterBar,
+    Slot,
+    Shovel,
+    Axe,
+    Pickaxe,
+    Sword,
+    MobMoveLeft,
+    MobMoveRight
+
 };
 
 
 class CustomTexture
 {
 private:
-    std::map<MyTexture,sf::Texture> AllTextures;
+    std::map<MyTexture,sf::Texture> Textures;
 public:
     CustomTexture();
     ~CustomTexture();
     void AddTexture(const MyTexture& textureKey,const std::string& filename);
-    sf::Texture& GetTexture(const MyTexture& textureKey);
+    sf::Texture& GettTexture(const MyTexture& textureKey);
 };
 
 #endif // CUSTOMTEXTURE_H

@@ -11,14 +11,38 @@ CONFIG(debug, debug|release){
 }
 SOURCES += \
         animation.cpp \
+        bars.cpp \
+        collider.cpp \
         customtexture.cpp \
+        environment.cpp \
+        functions.cpp \
         game.cpp \
+        interface.cpp \
+        inventory.cpp \
         main.cpp \
-        part.cpp
+        map.cpp \
+        minimap.cpp \
+        mob.cpp \
+        mousecontrol.cpp \
+        mypointofview.cpp \
+        part.cpp \
+        player.cpp
 
 HEADERS += \
     Constants.h \
     animation.h \
+    bars.h \
+    collider.h \
     customtexture.h \
+    environment.h \
+    functions.h \
     game.h \
-    part.h
+    interface.h \
+    inventory.h \
+    map.h \
+    minimap.h \
+    mob.h \
+    mousecontrol.h \
+    mypointofview.h \
+    part.h \
+    player.h
