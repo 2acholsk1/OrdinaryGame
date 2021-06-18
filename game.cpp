@@ -11,6 +11,7 @@ Game::Game():window(sf::VideoMode(CONSTANTS::WINDOW_WIDTH, CONSTANTS::WINDOW_HEI
     this->CreateEnvironment();
     this->CreatePlayer();
     this->CreateInterface();
+    this->CreateMobs();
 
 }
 
@@ -54,15 +55,62 @@ void Game::CreateInterface()
 
 void Game::CreateEnvironment()
 {
+    using namespace CONSTANTS;
     srand(time(NULL));
 
-    for(int i=0;i<1000;i++)
+    for(int i=0;i<TREE_QUANTITY;i++)
     {
         int losowa1=rand()%10000;
         int losowa2=rand()%10000;
-        environment* test4=environment::PrintEnvironment({(float)losowa1,(float)losowa2},&this->AllTextures,PartType::GoldenOre,MyTexture::GoldenOre);
-        AllEnvironments.emplace_back(test4);
+
+        environment* Tree=environment::PrintEnvironment({(float)losowa1,(float)losowa2},&this->AllTextures,PartType::Tree,MyTexture::Tree);
+        this->AllEnvironments.emplace_back(Tree);
     }
+    for(int i=0;i<GOLDEN_ORE_QUANTITY;i++)
+    {
+        int losowa1=rand()%10000;
+        int losowa2=rand()%10000;
+
+        environment* Gore=environment::PrintEnvironment({(float)losowa1,(float)losowa2},&this->AllTextures,PartType::GoldenOre,MyTexture::GoldenOre);
+        this->AllEnvironments.emplace_back(Gore);
+    }
+    for(int i=0;i<COAL_ORE_QUANTITY;i++)
+    {
+        int losowa1=rand()%10000;
+        int losowa2=rand()%10000;
+
+        environment* Core=environment::PrintEnvironment({(float)losowa1,(float)losowa2},&this->AllTextures,PartType::CoalOre,MyTexture::CoalOre);
+        this->AllEnvironments.emplace_back(Core);
+    }
+    for(int i=0;i<IRON_ORE_QUANTITY;i++)
+    {
+        int losowa1=rand()%10000;
+        int losowa2=rand()%10000;
+
+        environment* Iore=environment::PrintEnvironment({(float)losowa1,(float)losowa2},&this->AllTextures,PartType::IronOre,MyTexture::IronOre);
+        this->AllEnvironments.emplace_back(Iore);
+    }
+    for(int i=0;i<STONES_QUANTITY;i++)
+    {
+        int losowa1=rand()%10000;
+        int losowa2=rand()%10000;
+
+        environment* Stone=environment::PrintEnvironment({(float)losowa1,(float)losowa2},&this->AllTextures,PartType::Stone,MyTexture::Stones);
+        this->AllEnvironments.emplace_back(Stone);
+    }
+}
+
+void Game::CreateMobs()
+{
+    srand(time(NULL));
+    for(int i=0;i<50;i++)
+    {
+        int losowa1=(rand()%10000)+100;
+        int losowa2=(rand()%10000)+150;
+        Mob* mobik=Mob::CreateEnemy({(float)losowa1,(float)losowa2},&this->AllTextures,PartType::Mob,MyTexture::MobMoveLeft);
+        this->AllMobs.emplace_back(mobik);
+    }
+
 }
 
 bool Game::IsWorking()
@@ -135,10 +183,15 @@ void Game::DrawParts()
     {
         part->Draw(this->window);
     }
+    for(auto& mob: this->AllMobs)
+    {
+        mob->Draw(this->window);
+    }
     for(auto& part:this->AllParts)
     {
         part->Draw(this->window);
     }
+
     this->MainPlayer->Draw(this->window);
 }
 
@@ -158,6 +211,15 @@ void Game::UpdateParts()
     {
         part->Update(this->dtime,this->window);
 
+    }
+    for(auto& mob: this->AllMobs)
+    {
+        mob->Update(this->dtime,this->window);
+        if(this->oneOverTwo%2==0)
+        {
+             mob->switchWhichSide(dtime);
+        }
+        oneOverTwo++;
     }
 
     this->MainPlayer->Update(this->dtime,this->window);
@@ -191,7 +253,45 @@ void Game::Collisions()
         }
     }
 
-    //Collider Water and Player
+    //Collider Mobs and AllEnvironments
+    for(auto& mob:this->AllMobs)
+    {
+        Collider MobCollider=mob->GetCollider();
+        float MobPF=mob->GetPushForce();
+        for(auto& part:this->AllEnvironments)
+        {
+            Collider EnvpartCollider=part->GetCollider();
+            float EnvpartPF=part->GetPushForce();
+            if(MobPF>EnvpartPF)
+            {
+                MobCollider.CheckCollision(EnvpartCollider,MobPF);
+
+            }
+            else
+            {
+                EnvpartCollider.CheckCollision(MobCollider,EnvpartPF);
+            }
+        }
+        }
+
+    //Collider Mobs with player
+    //Collider All environments parts with Player
+    for(auto& part:this->AllMobs)
+    {
+        Collider MobCollider=part->GetCollider();
+        float MobvpartPF=part->GetPushForce();
+
+        if(PLayerPF>MobvpartPF)
+        {
+            PlayerCollider.CheckCollision(MobCollider,PLayerPF);
+        }
+        else
+        {
+            MobCollider.CheckCollision(PlayerCollider,MobvpartPF);
+        }
+    }
+
+
 
 }
 
@@ -253,6 +353,8 @@ void Game::LoadTextures()
     this->AllTextures.AddTexture(MyTexture::Sword,"textures/Tools/sword.png");
     this->AllTextures.AddTexture(MyTexture::Pickaxe,"textures/Tools/pickaxe.png");
     this->AllTextures.AddTexture(MyTexture::Axe,"textures/Tools/axe.png");
+    this->AllTextures.AddTexture(MyTexture::MobMoveLeft,"textures/Mob/MobMoveLeft.png");
+    this->AllTextures.AddTexture(MyTexture::MobMoveRight,"textures/Mob/MobMoveRight.png");
 
 }
 
@@ -265,6 +367,10 @@ Game::~Game()
         delete i;
     }
     for(auto& i:AllEnvironments)
+    {
+        delete i;
+    }
+    for(auto& i:AllMobs)
     {
         delete i;
     }

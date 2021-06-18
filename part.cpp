@@ -93,36 +93,36 @@ void Part::UpdatePos(Part *PlaySpri,Part *partSpri)
         this->sprite.setPosition(Position+where);
         break;
     }
-    case PartType::Slot1:
-    {
-        sf::Vector2f where(CONSTANTS::SLOT_1_POSITION);
-        this->sprite.setPosition(Position+where);
-        break;
-    }
-    case PartType::Slot2:
-    {
-        sf::Vector2f where(CONSTANTS::SLOT_2_POSITION);
-        this->sprite.setPosition(Position+where);
-        break;
-    }
-    case PartType::Slot3:
-    {
-        sf::Vector2f where(CONSTANTS::SLOT_3_POSITION);
-        this->sprite.setPosition(Position+where);
-        break;
-    }
-    case PartType::Slot4:
-    {
-        sf::Vector2f where(CONSTANTS::SLOT_4_POSITION);
-        this->sprite.setPosition(Position+where);
-        break;
-    }
-    case PartType::Slot5:
-    {
-        sf::Vector2f where(CONSTANTS::SLOT_5_POSITION);
-        this->sprite.setPosition(Position+where);
-        break;
-    }
+//    case PartType::Slot1:
+//    {
+//        sf::Vector2f where(CONSTANTS::SLOT_1_POSITION);
+//        this->sprite.setPosition(Position+where);
+//        break;
+//    }
+//    case PartType::Slot2:
+//    {
+//        sf::Vector2f where(CONSTANTS::SLOT_2_POSITION);
+//        this->sprite.setPosition(Position+where);
+//        break;
+//    }
+//    case PartType::Slot3:
+//    {
+//        sf::Vector2f where(CONSTANTS::SLOT_3_POSITION);
+//        this->sprite.setPosition(Position+where);
+//        break;
+//    }
+//    case PartType::Slot4:
+//    {
+//        sf::Vector2f where(CONSTANTS::SLOT_4_POSITION);
+//        this->sprite.setPosition(Position+where);
+//        break;
+//    }
+//    case PartType::Slot5:
+//    {
+//        sf::Vector2f where(CONSTANTS::SLOT_5_POSITION);
+//        this->sprite.setPosition(Position+where);
+//        break;
+//    }
     break;
     }
 

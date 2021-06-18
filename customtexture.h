@@ -41,7 +41,9 @@ enum class MyTexture
     Shovel,
     Axe,
     Pickaxe,
-    Sword
+    Sword,
+    MobMoveLeft,
+    MobMoveRight
 
 };
 

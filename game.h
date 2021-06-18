@@ -15,6 +15,7 @@
 #include "inventory.h"
 #include "environment.h"
 #include "collider.h"
+#include "mob.h"
 
 
 class Game
@@ -24,6 +25,7 @@ private:
     float dtime=0.f;
     std::vector<Part*> AllParts;
     std::vector<environment*> AllEnvironments;
+    std::vector<Mob*> AllMobs;
     CustomTexture AllTextures;
     sf::Clock dTclock;
     MyPointOfView MyView;
@@ -31,8 +33,8 @@ private:
     Mymap MainMap;
     minimap MiniMapView;
     Player* MainPlayer;
-    std::vector<Inventory*> slots;
     Inventory inventory;
+    int oneOverTwo=0;
 
 
 public:
@@ -55,6 +57,7 @@ public:
     void CreateInterface();
     void CreateEnvironment();
     void CreateMiniMap();
+    void CreateMobs();
     void Collisions();
 
 

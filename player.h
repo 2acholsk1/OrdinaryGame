@@ -25,8 +25,8 @@ public:
 public:
     Player(const sf::Vector2f& position,
            CustomTexture* ctextures,
-           const PartType& cparttype=PartType::Default,
-           const MyTexture& ctexture=MyTexture::Default,
+           const PartType& cparttype=PartType::Player,
+           const MyTexture& ctexture=MyTexture::Player,
            const sf::Vector2u& canimationMaxSize=sf::Vector2u(2,1),
            const float& canimationTime=1.0f,
            const float& pushBackForce=1.0f);

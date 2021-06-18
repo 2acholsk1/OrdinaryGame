@@ -27,14 +27,13 @@ environment* environment::PrintEnvironment(const sf::Vector2f& existingPosition,
                                      const PartType& cparttype,const MyTexture& ctexture)
 {
     return new environment(
-                existingPosition,
+               existingPosition,
                 ctextures,
                 cparttype,
                 environment::GetIncludedItem(cparttype),
-                ctexture,
-                1.0f,
-                sf::Vector2u(1,1),
-                1.0f);
+                environment::Matchtexture(cparttype)
+                );
+
 }
 
 IncludedItem environment::GetIncludedItem(const PartType& parttype)
@@ -74,3 +73,71 @@ void environment::Update(float& dtime,sf::RenderWindow& window)
 
 }
 
+PartType environment::RandomPartEnv()
+{
+    srand(time(NULL));
+    int los=rand()%5;
+    switch(los)
+    {
+    case 0:
+    {
+        return PartType::Tree;
+        break;
+    }
+    case 1:
+    {
+        return PartType::Stone;
+        break;
+    }
+    case 2:
+    {
+        return PartType::IronOre;
+        break;
+    }
+    case 3:
+    {
+        return PartType::GoldenOre;
+        break;
+    }
+    case 4:
+    {
+        return PartType::CoalOre;
+        break;
+    }
+        break;
+    }
+}
+
+MyTexture environment::Matchtexture(const PartType& type)
+{
+
+    switch(type)
+    {
+    case PartType::Tree:
+    {
+        return MyTexture::Tree;
+        break;
+    }
+    case PartType::Stone:
+    {
+        return MyTexture::Stones;
+        break;
+    }
+    case PartType::IronOre:
+    {
+        return MyTexture::IronOre;
+        break;
+    }
+    case PartType::GoldenOre:
+    {
+        return MyTexture::GoldenOre;
+        break;
+    }
+    case PartType::CoalOre:
+    {
+        return MyTexture::CoalOre;
+        break;
+    }
+        break;
+    }
+}

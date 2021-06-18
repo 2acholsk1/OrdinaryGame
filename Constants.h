@@ -26,11 +26,24 @@ namespace CONSTANTS
     const sf::Vector2f WATER_BAR_POSITION=sf::Vector2f(-700,WINDOW_HEIGHT*6.f/7.f+100-450);
     const sf::Vector2f ARROW_MINIMAP_POSITION=sf::Vector2f(WINDOW_WIDTH*6.f/7.f-720.f,WINDOW_HEIGHT*6.f/7.f-400);
 
-    const sf::Vector2f SLOT_1_POSITION=sf::Vector2f(-200,WINDOW_HEIGHT*6.f/7.f+10-450);
-    const sf::Vector2f SLOT_2_POSITION=sf::Vector2f(-90,WINDOW_HEIGHT*6.f/7.f+10-450);
-    const sf::Vector2f SLOT_3_POSITION=sf::Vector2f(20,WINDOW_HEIGHT*6.f/7.f+10-450);
-    const sf::Vector2f SLOT_4_POSITION=sf::Vector2f(130,WINDOW_HEIGHT*6.f/7.f+10-450);
-    const sf::Vector2f SLOT_5_POSITION=sf::Vector2f(240,WINDOW_HEIGHT*6.f/7.f+10-450);
+//    const sf::Vector2f SLOT_1_POSITION=sf::Vector2f(-200,WINDOW_HEIGHT*6.f/7.f+10-450);
+//    const sf::Vector2f SLOT_2_POSITION=sf::Vector2f(-90,WINDOW_HEIGHT*6.f/7.f+10-450);
+//    const sf::Vector2f SLOT_3_POSITION=sf::Vector2f(20,WINDOW_HEIGHT*6.f/7.f+10-450);
+//    const sf::Vector2f SLOT_4_POSITION=sf::Vector2f(130,WINDOW_HEIGHT*6.f/7.f+10-450);
+//    const sf::Vector2f SLOT_5_POSITION=sf::Vector2f(240,WINDOW_HEIGHT*6.f/7.f+10-450);
+
+
+    const float MOB_RANGE=50.f;
+    const float MOB_HP=50.f;
+    const float MOB_SPEED=35.f;
+    const float MOB_FOLLOW_SPEED=50.f;
+    const float MOB_PUSH_BACK_FORCE=0.51f;
+
+    const int TREE_QUANTITY=150;
+    const int GOLDEN_ORE_QUANTITY=20;
+    const int COAL_ORE_QUANTITY=40;
+    const int IRON_ORE_QUANTITY=50;
+    const int STONES_QUANTITY=100;
 
 }
 
