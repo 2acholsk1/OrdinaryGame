@@ -33,6 +33,17 @@ Inventory::Inventory()
         this->statesInv.emplace_back(this->text);
     }
 
+    for(int i=0;i<4;i++)
+    {
+        sf::RectangleShape under;
+        under.setSize(sf::Vector2f(50.f,10.f));
+        under.setFillColor(sf::Color::Transparent);
+        under.setPosition(this->startItemInderlinedPosition+((i+1)*switchingItemX));
+        underlinedItems.emplace_back(under);
+        this->StartingPositions.emplace_back(under.getPosition());
+
+    }
+
 
 }
 
@@ -50,6 +61,10 @@ void Inventory::Draw(sf::RenderWindow& window)
     {
         window.draw(i);
     }
+    for(auto& a:underlinedItems)
+    {
+        window.draw(a);
+    }
 }
 
 
@@ -61,6 +76,50 @@ void Inventory::UpdatePos(Part* Player)
     {
         i.setPosition(Position+this->StartingPositions[j]);
         j++;
+    }
+    for(auto& i:underlinedItems)
+    {
+        i.setPosition(Position+this->StartingPositions[j]);
+        j++;
+    }
+}
+
+void Inventory::Update(float &dtime, sf::RenderWindow &window)
+{
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
+    {
+        this->underlinedItems[0].setFillColor(sf::Color::Green);
+        this->underlinedItems[1].setFillColor(sf::Color::Transparent);
+        this->underlinedItems[2].setFillColor(sf::Color::Transparent);
+        this->underlinedItems[3].setFillColor(sf::Color::Transparent);
+    }
+    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::X))
+    {
+        this->underlinedItems[0].setFillColor(sf::Color::Transparent);
+        this->underlinedItems[1].setFillColor(sf::Color::Green);
+        this->underlinedItems[2].setFillColor(sf::Color::Transparent);
+        this->underlinedItems[3].setFillColor(sf::Color::Transparent);
+    }
+    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::C))
+    {
+        this->underlinedItems[0].setFillColor(sf::Color::Transparent);
+        this->underlinedItems[1].setFillColor(sf::Color::Transparent);
+        this->underlinedItems[2].setFillColor(sf::Color::Green);
+        this->underlinedItems[3].setFillColor(sf::Color::Transparent);
+    }
+    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::V))
+    {
+        this->underlinedItems[0].setFillColor(sf::Color::Transparent);
+        this->underlinedItems[1].setFillColor(sf::Color::Transparent);
+        this->underlinedItems[2].setFillColor(sf::Color::Transparent);
+        this->underlinedItems[3].setFillColor(sf::Color::Green);
+    }
+    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+    {
+        this->underlinedItems[0].setFillColor(sf::Color::Transparent);
+        this->underlinedItems[1].setFillColor(sf::Color::Transparent);
+        this->underlinedItems[2].setFillColor(sf::Color::Transparent);
+        this->underlinedItems[3].setFillColor(sf::Color::Transparent);
     }
 }
 

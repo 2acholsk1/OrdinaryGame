@@ -226,6 +226,7 @@ void Game::UpdateParts()
 
     this->Collisions();
     this->inventory.UpdatePos(this->MainPlayer);
+    this->inventory.Update(this->dtime,this->window);
 }
 
 void Game::Collisions()
