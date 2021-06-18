@@ -3,6 +3,7 @@
 #include "part.h"
 #include "bars.h"
 #include "math.h"
+#include <iostream>
 
 
 
@@ -15,7 +16,10 @@ public:
     float starve=100;
     float water=100;
     float acceleration=0;
-    bool isMove=0;
+    float range=150.f;
+    bool isMove=false;
+    bool MovingLeft=false;
+
     sf::RectangleShape body;
     sf::Vector2f currentPosition;
     sf::Vector2f lastPosition;
@@ -38,6 +42,8 @@ public:
     void UpdateBars(float& dtime,float& hp,float& exp,float& starve,float& water);
     void ShowPosition();
     void IsMoving();
+    bool InRange(sf::RenderWindow& window);
+    sf::Vector2f GetCurrentPosition();
 //    Collider GetCollider();
 //    sf::Vector2f GetPositionCol();
 

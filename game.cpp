@@ -171,6 +171,7 @@ void Game::Update()
     this->MyViewControl();
     this->UpdateParts();
 
+
     this->HereWindowEvents();
 
 
@@ -221,7 +222,7 @@ void Game::UpdateParts()
         }
         oneOverTwo++;
     }
-
+    this->Crushing();
     this->MainPlayer->Update(this->dtime,this->window);
 
     this->Collisions();
@@ -294,6 +295,40 @@ void Game::Collisions()
 
 
 
+}
+
+void Game::Crushing()
+{
+    if(sf::Mouse::isButtonPressed(sf::Mouse::Left))
+    {
+        if(click)
+        {
+            this->click=false;
+            sf::Vector2i mousePosWindow=sf::Mouse::getPosition(window);
+            sf::Vector2f copyMouse=window.mapPixelToCoords(mousePosWindow);
+            sf::Vector2f cur=this->MainPlayer->GetCurrentPosition()+sf::Vector2f(-CONSTANTS::PLAYER_MIDDLE_POSITION);
+            sf::Vector2f MousePosition=sf::Vector2f((float)copyMouse.x,(float)copyMouse.y);
+            bool IsInRange=this->MainPlayer->InRange(this->window);
+            for(auto& i:AllEnvironments)
+            {
+                if((IsInRange)&&(MousePosition.x>=i->GetSize().left-cur.x)&&(MousePosition.x<=i->GetSize().left+i->GetSize().width-cur.x)&&
+                        (MousePosition.y>=i->GetSize().top-cur.y)&&(MousePosition.y<+i->GetSize().top+i->GetSize().height-cur.y))
+                {
+                    std::cout<<"WORKS"<<std::endl;
+                    PartType type=i->GetPartType();
+                    this->inventory.AddingItem(type);
+                    i->GetOut();
+
+                }
+            }
+        }
+
+
+    }
+    else
+    {
+        this->click=true;
+    }
 }
 
 void Game::SetPointOfView()
@@ -375,5 +410,6 @@ Game::~Game()
     {
         delete i;
     }
+
 }
 

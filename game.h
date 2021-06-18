@@ -35,6 +35,9 @@ private:
     Player* MainPlayer;
     Inventory inventory;
     int oneOverTwo=0;
+    int ereasingEnvironment=0;
+    bool click=true;
+
 
 
 public:
@@ -59,6 +62,7 @@ public:
     void CreateMiniMap();
     void CreateMobs();
     void Collisions();
+    void Crushing();
 
 
 };

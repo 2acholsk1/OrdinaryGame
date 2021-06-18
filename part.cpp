@@ -50,6 +50,11 @@ sf::Vector2f Part::GetPosition()
     return this->sprite.getPosition();
 }
 
+sf::FloatRect Part::GetSize()
+{
+    return this->sprite.getGlobalBounds();
+}
+
 void Part::UpdatePos(Part *PlaySpri,Part *partSpri)
 {
     sf::Vector2f Position=PlaySpri->GetPosition();

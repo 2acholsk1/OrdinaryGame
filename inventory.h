@@ -18,12 +18,15 @@ private:
     sf::Vector2f switchingItemX=sf::Vector2f(60.f,0.f);
     std::vector<sf::Vector2f> StartingPositions;
     std::vector<sf::RectangleShape> underlinedItems;
+    int ItemInUse=0;
 
 public:
     Inventory();
     void Draw(sf::RenderWindow& window);
     void Update(float& dtime,sf::RenderWindow& window);
     void UpdatePos(Part* Player);
+    void AddingItem(PartType& type);
+
 
 
     ~Inventory()=default;

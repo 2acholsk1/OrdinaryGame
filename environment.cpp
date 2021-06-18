@@ -141,3 +141,8 @@ MyTexture environment::Matchtexture(const PartType& type)
         break;
     }
 }
+
+void environment::GetOut()
+{
+    this->sprite.setPosition(sf::Vector2f(-800.f,-800.f));
+}

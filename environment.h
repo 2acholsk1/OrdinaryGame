@@ -44,6 +44,7 @@ public:
     virtual void Update(float& dtime,sf::RenderWindow& window);
     static MyTexture Matchtexture(const PartType& type);
     static PartType RandomPartEnv();
+    void GetOut();
 //    virtual Collider GetCollider();
 //    virtual sf::Vector2f GetPositionCol();
 

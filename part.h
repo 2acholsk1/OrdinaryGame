@@ -69,6 +69,7 @@ public:
     Collider GetCollider();
     float GetPushForce();
     sf::Vector2f GetPosition();
+    sf::FloatRect GetSize();
 
 
 

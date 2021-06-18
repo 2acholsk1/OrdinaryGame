@@ -3,20 +3,7 @@
 #include "part.h"
 
 
-enum class items
-{
-    Default,
-    Sword,
-    Pickaxe,
-    Axe,
-    Shovel,
-    Wood,
-    SmallStones,
-    Iron,
-    Coal,
-    Gold
 
-};
 
 
 
@@ -38,8 +25,7 @@ public:
     void InitializeInterface();
     virtual void Update(float& dtime,sf::RenderWindow& window);
     virtual void Draw(sf::RenderWindow& window);
-//    virtual Collider GetCollider();
-//    virtual sf::Vector2f GetPositionCol();
+
 public:
     sf::RectangleShape box;
 
