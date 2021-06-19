@@ -311,6 +311,8 @@ void Game::Crushing()
                     std::cout<<"WORKS"<<std::endl;
                     PartType type=i->GetPartType();
                     this->inventory.AddingItem(type);
+                    float g=10.f;
+                    this->AllBars[1]->ChangeFilling(g);
                     i->GetOut();
 
                 }

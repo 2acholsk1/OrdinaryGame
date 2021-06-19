@@ -88,6 +88,11 @@ BarType Bars::GetBartType()
     return this->type;
 }
 
+void Bars::ChangeFilling(float& howMuch)
+{
+    this->filling+=howMuch;
+}
+
 Bars::~Bars()
 {
 

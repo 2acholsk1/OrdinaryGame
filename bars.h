@@ -41,6 +41,7 @@ public:
                           const float& cfilling);
     void UpdateBar(BarType& BT);
     BarType GetBartType();
+    void ChangeFilling(float& howMuch);
 };
 
 #endif // BARS_H
