@@ -38,6 +38,12 @@ Player* Player::PrintPlayer(const sf::Vector2f& cexistingPosition,CustomTexture*
                 0.1f);
 }
 
+void Player::AnimationUp(float &dtime)
+{
+    int i=0;
+    this->animation.Update(i,dtime);
+}
+
 void Player::Update(float& dtime,sf::RenderWindow& window)
 {
     this->acceleration=CONSTANTS::PLAYER_MOVING_SPEED/dtime;
@@ -84,17 +90,10 @@ void Player::Update(float& dtime,sf::RenderWindow& window)
 
     if(this->MovingLeft)
     {
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::C))
-        {
-            this->sprite.setTexture(this->textures->GettTexture(MyTexture::PlayerPickaxeL));
-            this->animation.animationMaxSize=sf::Vector2u(2,1);
-            this->animation.Initialize(this->textures->GettTexture(MyTexture::PlayerPickaxeL));
-            this->animation.Update(i,dtime);
-            sprite.setTextureRect(animation.GetFrameIntRect());
 
-        }
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::V))
          {
+            this->lastItemInUse=4;
              this->sprite.setTexture(this->textures->GettTexture(MyTexture::PlayerSwordL));
              this->animation.animationMaxSize=sf::Vector2u(2,1);
              this->animation.Initialize(this->textures->GettTexture(MyTexture::PlayerSwordL));
@@ -102,8 +101,19 @@ void Player::Update(float& dtime,sf::RenderWindow& window)
              sprite.setTextureRect(animation.GetFrameIntRect());
 
          }
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::C))
+        {
+            this->lastItemInUse=3;
+            this->sprite.setTexture(this->textures->GettTexture(MyTexture::PlayerPickaxeL));
+            this->animation.animationMaxSize=sf::Vector2u(2,1);
+            this->animation.Initialize(this->textures->GettTexture(MyTexture::PlayerPickaxeL));
+            this->animation.Update(i,dtime);
+            sprite.setTextureRect(animation.GetFrameIntRect());
+
+        }
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::X))
         {
+            this->lastItemInUse=2;
             this->sprite.setTexture(this->textures->GettTexture(MyTexture::PlayerAxeL));
             this->animation.animationMaxSize=sf::Vector2u(2,1);
             this->animation.Initialize(this->textures->GettTexture(MyTexture::PlayerAxeL));
@@ -113,6 +123,7 @@ void Player::Update(float& dtime,sf::RenderWindow& window)
         }
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
         {
+            this->lastItemInUse=1;
             this->sprite.setTexture(this->textures->GettTexture(MyTexture::PlayerShovelL));
             this->animation.animationMaxSize=sf::Vector2u(2,1);
             this->animation.Initialize(this->textures->GettTexture(MyTexture::PlayerShovelL));
@@ -123,8 +134,19 @@ void Player::Update(float& dtime,sf::RenderWindow& window)
     }
     else
     {
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::V))
+        {
+            this->lastItemInUse=8;
+            this->sprite.setTexture(this->textures->GettTexture(MyTexture::PlayerSwordR));
+            this->animation.animationMaxSize=sf::Vector2u(2,1);
+            this->animation.Initialize(this->textures->GettTexture(MyTexture::PlayerSwordR));
+            this->animation.Update(i,dtime);
+            sprite.setTextureRect(animation.GetFrameIntRect());
+
+        }
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::C))
         {
+            this->lastItemInUse=7;
             this->sprite.setTexture(this->textures->GettTexture(MyTexture::PlayerPickaxeR));
             this->animation.animationMaxSize=sf::Vector2u(2,1);
             this->animation.Initialize(this->textures->GettTexture(MyTexture::PlayerPickaxeR));
@@ -133,18 +155,11 @@ void Player::Update(float& dtime,sf::RenderWindow& window)
 
         }
 
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::V))
-        {
-            this->sprite.setTexture(this->textures->GettTexture(MyTexture::PlayerSwordR));
-            this->animation.animationMaxSize=sf::Vector2u(2,1);
-            this->animation.Initialize(this->textures->GettTexture(MyTexture::PlayerSwordR));
-            this->animation.Update(i,dtime);
-            sprite.setTextureRect(animation.GetFrameIntRect());
 
-        }
 
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::X))
         {
+            this->lastItemInUse=6;
             this->sprite.setTexture(this->textures->GettTexture(MyTexture::PlayerAxeR));
             this->animation.animationMaxSize=sf::Vector2u(2,1);
             this->animation.Initialize(this->textures->GettTexture(MyTexture::PlayerAxeR));
@@ -155,6 +170,7 @@ void Player::Update(float& dtime,sf::RenderWindow& window)
 
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
         {
+            this->lastItemInUse=5;
             this->sprite.setTexture(this->textures->GettTexture(MyTexture::PlayerShovelR));
             this->animation.animationMaxSize=sf::Vector2u(2,1);
             this->animation.Initialize(this->textures->GettTexture(MyTexture::PlayerShovelR));
@@ -168,20 +184,95 @@ void Player::Update(float& dtime,sf::RenderWindow& window)
 
    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
    {
-           this->animation.animationMaxSize=sf::Vector2u(2,1);
-           this->animation.Initialize(this->textures->GettTexture(MyTexture::Player));
-           this->sprite.setTexture(this->textures->GettTexture(MyTexture::Player));
-           sprite.setTextureRect(animation.GetFrameIntRect());
+       this->lastItemInUse=0;
+       this->animation.animationMaxSize=sf::Vector2u(2,1);
+       this->animation.Initialize(this->textures->GettTexture(MyTexture::Player));
+       this->sprite.setTexture(this->textures->GettTexture(MyTexture::Player));
+       sprite.setTextureRect(animation.GetFrameIntRect());
    }
 
     this->IsMoving();
-//    if(isMove==0)
-//    {
-//        this->animation.Initialize(this->textures->GettTexture(MyTexture::Player));
-//        this->sprite.setTexture(this->textures->GettTexture(MyTexture::Player));
-//        this->animation.Update(i,dtime);
-//        sprite.setTextureRect(animation.GetFrameIntRect());
-//    }
+    if(isMove==0)
+    {
+        switch(this->lastItemInUse)
+        {
+        case 0:
+        {
+            this->animation.Initialize(this->textures->GettTexture(MyTexture::Player));
+            this->sprite.setTexture(this->textures->GettTexture(MyTexture::Player));
+            this->animation.Update(i,dtime);
+            sprite.setTextureRect(animation.GetFrameIntRect());
+            break;
+        }
+        case 1:
+        {
+            this->animation.Initialize(this->textures->GettTexture(MyTexture::PlayerShovelL));
+            this->sprite.setTexture(this->textures->GettTexture(MyTexture::PlayerShovelL));
+            this->animation.Update(i,dtime);
+            sprite.setTextureRect(animation.GetFrameIntRect());
+            break;
+        }
+        case 5:
+        {
+            this->animation.Initialize(this->textures->GettTexture(MyTexture::PlayerShovelR));
+            this->sprite.setTexture(this->textures->GettTexture(MyTexture::PlayerShovelR));
+            this->animation.Update(i,dtime);
+            sprite.setTextureRect(animation.GetFrameIntRect());
+            break;
+        }
+        case 2:
+        {
+            this->animation.Initialize(this->textures->GettTexture(MyTexture::PlayerAxeL));
+            this->sprite.setTexture(this->textures->GettTexture(MyTexture::PlayerAxeL));
+            this->animation.Update(i,dtime);
+            sprite.setTextureRect(animation.GetFrameIntRect());
+            break;
+        }
+        case 6:
+        {
+            this->animation.Initialize(this->textures->GettTexture(MyTexture::PlayerAxeR));
+            this->sprite.setTexture(this->textures->GettTexture(MyTexture::PlayerAxeR));
+            this->animation.Update(i,dtime);
+            sprite.setTextureRect(animation.GetFrameIntRect());
+            break;
+        }
+        case 3:
+        {
+            this->animation.Initialize(this->textures->GettTexture(MyTexture::PlayerPickaxeL));
+            this->sprite.setTexture(this->textures->GettTexture(MyTexture::PlayerPickaxeL));
+            this->animation.Update(i,dtime);
+            sprite.setTextureRect(animation.GetFrameIntRect());
+            break;
+        }
+        case 7:
+        {
+            this->animation.Initialize(this->textures->GettTexture(MyTexture::PlayerPickaxeR));
+            this->sprite.setTexture(this->textures->GettTexture(MyTexture::PlayerPickaxeR));
+            this->animation.Update(i,dtime);
+            sprite.setTextureRect(animation.GetFrameIntRect());
+            break;
+        }
+        case 4:
+        {
+            this->animation.Initialize(this->textures->GettTexture(MyTexture::PlayerSwordL));
+            this->sprite.setTexture(this->textures->GettTexture(MyTexture::PlayerSwordL));
+            this->animation.Update(i,dtime);
+            sprite.setTextureRect(animation.GetFrameIntRect());
+            break;
+        }
+        case 8:
+        {
+            this->animation.Initialize(this->textures->GettTexture(MyTexture::PlayerSwordR));
+            this->sprite.setTexture(this->textures->GettTexture(MyTexture::PlayerSwordR));
+            this->animation.Update(i,dtime);
+            sprite.setTextureRect(animation.GetFrameIntRect());
+            break;
+        }
+            break;
+        }
+
+
+    }
     lastPosition=currentPosition;
 
 }

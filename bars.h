@@ -17,6 +17,8 @@ protected:
     float filling;
     float maxFilling;
     BarType type;
+    sf::IntRect oneBar=sf::IntRect(0,0,250,25);
+    std::vector<float> infos;
 
 public:
     Bars(const sf::Vector2f& position,
@@ -38,6 +40,7 @@ public:
                           const PartType& cparttype,const MyTexture& ctexture,const BarType& cbartype,
                           const float& cfilling);
     void UpdateBar(BarType& BT);
+    BarType GetBartType();
 };
 
 #endif // BARS_H

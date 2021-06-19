@@ -27,25 +27,19 @@ void Game::CreateInterface()
     this->AllParts.emplace_back(interface);
     Bars* HpBar=Bars::PrintBar(CONSTANTS::HP_BAR_POSITION,&this->AllTextures,PartType::HpBar,MyTexture::HpBar,BarType::HpBar,100.f);
     this->AllParts.emplace_back(HpBar);
+    this->AllBars.emplace_back(HpBar);
     Bars* ExpBar=Bars::PrintBar(CONSTANTS::EXP_BAR_POSITION,&this->AllTextures,PartType::ExpBar,MyTexture::ExpBar,BarType::ExpBar,0.f);
     this->AllParts.emplace_back(ExpBar);
+    this->AllBars.emplace_back(ExpBar);
     Bars* StarveBar=Bars::PrintBar(CONSTANTS::STARVE_BAR_POSITION,&this->AllTextures,PartType::StarveBar,MyTexture::StarveBar,BarType::StarveBar,100.f);
     this->AllParts.emplace_back(StarveBar);
+    this->AllBars.emplace_back(StarveBar);
     Bars* WaterBar=Bars::PrintBar(CONSTANTS::WATER_BAR_POSITION,&this->AllTextures,PartType::WaterBar,MyTexture::WaterBar,BarType::WaterBar,100.f);
     this->AllParts.emplace_back(WaterBar);
+    this->AllBars.emplace_back(WaterBar);
 
 
 
-//    Inventory* Slot1=Inventory::PrintInventorySlot(CONSTANTS::SLOT_1_POSITION,&this->AllTextures,PartType::Slot1,MyTexture::Slot);
-//    this->AllParts.emplace_back(Slot1);
-//    Inventory* Slot2=Inventory::PrintInventorySlot(CONSTANTS::SLOT_2_POSITION,&this->AllTextures,PartType::Slot2,MyTexture::Slot);
-//    this->AllParts.emplace_back(Slot2);
-//    Inventory* Slot3=Inventory::PrintInventorySlot(CONSTANTS::SLOT_3_POSITION,&this->AllTextures,PartType::Slot3,MyTexture::Slot);
-//    this->AllParts.emplace_back(Slot3);
-//    Inventory* Slot4=Inventory::PrintInventorySlot(CONSTANTS::SLOT_4_POSITION,&this->AllTextures,PartType::Slot4,MyTexture::Slot);
-//    this->AllParts.emplace_back(Slot4);
-//    Inventory* Slot5=Inventory::PrintInventorySlot(CONSTANTS::SLOT_4_POSITION,&this->AllTextures,PartType::Slot5,MyTexture::Slot);
-//    this->AllParts.emplace_back(Slot5);
 //    minimap* Minimap=minimap::PrintMiniMap(CONSTANTS::ARROW_MINIMAP_POSITION,&this->AllTextures,PartType::GPSArrow,MyTexture::GPSArrow);
 //    this->AllParts.emplace_back(Minimap);
 

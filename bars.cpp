@@ -17,7 +17,31 @@ Part(position,cparttype,ctextures,ctexture,canimationMaxSize,canimationTime,cpus
   filling(cfilling),
   maxFilling(cmaxFilling)
 {
-
+    this->sprite.setTextureRect(this->oneBar);
+    switch(cbartype)
+    {
+    case BarType::HpBar:
+    {
+        infos.emplace_back(cfilling);
+        break;
+    }
+    case BarType::ExpBar:
+    {
+        infos.emplace_back(cfilling);
+        break;
+    }
+    case BarType::StarveBar:
+    {
+        infos.emplace_back(cfilling);
+        break;
+    }
+    case BarType::WaterBar:
+    {
+        infos.emplace_back(cfilling);
+        break;
+    }
+        break;
+    }
 }
 
 Bars* Bars::PrintBar(const sf::Vector2f& cexistingPosition,
@@ -46,35 +70,22 @@ void Bars::Draw(sf::RenderWindow &window)
 
 void Bars::Update(float &dtime,sf::RenderWindow& window)
 {
-//    if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))//left
-//    {
-//        this->sprite.move(-CONSTANTS::PLAYER_MOVING_SPEED*dtime,0.f);
-//    }
-//    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))//right
-//    {
-//        this->sprite.move(CONSTANTS::PLAYER_MOVING_SPEED*dtime,0.f);
-//    }
-//    if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))//Down
-//    {
-//        this->sprite.move(0.f,CONSTANTS::PLAYER_MOVING_SPEED*dtime);
-//    }
-//    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))//Up
-//    {
-//        this->sprite.move(0.f,-CONSTANTS::PLAYER_MOVING_SPEED*dtime);
-//    }
+     int fill=this->filling*25.f;
+     sf::IntRect rect=sf::IntRect(0,fill,250,25);
+     this->sprite.setTextureRect(rect);
 
 
 }
 
+
 void Bars::UpdateBar(BarType &BT)
 {
-    switch(BT)
-    {
-    case BarType::HpBar:
-    {
 
-    }
-    }
+}
+
+BarType Bars::GetBartType()
+{
+    return this->type;
 }
 
 Bars::~Bars()

@@ -144,5 +144,14 @@ MyTexture environment::Matchtexture(const PartType& type)
 
 void environment::GetOut()
 {
-    this->sprite.setPosition(sf::Vector2f(-800.f,-800.f));
+    if(this->strength<=0)
+    {
+            this->sprite.setPosition(sf::Vector2f(-800.f,-800.f));
+    }
+    else
+    {
+        this->strength-=0.25f;
+
+    }
+
 }

@@ -26,6 +26,7 @@ private:
     std::vector<Part*> AllParts;
     std::vector<environment*> AllEnvironments;
     std::vector<Mob*> AllMobs;
+    std::vector<Bars*> AllBars;
     CustomTexture AllTextures;
     sf::Clock dTclock;
     MyPointOfView MyView;

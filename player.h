@@ -25,6 +25,8 @@ public:
     sf::Vector2f lastPosition;
     float displacment;
 
+    int lastItemInUse=0;
+
 
 public:
     Player(const sf::Vector2f& position,
@@ -44,6 +46,7 @@ public:
     void IsMoving();
     bool InRange(sf::RenderWindow& window);
     sf::Vector2f GetCurrentPosition();
+    void AnimationUp(float& dtime);
 //    Collider GetCollider();
 //    sf::Vector2f GetPositionCol();
 

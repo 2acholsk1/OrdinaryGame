@@ -53,37 +53,57 @@ void Inventory::AddingItem(PartType& type)
     {
     case PartType::GoldenOre:
     {
-        this->howMuch[0]++;
-        std::string change=std::to_string(this->howMuch[0]);
-        this->statesInv[0].setString(change);
+        if(ItemInUse==3)
+        {
+            this->howMuch[0]++;
+            std::string change=std::to_string(this->howMuch[0]);
+            this->statesInv[0].setString(change);
+        }
+
         break;
     }
     case PartType::Stone:
     {
-        this->howMuch[1]++;
-        std::string change=std::to_string(this->howMuch[1]);
-        this->statesInv[1].setString(change);
+        if(ItemInUse==3)
+        {
+            this->howMuch[1]++;
+            std::string change=std::to_string(this->howMuch[1]);
+            this->statesInv[1].setString(change);
+        }
+
         break;
     }
     case PartType::IronOre:
     {
-        this->howMuch[4]++;
-        std::string change=std::to_string(this->howMuch[4]);
-        this->statesInv[4].setString(change);
+        if(ItemInUse==3)
+        {
+            this->howMuch[4]++;
+            std::string change=std::to_string(this->howMuch[4]);
+            this->statesInv[4].setString(change);
+        }
+
         break;
     }
     case PartType::CoalOre:
     {
-        this->howMuch[5]++;
-        std::string change=std::to_string(this->howMuch[5]);
-        this->statesInv[5].setString(change);
+        if(ItemInUse==3)
+        {
+            this->howMuch[5]++;
+            std::string change=std::to_string(this->howMuch[5]);
+            this->statesInv[5].setString(change);
+        }
+
         break;
     }
     case PartType::Tree:
     {
-        this->howMuch[6]++;
-        std::string change=std::to_string(this->howMuch[6]);
-        this->statesInv[6].setString(change);
+        if(ItemInUse==2)
+        {
+            this->howMuch[6]++;
+            std::string change=std::to_string(this->howMuch[6]);
+            this->statesInv[6].setString(change);
+        }
+
         break;
     }
 
