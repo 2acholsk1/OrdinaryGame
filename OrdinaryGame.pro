@@ -15,6 +15,7 @@ SOURCES += \
         collider.cpp \
         customtexture.cpp \
         environment.cpp \
+        farmland.cpp \
         functions.cpp \
         game.cpp \
         interface.cpp \
@@ -35,6 +36,7 @@ HEADERS += \
     collider.h \
     customtexture.h \
     environment.h \
+    farmland.h \
     functions.h \
     game.h \
     interface.h \

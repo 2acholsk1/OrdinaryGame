@@ -23,3 +23,20 @@ void PrintTExt(sf::Text &Object, int& CharacterSize,std::string& textme,sf::Colo
     Object.setFillColor(c);
     Object.setString(textme);
 }
+
+float CountDistance(const sf::Vector2f& vector_uno, const sf::Vector2f& vector_dos)
+{
+    float x_d = vector_uno.x - vector_dos.x;
+    float y_d = vector_uno.y - vector_dos.y;
+
+    return std::sqrt(x_d * x_d + y_d * y_d);
+}
+
+void DrawBel(CustomTexture* ctextures,sf::RenderWindow& window)
+{
+    sf::Vector2f size=sf::Vector2f(100.f,10.f);
+    sf::RectangleShape shape(size);
+    shape.setPosition(1000.f,200.f);
+    shape.setTexture(&ctextures->GettTexture(MyTexture::Bel));
+    window.draw(shape);
+}

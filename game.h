@@ -16,6 +16,7 @@
 #include "environment.h"
 #include "collider.h"
 #include "mob.h"
+#include "functions.h"
 
 
 class Game
@@ -27,17 +28,22 @@ private:
     std::vector<environment*> AllEnvironments;
     std::vector<Mob*> AllMobs;
     std::vector<Bars*> AllBars;
+    std::vector<farmland> miniFarm;
     CustomTexture AllTextures;
     sf::Clock dTclock;
     MyPointOfView MyView;
+    MyPointOfView MiniMapView1;
     sf::Text te;
     Mymap MainMap;
     minimap MiniMapView;
     Player* MainPlayer;
     Inventory inventory;
     int oneOverTwo=0;
+    int ExpGained=0;
     int ereasingEnvironment=0;
     bool click=true;
+    bool miniorNot=true;
+
 
 
 
@@ -54,16 +60,20 @@ public:
     void UpdateParts();
     void LoadTextures();
     void SetPointOfView();
+    void SetMinimap();
     void SetdtTime();
     void MyViewControl();
+    void MinMapControl();
     void MapRender();
     void CreatePlayer();
     void CreateInterface();
     void CreateEnvironment();
     void CreateMiniMap();
     void CreateMobs();
+    void CreateFarmland();
     void Collisions();
     void Crushing();
+    void MobAttack();
 
 
 };

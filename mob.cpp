@@ -67,6 +67,38 @@ float Mob::GetPushBackForce()
     return CONSTANTS::MOB_PUSH_BACK_FORCE;
 }
 
+void Mob::WhoToFollow(Part* ctoFollow)
+{
+    toFollow=ctoFollow;
+}
+
+void Mob::Following(float& dtime)
+{
+    float DistanceB=CountDistance(this->toFollow->GetPosition(),this->GetPosition());
+    sf::Vector2f PlayerPos=this->toFollow->GetPosition();
+    sf::Vector2f MobPos=this->sprite.getPosition();
+
+    if(DistanceB<=this->range)
+    {
+        if(PlayerPos.x>MobPos.x)
+        {
+            this->sprite.move(CONSTANTS::MOB_SPEED*dtime*10,0.f);
+        }
+        if(PlayerPos.x<MobPos.x)
+        {
+            this->sprite.move(-CONSTANTS::MOB_SPEED*dtime*10,0.f);
+        }
+        if(PlayerPos.y>MobPos.y)
+        {
+            this->sprite.move(0.f,-CONSTANTS::MOB_SPEED*dtime*10);
+        }
+        if(PlayerPos.y<MobPos.y)
+        {
+            this->sprite.move(0.f,CONSTANTS::MOB_SPEED*dtime*10);
+        }
+    }
+}
+
 void Mob::switchWhichSide(float& dtime)
 {
     switch(whichSide)
@@ -166,6 +198,24 @@ void Mob::Existing(float& dtime)
     }
     break;
     }
+}
+
+float Mob::GetMobPower()
+{
+    return this->mobPower;
+}
+
+void Mob::Dead()
+{
+    if(this->hp<=0)
+    {
+        this->sprite.setPosition(-1000.f,-1000.f);
+    }
+    else
+    {
+        this->hp-=5.f;
+    }
+
 }
 
 Mob::~Mob()

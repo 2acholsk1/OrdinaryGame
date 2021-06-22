@@ -18,7 +18,7 @@ protected:
     float maxFilling;
     BarType type;
     sf::IntRect oneBar=sf::IntRect(0,0,250,25);
-    std::vector<float> infos;
+    float totalTime=0.f;
 
 public:
     Bars(const sf::Vector2f& position,
@@ -41,7 +41,7 @@ public:
                           const float& cfilling);
     void UpdateBar(BarType& BT);
     BarType GetBartType();
-    void ChangeFilling(float& howMuch);
+    void ChangeFilling(const float& howMuch);
 };
 
 #endif // BARS_H

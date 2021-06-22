@@ -14,6 +14,7 @@ enum class MyTexture
     Mob,
     Item,
     InterfaceDown,
+    Bel,
     Tree,
     Structure,
     IronOre,
@@ -43,7 +44,11 @@ enum class MyTexture
     Pickaxe,
     Sword,
     MobMoveLeft,
-    MobMoveRight
+    MobMoveRight,
+    Field,
+    CarrotField,
+    PotatoField,
+    BeetField
 
 };
 

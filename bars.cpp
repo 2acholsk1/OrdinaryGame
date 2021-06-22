@@ -18,30 +18,7 @@ Part(position,cparttype,ctextures,ctexture,canimationMaxSize,canimationTime,cpus
   maxFilling(cmaxFilling)
 {
     this->sprite.setTextureRect(this->oneBar);
-    switch(cbartype)
-    {
-    case BarType::HpBar:
-    {
-        infos.emplace_back(cfilling);
-        break;
-    }
-    case BarType::ExpBar:
-    {
-        infos.emplace_back(cfilling);
-        break;
-    }
-    case BarType::StarveBar:
-    {
-        infos.emplace_back(cfilling);
-        break;
-    }
-    case BarType::WaterBar:
-    {
-        infos.emplace_back(cfilling);
-        break;
-    }
-        break;
-    }
+
 }
 
 Bars* Bars::PrintBar(const sf::Vector2f& cexistingPosition,
@@ -70,9 +47,24 @@ void Bars::Draw(sf::RenderWindow &window)
 
 void Bars::Update(float &dtime,sf::RenderWindow& window)
 {
-     int fill=this->filling*25.f;
-     sf::IntRect rect=sf::IntRect(0,fill,250,25);
+     int fill=this->filling;
+     sf::IntRect rect=sf::IntRect(0,fill*25,250,25);
      this->sprite.setTextureRect(rect);
+     if(fill>100)
+     {
+         this->filling=0.f;
+         fill=0;
+     }
+     if(fill<0)
+     {
+         window.close();
+     }
+     this->totalTime+=dtime;
+     if((totalTime>CONSTANTS::TIME_TO_STARVE_AND_THIRST)&&(this->type==BarType::StarveBar||this->type==BarType::WaterBar))
+     {
+         totalTime=0.f;
+         this->ChangeFilling(CONSTANTS::STARVE_OR_THIRST);
+     }
 
 
 }
@@ -88,7 +80,7 @@ BarType Bars::GetBartType()
     return this->type;
 }
 
-void Bars::ChangeFilling(float& howMuch)
+void Bars::ChangeFilling(const float& howMuch)
 {
     this->filling+=howMuch;
 }

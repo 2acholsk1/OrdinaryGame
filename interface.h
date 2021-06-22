@@ -26,10 +26,9 @@ public:
     virtual void Update(float& dtime,sf::RenderWindow& window);
     virtual void Draw(sf::RenderWindow& window);
 
-public:
-    sf::RectangleShape box;
 
 private:
+    sf::RectangleShape box;
 
 
 

@@ -4,7 +4,6 @@ MyPointOfView::MyPointOfView(sf::RenderWindow& window)
 {
     window.setView(static_cast<sf::View>(*this));
     this->setSize(window.getSize().x,window.getSize().y);
-    this->text.setPosition(20.f,20.f);
 }
 
 void MyPointOfView::MouseControl(sf::RenderWindow& window)

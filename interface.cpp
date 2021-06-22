@@ -42,5 +42,25 @@ void Interface::Draw(sf::RenderWindow &window)
 void Interface::Update(float &dtime,sf::RenderWindow& window)
 {
 
+    if(this->parttype==PartType::GPSArrow)
+    {
+        OriginSet(this->sprite);
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+        {
+            this->sprite.setRotation(90.f);
+        }
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+        {
+            this->sprite.setRotation(180.f);
+        }
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+        {
+            this->sprite.setRotation(-90.f);
+        }
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+        {
+            this->sprite.setRotation(0.f);
+        }
+    }
 }
 

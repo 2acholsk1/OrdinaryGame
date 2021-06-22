@@ -10,15 +10,16 @@ private:
     float totalTime;
     float switchTime;
     sf::IntRect frameSize;
-
-public:
     sf::Vector2u animationMaxSize;
+
+
 public:
     Animation(sf::Texture& texture,const sf::Vector2u& canimationMaxSize,const float& switchTime);
     virtual ~Animation();
     void Update(int& row,float& deltaTime);
     void Initialize(sf::Texture& texture);
     sf::IntRect GetFrameIntRect();
+    void SetAnimationMaxSize(sf::Vector2u& canimationMaxSize);
 };
 
 #endif // ANIMATION_H

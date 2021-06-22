@@ -24,13 +24,8 @@ namespace CONSTANTS
     const sf::Vector2f EXP_BAR_POSITION=sf::Vector2f(-700,WINDOW_HEIGHT*6.f/7.f+40-450);
     const sf::Vector2f STARVE_BAR_POSITION=sf::Vector2f(-700,WINDOW_HEIGHT*6.f/7.f+70-450);
     const sf::Vector2f WATER_BAR_POSITION=sf::Vector2f(-700,WINDOW_HEIGHT*6.f/7.f+100-450);
-    const sf::Vector2f ARROW_MINIMAP_POSITION=sf::Vector2f(WINDOW_WIDTH*6.f/7.f-720.f,WINDOW_HEIGHT*6.f/7.f-400);
+    const sf::Vector2f ARROW_MINIMAP_POSITION=sf::Vector2f(WINDOW_WIDTH*6.f/7.f-710.f,WINDOW_HEIGHT*6.f/7.f-400);
 
-//    const sf::Vector2f SLOT_1_POSITION=sf::Vector2f(-200,WINDOW_HEIGHT*6.f/7.f+10-450);
-//    const sf::Vector2f SLOT_2_POSITION=sf::Vector2f(-90,WINDOW_HEIGHT*6.f/7.f+10-450);
-//    const sf::Vector2f SLOT_3_POSITION=sf::Vector2f(20,WINDOW_HEIGHT*6.f/7.f+10-450);
-//    const sf::Vector2f SLOT_4_POSITION=sf::Vector2f(130,WINDOW_HEIGHT*6.f/7.f+10-450);
-//    const sf::Vector2f SLOT_5_POSITION=sf::Vector2f(240,WINDOW_HEIGHT*6.f/7.f+10-450);
 
 
     const float MOB_RANGE=50.f;
@@ -44,6 +39,19 @@ namespace CONSTANTS
     const int COAL_ORE_QUANTITY=40;
     const int IRON_ORE_QUANTITY=50;
     const int STONES_QUANTITY=100;
+
+    const float EXP_OF_CHOPPING_OR_DIGGING=1.0f;
+    const float EXP_OF_FIGHT=2.0f;
+
+    const float LOST_HP_IN_CHOPPING_AND_DIGGIND_WITHOUT_TOOL=-1.0f;
+    const float ZOMBIE_ATTACK=-0.1f;
+
+    const float STARVE_OR_THIRST=-1.0f;
+    const float TIME_TO_STARVE_AND_THIRST=8.f;
+
+
+    const sf::FloatRect MINIMAMP_SIZE=sf::FloatRect(0.883f, 0.87f, 0.064f, 0.1f);
+    const sf::FloatRect VIEW_SIZE=sf::FloatRect(0, 0, 1, 1);
 
 }
 

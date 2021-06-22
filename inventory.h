@@ -26,6 +26,7 @@ public:
     void Update(float& dtime,sf::RenderWindow& window);
     void UpdatePos(Part* Player);
     void AddingItem(PartType& type);
+    int GetItemInUse();
 
 
 

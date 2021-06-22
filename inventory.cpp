@@ -3,6 +3,7 @@
 Inventory::Inventory()
 {
 
+
     this->fontinio.loadFromFile("fonts/Ace Records.ttf");
     for(int i=0;i<8;i++)
     {
@@ -190,6 +191,11 @@ void Inventory::Update(float &dtime, sf::RenderWindow &window)
         this->underlinedItems[2].setFillColor(sf::Color::Transparent);
         this->underlinedItems[3].setFillColor(sf::Color::Transparent);
     }
+}
+
+int Inventory::GetItemInUse()
+{
+    return this->ItemInUse;
 }
 
 

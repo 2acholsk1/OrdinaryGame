@@ -41,3 +41,8 @@ sf::IntRect Animation::GetFrameIntRect()
      this->frameSize.left=currentFrame.x*frameSize.width;
      this->frameSize.top=currentFrame.y*frameSize.height;
  }
+
+ void Animation::SetAnimationMaxSize(sf::Vector2u& canimationMaxSize)
+ {
+    this->animationMaxSize=canimationMaxSize;
+ }
