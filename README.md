@@ -1,5 +1,5 @@
 # OrdinaryGame
-2D game created in C++/SFML
+###2D game created in C++/SFML
 
 ##Gameplay
 link
