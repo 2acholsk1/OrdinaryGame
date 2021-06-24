@@ -50,14 +50,10 @@ void Bars::Update(float &dtime,sf::RenderWindow& window)
      int fill=this->filling;
      sf::IntRect rect=sf::IntRect(0,fill*25,250,25);
      this->sprite.setTextureRect(rect);
-     if(fill>100)
+     if((fill>100)&&(this->GetBartType()==BarType::ExpBar))
      {
-         this->filling=100.f;
-         fill=100;
-     }
-     if(fill<0)
-     {
-         window.close();
+         this->filling=0.f;
+         fill=0;
      }
      this->totalTime+=dtime;
      if((totalTime>CONSTANTS::TIME_TO_STARVE_AND_THIRST)&&(this->type==BarType::StarveBar||this->type==BarType::WaterBar))
@@ -83,6 +79,11 @@ BarType Bars::GetBartType()
 void Bars::ChangeFilling(const float& howMuch)
 {
     this->filling+=howMuch;
+}
+
+float Bars::GetFilling()
+{
+    return this->filling;
 }
 
 Bars::~Bars()

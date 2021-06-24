@@ -24,6 +24,7 @@ class Game
 private:
     sf::RenderWindow window;
     float dtime=0.f;
+
     std::vector<Part*> AllParts;
     std::vector<environment*> AllEnvironments;
     std::vector<Mob*> AllMobs;
@@ -41,6 +42,7 @@ private:
     int oneOverTwo=0;
     int ExpGained=0;
     int ereasingEnvironment=0;
+    int totalPoints=0;
 
     bool click=true;
     bool Zpressed=true;
@@ -48,6 +50,7 @@ private:
     bool Rpressed=true;
     bool Tpressed=true;
     bool miniorNot=true;
+    bool theEnd=true;
 
 
 
@@ -60,6 +63,7 @@ public:
     void ClearWindow();
     void DisplayWindow();
     void Draw();
+    void DrawEndStates();
     void Update();
     void DrawParts();
     void UpdateParts();
@@ -78,8 +82,10 @@ public:
     void CreateFarmland();
     void Collisions();
     void Crushing();
+    void LevelUP();
     void MobAttack();
     void Eating();
+    void TheEnd();
 
 
 };

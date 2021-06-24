@@ -141,6 +141,7 @@ void Game::CreateFarmland()
 
             farmland field=farmland(&this->AllTextures,pos);
             this->miniFarm.emplace_back(field);
+            this->totalPoints+=CONSTANTS::POINTS_FOR_FARMLAND;
         }
     }
     else
@@ -245,35 +246,49 @@ void Game::DisplayWindow()
 
 void Game::Draw()
 {
-    this->ClearWindow();
-    this->SetPointOfView();
-
-
-
-    this->MapRender();
-    this->DrawParts();
-    this->inventory.Draw(this->window);
-    this->SetMinimap();
-    this->miniorNot=false;
-    this->DrawParts();
-    this->window.setView(window.getDefaultView());
-    this->miniorNot=true;
-
-
-    this->DisplayWindow();
-
+    if(this->theEnd)
+    {
+        this->ClearWindow();
+        this->SetPointOfView();
+        this->MapRender();
+        this->DrawParts();
+        this->inventory.Draw(this->window);
+        this->SetMinimap();
+        this->miniorNot=false;
+        this->DrawParts();
+        this->window.setView(window.getDefaultView());
+        this->miniorNot=true;
+        this->DisplayWindow();
+    }
+    if(this->theEnd==false)
+    {
+        this->ClearWindow();
+        this->SetPointOfView();
+        this->DrawEndStates();
+//        this->window.setView(window.getDefaultView());
+        this->DisplayWindow();
+    }
 }
-
-
 
 void Game::Update()
 {
-    this->SetdtTime();
-    this->MyViewControl();
-    this->UpdateParts();
-    this->MinMapControl();
-    this->HereWindowEvents();
+    if(this->theEnd)
+    {
+        this->SetdtTime();
+        this->MyViewControl();
+        this->UpdateParts();
+        this->MinMapControl();
 
+        this->TheEnd();
+    }
+    else
+    {
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::X))
+        {
+            window.close();
+        }
+    }
+    this->HereWindowEvents();
 }
 
 void Game::DrawParts()
@@ -304,6 +319,62 @@ void Game::DrawParts()
 
 }
 
+void Game::DrawEndStates()
+{
+    sf::Text text[4];
+    sf::Font font;
+    font.loadFromFile("fonts/Ace Records.ttf");
+
+    for(int i=0;i<4;i++)
+    {
+        text[i].setFont(font);
+        text[i].setCharacterSize(50);
+        text[i].setFillColor(sf::Color::Red);
+        switch(i)
+        {
+        case 0:
+        {
+            std::string string="GAME OVER";
+            text[i].setPosition(CONSTANTS::GAME_OVER_POSITION+this->MainPlayer->GetPosition());
+            text[i].setCharacterSize(100);
+            text[i].setString(string);
+            break;
+        }
+        case 1:
+        {
+            std::string string="TOTAL POINTS";
+            text[i].setPosition(CONSTANTS::TOTAL_POINTS_POSITION+this->MainPlayer->GetPosition());
+            text[i].setCharacterSize(60);
+            text[i].setString(string);
+            break;
+        }
+        case 2:
+        {
+            std::string string=std::to_string(this->totalPoints);
+            text[i].setPosition(CONSTANTS::POINTS_POSITION+this->MainPlayer->GetPosition());
+            text[i].setCharacterSize(60);
+            text[i].setString(string);
+            break;
+        }
+        case 3:
+        {
+            std::string string="PRESS  X  TO QUIT";
+            text[i].setPosition(CONSTANTS::PRESS_X_POSITION+this->MainPlayer->GetPosition());
+            text[i].setCharacterSize(35);
+            text[i].setString(string);
+            break;
+        }
+            break;
+        }
+
+
+
+        window.draw(text[i]);
+    }
+
+
+}
+
 void Game::UpdateParts()
 {
     for(auto& part:this->AllParts)
@@ -323,9 +394,9 @@ void Game::UpdateParts()
     }
     for(auto& mob: this->AllMobs)
     {
-        mob->Update(this->dtime,this->window);
+
         mob->WhoToFollow(this->MainPlayer);
-        mob->Following(this->dtime);
+        mob->Update(this->dtime,this->window);
         if(this->oneOverTwo%2==0)
         {
              mob->switchWhichSide(dtime);
@@ -345,6 +416,7 @@ void Game::UpdateParts()
     this->inventory.UpdatePos(this->MainPlayer);
     this->inventory.Update(this->dtime,this->window);
     this->MobAttack();
+    this->LevelUP();
 }
 
 void Game::Collisions()
@@ -447,6 +519,7 @@ void Game::Crushing()
                         this->AllBars[3]->ChangeFilling(CONSTANTS::DRINKING);
                     }
                     i->GetOut();
+                    this->totalPoints+=CONSTANTS::POINT_FOR_CHOPPING_AND_DIGGING;
 
                 }
             }
@@ -458,6 +531,7 @@ void Game::Crushing()
                     std::cout<<"WORKS"<<std::endl;
                     this->AllBars[1]->ChangeFilling(CONSTANTS::EXP_OF_FIGHT);
                     mob->Dead();
+                    this->totalPoints+=CONSTANTS::POINTS_FOR_FIGHT;
 
                 }
             }
@@ -476,6 +550,7 @@ void Game::Crushing()
                     FieldType type=field.GetFieldType();
                     this->inventory.AddingItem(type);
                     field.Remove();
+                    this->totalPoints+=CONSTANTS::POINT_FOR_HARVEST;
                 }
             }
 
@@ -490,6 +565,14 @@ void Game::Crushing()
         this->click=true;
     }
 
+}
+
+void Game::LevelUP()
+{
+    if(this->AllBars[1]->GetFilling()>=100)
+    {
+        this->totalPoints+=CONSTANTS::POINTS_FOR_LEVEL_UP;
+    }
 }
 
 void Game::MobAttack()
@@ -559,6 +642,7 @@ void Game::LoadTextures()
     this->AllTextures.AddTexture(MyTexture::IronOre,"textures/Environment/ironore.png");
     this->AllTextures.AddTexture(MyTexture::GoldenOre,"textures/Environment/goldenore.png");
     this->AllTextures.AddTexture(MyTexture::Player,"textures/Player/Player.png");
+    this->AllTextures.AddTexture(MyTexture::PlayerDead,"textures/Player/PlayerDead.png");
     this->AllTextures.AddTexture(MyTexture::PlayerMR,"textures/Player/PlayerMoveRight.png");
     this->AllTextures.AddTexture(MyTexture::PlayerML,"textures/Player/PlayerMoveLeft.png");
     this->AllTextures.AddTexture(MyTexture::PlayerMD,"textures/Player/PlayerMoveDown.png");
@@ -590,6 +674,18 @@ void Game::LoadTextures()
     this->AllTextures.AddTexture(MyTexture::PotatoField,"textures/Environment/PotatoField.png");
     this->AllTextures.AddTexture(MyTexture::BeetField,"textures/Environment/BeetField.png");
 
+}
+
+void Game::TheEnd()
+{
+    for(int i=0;i<4;i++)
+    {
+        if(this->AllBars[i]->GetFilling()<0)
+        {
+            this->theEnd=false;
+
+        }
+    }
 }
 
 Game::~Game()

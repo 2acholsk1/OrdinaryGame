@@ -22,6 +22,7 @@ enum class MyTexture
     GoldenOre,
     CoalOre,
     Player,
+    PlayerDead,
     PlayerML,
     PlayerMR,
     PlayerMD,

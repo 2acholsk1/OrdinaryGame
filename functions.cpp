@@ -14,13 +14,14 @@ void OriginSet(sf::Sprite& sprite)
 }
 
 
-void PrintTExt(sf::Text &Object, int& CharacterSize,std::string& textme,sf::Color& c)
+void PrintTExt(sf::Text &Object, int& CharacterSize,std::string& textme,sf::Color& c,sf::Vector2f& Position)
 {
     sf::Font fontino;
     fontino.loadFromFile("fonts/Aspergit Bold.otf");
     Object.setFont(fontino);
     Object.setCharacterSize(CharacterSize);
     Object.setFillColor(c);
+    Object.setPosition(Position);
     Object.setString(textme);
 }
 

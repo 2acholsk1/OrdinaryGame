@@ -22,6 +22,7 @@ SOURCES += \
         inventory.cpp \
         main.cpp \
         map.cpp \
+        menu.cpp \
         minimap.cpp \
         mob.cpp \
         mousecontrol.cpp \
@@ -42,6 +43,7 @@ HEADERS += \
     interface.h \
     inventory.h \
     map.h \
+    menu.h \
     minimap.h \
     mob.h \
     mousecontrol.h \

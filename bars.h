@@ -42,6 +42,7 @@ public:
     void UpdateBar(BarType& BT);
     BarType GetBartType();
     void ChangeFilling(const float& howMuch);
+    float GetFilling();
 };
 
 #endif // BARS_H

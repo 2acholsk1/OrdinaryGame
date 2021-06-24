@@ -7,8 +7,8 @@
 class Mob:public Part
 {
 private:
-    float range;
-    float followingSpeed;
+    float range=500.f;
+    float followingSpeed=50.f;
     float mobPower=-10.f;
     float hp;
     Part* toFollow;
@@ -27,7 +27,7 @@ public:
         const float& pushBackForce=0.0f,
         const float& crange=500.f,
         const float& cfollowingSpeed=50.f,
-        const float& chp=50.f,
+        const float& chp=500.f,
         Part* ctoFollow=nullptr
         );
 

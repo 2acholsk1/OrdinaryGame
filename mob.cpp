@@ -30,9 +30,9 @@ Mob* Mob::CreateEnemy(const sf::Vector2f& spawnPosition,CustomTexture* textures,
                 sf::Vector2u(1,1),
                 1.0f,
                 Mob::GetPushBackForce(),
-                Mob::GetRange(),
-                Mob::GetFollowSpeed(),
-                Mob::GetHp()
+                CONSTANTS::MOB_RANGE,
+                CONSTANTS::MOB_FOLLOW_SPEED,
+                CONSTANTS::MOB_HP
                 );
 }
 
@@ -43,7 +43,7 @@ void Mob::Draw(sf::RenderWindow &window)
 
 void Mob::Update(float &dtime, sf::RenderWindow &window)
 {
-    this->Existing(dtime);
+    this->Following(dtime);
 
 }
 
@@ -74,7 +74,7 @@ void Mob::WhoToFollow(Part* ctoFollow)
 
 void Mob::Following(float& dtime)
 {
-    float DistanceB=CountDistance(this->toFollow->GetPosition(),this->GetPosition());
+    float DistanceB=CountDistance(this->toFollow->GetPosition(),this->sprite.getPosition());
     sf::Vector2f PlayerPos=this->toFollow->GetPosition();
     sf::Vector2f MobPos=this->sprite.getPosition();
 
@@ -82,20 +82,36 @@ void Mob::Following(float& dtime)
     {
         if(PlayerPos.x>MobPos.x)
         {
-            this->sprite.move(CONSTANTS::MOB_SPEED*dtime*10,0.f);
+            this->sprite.setTexture(this->textures->GettTexture(MyTexture::MobMoveRight));
+            this->sprite.move(CONSTANTS::MOB_SPEED*dtime,0.f);
+            if(PlayerPos.y+20>MobPos.y)
+            {
+                this->sprite.move(0.f,CONSTANTS::MOB_SPEED*dtime);
+            }
+            if(PlayerPos.y+20<MobPos.y)
+            {
+                this->sprite.move(0.f,-CONSTANTS::MOB_SPEED*dtime);
+            }
         }
-        if(PlayerPos.x<MobPos.x)
+        if(PlayerPos.x+20<MobPos.x)
         {
-            this->sprite.move(-CONSTANTS::MOB_SPEED*dtime*10,0.f);
+            this->sprite.setTexture(this->textures->GettTexture(MyTexture::MobMoveLeft));
+            this->sprite.move(-CONSTANTS::MOB_SPEED*dtime,0.f);
+            if(PlayerPos.y>MobPos.y)
+            {
+                this->sprite.move(0.f,CONSTANTS::MOB_SPEED*dtime);
+            }
+            if(PlayerPos.y+20<MobPos.y)
+            {
+                this->sprite.move(0.f,-CONSTANTS::MOB_SPEED*dtime);
+            }
         }
-        if(PlayerPos.y>MobPos.y)
-        {
-            this->sprite.move(0.f,-CONSTANTS::MOB_SPEED*dtime*10);
-        }
-        if(PlayerPos.y<MobPos.y)
-        {
-            this->sprite.move(0.f,CONSTANTS::MOB_SPEED*dtime*10);
-        }
+
+
+    }
+    else
+    {
+        this->Existing(dtime);
     }
 }
 
