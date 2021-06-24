@@ -26,6 +26,8 @@ namespace CONSTANTS
     const sf::Vector2f STARVE_BAR_POSITION=sf::Vector2f(-700,WINDOW_HEIGHT*6.f/7.f+70-450);
     const sf::Vector2f WATER_BAR_POSITION=sf::Vector2f(-700,WINDOW_HEIGHT*6.f/7.f+100-450);
     const sf::Vector2f ARROW_MINIMAP_POSITION=sf::Vector2f(WINDOW_WIDTH*6.f/7.f-710.f,WINDOW_HEIGHT*6.f/7.f-400);
+    const sf::Vector2f INSTRUCTION_START_POSITION=sf::Vector2f(-5600.f,-5200.f);
+    const sf::Vector2f INSTRUCTION_POSITION=sf::Vector2f(-600.f,-400.f);
 
     const sf::Vector2f GAME_OVER_POSITION=sf::Vector2f(WINDOW_WIDTH/2.f-1125.f,WINDOW_HEIGHT*0.75f-1000.f);
     const sf::Vector2f TOTAL_POINTS_POSITION=sf::Vector2f(WINDOW_WIDTH/2.f-1000.f,WINDOW_HEIGHT*0.6f-700.f);
@@ -61,7 +63,7 @@ namespace CONSTANTS
     const float EATING_CARROT=0.25f;
     const float EATING_POTATO=1.f;
     const float EATING_BEET=0.75f;
-    const float TIME_TO_PLANTS_GROW_UP=3.f;
+    const float TIME_TO_PLANTS_GROW_UP=120.f;
 
     const float HEALING_CARROT=1.f;
     const float HEALING_POTATO=0.25;

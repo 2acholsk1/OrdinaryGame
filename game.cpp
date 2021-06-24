@@ -42,10 +42,7 @@ void Game::CreateInterface()
     Interface* GPS=Interface::PrintInterface(CONSTANTS::ARROW_MINIMAP_POSITION,&this->AllTextures,PartType::GPSArrow,MyTexture::GPSArrow);
     this->AllParts.emplace_back(GPS);
 
-
-
-//    minimap* Minimap=minimap::PrintMiniMap(CONSTANTS::ARROW_MINIMAP_POSITION,&this->AllTextures,PartType::GPSArrow,MyTexture::GPSArrow);
-//    this->AllParts.emplace_back(Minimap);
+    this->instruction=Interface::PrintInterface(CONSTANTS::INSTRUCTION_START_POSITION,&this->AllTextures,PartType::Instruction,MyTexture::Instruction);
 
 }
 
@@ -118,6 +115,98 @@ void Game::CreateMobs()
         this->AllMobs.emplace_back(mobik);
     }
 
+}
+
+void Game::CreateStructures()
+{
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::B))
+    {
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
+        {
+            if(this->Onepressed)
+            {
+                this->Onepressed=false;
+
+                sf::Vector2f pos;
+                PartType type=PartType::Boards;
+                if(this->inventory.Building(type))
+                {
+                    if((this->MainPlayer->MLeft())&&(!this->MainPlayer->IMove()))
+                    {
+                        pos=this->MainPlayer->GetPosition()+sf::Vector2f(-120.f,0.f);
+
+                    }
+                    else if((!this->MainPlayer->MLeft())&&(!this->MainPlayer->IMove()))
+                    {
+                       pos=this->MainPlayer->GetPosition()+sf::Vector2f(120.f,0.f);
+                    }
+                    Structures* structure=Structures::PrintStructures(pos,&this->AllTextures,PartType::Boards,MyTexture::Boards);
+                    this->AllStructures.emplace_back(structure);
+                }
+
+            }
+            else
+            {
+                this->Onepressed=true;
+            }
+        }
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
+        {
+            if(this->Twopressed)
+            {
+                this->Twopressed=false;
+                sf::Vector2f pos;
+                PartType type=PartType::Cobble;
+                if(this->inventory.Building(type))
+                {
+                    if((this->MainPlayer->MLeft())&&(!this->MainPlayer->IMove()))
+                    {
+                        pos=this->MainPlayer->GetPosition()+sf::Vector2f(-120.f,0.f);
+
+                    }
+                    else if((!this->MainPlayer->MLeft())&&(!this->MainPlayer->IMove()))
+                    {
+                       pos=this->MainPlayer->GetPosition()+sf::Vector2f(120.f,0.f);
+                    }
+                    Structures* structure=Structures::PrintStructures(pos,&this->AllTextures,PartType::Cobble,MyTexture::Cobble);
+                    this->AllStructures.emplace_back(structure);
+                }
+
+            }
+            else
+            {
+                this->Twopressed=true;
+            }
+        }
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num3))
+        {
+            if(this->Threepressed)
+            {
+                this->Threepressed=false;
+                sf::Vector2f pos;
+                PartType type=PartType::WoodenFence;
+                if(this->inventory.Building(type))
+                {
+                    if((this->MainPlayer->MLeft())&&(!this->MainPlayer->IMove()))
+                    {
+                        pos=this->MainPlayer->GetPosition()+sf::Vector2f(-80.f,0.f);
+
+                    }
+                    else if((!this->MainPlayer->MLeft())&&(!this->MainPlayer->IMove()))
+                    {
+                       pos=this->MainPlayer->GetPosition()+sf::Vector2f(50.f,0.f);
+                    }
+                    Structures* structure=Structures::PrintStructures(pos,&this->AllTextures,PartType::WoodenFence,MyTexture::WoodenFence);
+                    this->AllStructures.emplace_back(structure);
+                }
+
+            }
+            else
+            {
+                this->Threepressed=true;
+            }
+        }
+    }
 }
 
 void Game::CreateFarmland()
@@ -265,7 +354,6 @@ void Game::Draw()
         this->ClearWindow();
         this->SetPointOfView();
         this->DrawEndStates();
-//        this->window.setView(window.getDefaultView());
         this->DisplayWindow();
     }
 }
@@ -306,6 +394,10 @@ void Game::DrawParts()
     {
         field.Draw(this->window);
     }
+    for(auto& structure:this->AllStructures)
+    {
+        structure->Draw(this->window);
+    }
     if(miniorNot)
     {
         for(auto& part:this->AllParts)
@@ -313,7 +405,15 @@ void Game::DrawParts()
             part->Draw(this->window);
         }
         this->MainPlayer->Draw(this->window);
+        if(!this->Ipressed)
+        {
+            sf::Vector2f pos=this->MainPlayer->GetPosition()+CONSTANTS::INSTRUCTION_POSITION;
+            this->instruction->SetPosition(pos);
+            this->instruction->Draw(this->window);
+        }
+
     }
+
 
 
 
@@ -410,6 +510,7 @@ void Game::UpdateParts()
 
     this->Crushing();
     this->CreateFarmland();
+    this->CreateStructures();
     this->Eating();
     this->MainPlayer->Update(this->dtime,this->window);
     this->Collisions();
@@ -417,6 +518,20 @@ void Game::UpdateParts()
     this->inventory.Update(this->dtime,this->window);
     this->MobAttack();
     this->LevelUP();
+    this->UpdateInstruction();
+    this->CreateStructures();
+}
+
+void Game::UpdateInstruction()
+{
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::I))
+    {
+        this->Ipressed=false;
+    }
+    else
+    {
+        this->Ipressed=true;
+    }
 }
 
 void Game::Collisions()
@@ -441,6 +556,21 @@ void Game::Collisions()
         else
         {
             EnvpartCollider.CheckCollision(PlayerCollider,EnvpartPF);
+        }
+    }
+    //Collider AllStructures with Player
+    for(auto& structure:this->AllStructures)
+    {
+        Collider StrupartCollider=structure->GetCollider();
+        float StrupartPF=structure->GetPushForce();
+
+        if(PLayerPF>StrupartPF)
+        {
+            PlayerCollider.CheckCollision(StrupartCollider,PLayerPF);
+        }
+        else
+        {
+            StrupartCollider.CheckCollision(PlayerCollider,StrupartPF);
         }
     }
 
@@ -507,7 +637,6 @@ void Game::Crushing()
                 if((IsInRange)&&(MousePosition.x>=i->GetSize().left-cur.x)&&(MousePosition.x<=i->GetSize().left+i->GetSize().width-cur.x)&&
                         (MousePosition.y>=i->GetSize().top-cur.y)&&(MousePosition.y<+i->GetSize().top+i->GetSize().height-cur.y))
                 {
-                    std::cout<<"WORKS"<<std::endl;
                     PartType type=i->GetPartType();
                     this->inventory.AddingItem(type);
                     if((this->inventory.GetItemInUse()==0)&&(type!=PartType::Lake))
@@ -528,7 +657,6 @@ void Game::Crushing()
                 if((IsInRange)&&(MousePosition.x>=mob->GetSize().left-cur.x)&&(MousePosition.x<=mob->GetSize().left+mob->GetSize().width-cur.x)&&
                         (MousePosition.y>=mob->GetSize().top-cur.y)&&(MousePosition.y<+mob->GetSize().top+mob->GetSize().height-cur.y))
                 {
-                    std::cout<<"WORKS"<<std::endl;
                     this->AllBars[1]->ChangeFilling(CONSTANTS::EXP_OF_FIGHT);
                     mob->Dead();
                     this->totalPoints+=CONSTANTS::POINTS_FOR_FIGHT;
@@ -541,7 +669,6 @@ void Game::Crushing()
                 if((IsInRange)&&(MousePosition.x>=field.GetSize().left-cur.x)&&(MousePosition.x<=field.GetSize().left+field.GetSize().width-cur.x)&&
                         (MousePosition.y>=field.GetSize().top-cur.y)&&(MousePosition.y<+field.GetSize().top+field.GetSize().height-cur.y))
                 {
-                    std::cout<<"WORKS"<<std::endl;
                     if((this->inventory.GetItemInUse()==0)&&(field.GetFieldType()!=FieldType::Common))
                     {
                         this->AllBars[1]->ChangeFilling(CONSTANTS::EXP_OF_FARMING);
@@ -657,6 +784,7 @@ void Game::LoadTextures()
     this->AllTextures.AddTexture(MyTexture::PlayerAxeR,"textures/Player/PlayerAxeRight.png");
     this->AllTextures.AddTexture(MyTexture::InterfaceDown,"textures/interface/down.png");
     this->AllTextures.AddTexture(MyTexture::Bel,"textures/interface/Bel.png");
+    this->AllTextures.AddTexture(MyTexture::Instruction,"textures/interface/Instruction.png");
     this->AllTextures.AddTexture(MyTexture::GPSArrow,"textures/interface/minimapArrow.png");
     this->AllTextures.AddTexture(MyTexture::Slot,"textures/interface/slot.png");
     this->AllTextures.AddTexture(MyTexture::HpBar,"textures/bars/hpbar.png");
@@ -673,6 +801,10 @@ void Game::LoadTextures()
     this->AllTextures.AddTexture(MyTexture::CarrotField,"textures/Environment/CarrotField.png");
     this->AllTextures.AddTexture(MyTexture::PotatoField,"textures/Environment/PotatoField.png");
     this->AllTextures.AddTexture(MyTexture::BeetField,"textures/Environment/BeetField.png");
+    this->AllTextures.AddTexture(MyTexture::WoodenFence,"textures/Structures/WoodenFence.png");
+    this->AllTextures.AddTexture(MyTexture::Cobble,"textures/Structures/Cobble.png");
+    this->AllTextures.AddTexture(MyTexture::Boards,"textures/Structures/Boards.png");
+
 
 }
 

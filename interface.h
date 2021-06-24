@@ -27,6 +27,7 @@ public:
     virtual void Draw(sf::RenderWindow& window);
 
 
+
 private:
     sf::RectangleShape box;
 

@@ -18,6 +18,7 @@ enum class MyTexture
     Bel,
     Tree,
     Structure,
+    Instruction,
     IronOre,
     GoldenOre,
     CoalOre,
@@ -50,7 +51,10 @@ enum class MyTexture
     Field,
     CarrotField,
     PotatoField,
-    BeetField
+    BeetField,
+    WoodenFence,
+    Cobble,
+    Boards
 
 };
 

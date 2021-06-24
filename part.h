@@ -23,6 +23,7 @@ enum class PartType
     Tree,
     Stone,
     Lake,
+    Instruction,
     IronOre,
     CoalOre,
     GoldenOre,
@@ -32,11 +33,9 @@ enum class PartType
     StarveBar,
     WaterBar,
     GPSArrow,
-    Slot1,
-    Slot2,
-    Slot3,
-    Slot4,
-    Slot5
+    WoodenFence,
+    Cobble,
+    Boards
 
 };
 
@@ -71,6 +70,7 @@ public:
     float GetPushForce();
     sf::Vector2f GetPosition();
     sf::FloatRect GetSize();
+    void SetPosition(sf::Vector2f& position);
 
 
 

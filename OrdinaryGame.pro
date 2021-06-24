@@ -28,7 +28,8 @@ SOURCES += \
         mousecontrol.cpp \
         mypointofview.cpp \
         part.cpp \
-        player.cpp
+        player.cpp \
+        structures.cpp
 
 HEADERS += \
     Constants.h \
@@ -49,4 +50,5 @@ HEADERS += \
     mousecontrol.h \
     mypointofview.h \
     part.h \
-    player.h
+    player.h \
+    structures.h

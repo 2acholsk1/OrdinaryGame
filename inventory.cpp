@@ -269,6 +269,47 @@ bool Inventory::Eating(FieldType &type)
 
 }
 
+bool Inventory::Building(PartType &type)
+{
+    switch(type)
+    {
+    case PartType::Boards:
+    {
+        if(this->howMuch[6]>=7)
+        {
+            this->howMuch[6]-=7;
+            std::string change=std::to_string(this->howMuch[6]);
+            this->statesInv[6].setString(change);
+            return true;
+        }
+        break;
+    }
+    case PartType::Cobble:
+    {
+        if(this->howMuch[1]>=5)
+        {
+            this->howMuch[1]-=5;
+            std::string change=std::to_string(this->howMuch[1]);
+            this->statesInv[1].setString(change);
+            return true;
+        }
+        break;
+    }
+    case PartType::WoodenFence:
+    {
+        if(this->howMuch[6]>=3)
+        {
+            this->howMuch[6]-=3;
+            std::string change=std::to_string(this->howMuch[6]);
+            this->statesInv[6].setString(change);
+            return true;
+        }
+        break;
+    }
+        return false;
+    }
+}
+
 int Inventory::GetItemInUse()
 {
     return this->ItemInUse;

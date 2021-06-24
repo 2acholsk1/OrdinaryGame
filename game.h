@@ -17,6 +17,7 @@
 #include "collider.h"
 #include "mob.h"
 #include "functions.h"
+#include "structures.h"
 
 
 class Game
@@ -30,6 +31,7 @@ private:
     std::vector<Mob*> AllMobs;
     std::vector<Bars*> AllBars;
     std::vector<farmland> miniFarm;
+    std::vector<Structures*> AllStructures;
     CustomTexture AllTextures;
     sf::Clock dTclock;
     MyPointOfView MyView;
@@ -39,6 +41,7 @@ private:
     minimap MiniMapView;
     Player* MainPlayer;
     Inventory inventory;
+    Interface* instruction;
     int oneOverTwo=0;
     int ExpGained=0;
     int ereasingEnvironment=0;
@@ -49,6 +52,10 @@ private:
     bool Epressed=true;
     bool Rpressed=true;
     bool Tpressed=true;
+    bool Ipressed=true;
+    bool Onepressed=true;
+    bool Twopressed=true;
+    bool Threepressed=true;
     bool miniorNot=true;
     bool theEnd=true;
 
@@ -67,6 +74,7 @@ public:
     void Update();
     void DrawParts();
     void UpdateParts();
+    void UpdateInstruction();
     void LoadTextures();
     void SetPointOfView();
     void SetMinimap();
@@ -79,6 +87,7 @@ public:
     void CreateEnvironment();
     void CreateMiniMap();
     void CreateMobs();
+    void CreateStructures();
     void CreateFarmland();
     void Collisions();
     void Crushing();

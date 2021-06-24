@@ -42,6 +42,7 @@ void Interface::Draw(sf::RenderWindow &window)
 void Interface::Update(float &dtime,sf::RenderWindow& window)
 {
 
+
     if(this->parttype==PartType::GPSArrow)
     {
         OriginSet(this->sprite);

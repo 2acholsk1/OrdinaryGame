@@ -29,6 +29,7 @@ public:
     void AddingItem(PartType& type);
     void AddingItem(FieldType& type);
     bool Eating(FieldType& type);
+    bool Building(PartType& type);
     int GetItemInUse();
 
 
