@@ -874,6 +874,11 @@ Game::~Game()
     {
         delete &i;
     }
+    for(auto& i:AllStructures)
+    {
+        delete i;
+    }
+
 
 }
 
