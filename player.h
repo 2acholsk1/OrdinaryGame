@@ -3,23 +3,31 @@
 #include "part.h"
 #include "bars.h"
 #include "math.h"
+#include <iostream>
+#include "farmland.h"
 
 
 
 class Player: public Part
 {
-public:
+private:
     sf::Vector2u toanimationMaxSize=sf::Vector2u(1,1);
     float hp=100;
     float exp=0;
     float starve=100;
     float water=100;
     float acceleration=0;
-    bool isMove=0;
+    float range=150.f;
+    bool isMove=false;
+    bool MovingLeft=false;
+
     sf::RectangleShape body;
     sf::Vector2f currentPosition;
     sf::Vector2f lastPosition;
     float displacment;
+
+
+    int lastItemInUse=0;
 
 
 public:
@@ -35,11 +43,16 @@ public:
     static Player* PrintPlayer(const sf::Vector2f& cexistingPosition,CustomTexture* ctextures,
                                          const PartType& cparttype,const MyTexture& ctexture);
     void Update(float& dtime,sf::RenderWindow& window);
-    void UpdateBars(float& dtime,float& hp,float& exp,float& starve,float& water);
     void ShowPosition();
     void IsMoving();
-//    Collider GetCollider();
-//    sf::Vector2f GetPositionCol();
+    bool InRange(sf::RenderWindow& window);
+    bool MLeft();
+    bool IMove();
+    sf::Vector2f GetCurrentPosition();
+    void AnimationUp(float& dtime);
+    sf::FloatRect GetGlobalBounds();
+
+
 
 
 };

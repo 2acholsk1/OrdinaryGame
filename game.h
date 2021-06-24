@@ -16,6 +16,8 @@
 #include "environment.h"
 #include "collider.h"
 #include "mob.h"
+#include "functions.h"
+#include "structures.h"
 
 
 class Game
@@ -23,18 +25,42 @@ class Game
 private:
     sf::RenderWindow window;
     float dtime=0.f;
+
     std::vector<Part*> AllParts;
     std::vector<environment*> AllEnvironments;
     std::vector<Mob*> AllMobs;
+    std::vector<Bars*> AllBars;
+    std::vector<farmland> miniFarm;
+    std::vector<Structures*> AllStructures;
     CustomTexture AllTextures;
     sf::Clock dTclock;
     MyPointOfView MyView;
+    MyPointOfView MiniMapView1;
     sf::Text te;
     Mymap MainMap;
     minimap MiniMapView;
     Player* MainPlayer;
     Inventory inventory;
+    Interface* instruction;
     int oneOverTwo=0;
+    int ExpGained=0;
+    int ereasingEnvironment=0;
+    int totalPoints=0;
+
+    bool click=true;
+    bool Zpressed=true;
+    bool Epressed=true;
+    bool Rpressed=true;
+    bool Tpressed=true;
+    bool Ipressed=true;
+    bool Bpressed=true;
+    bool Onepressed=true;
+    bool Twopressed=true;
+    bool Threepressed=true;
+    bool miniorNot=true;
+    bool theEnd=true;
+
+
 
 
 public:
@@ -45,20 +71,31 @@ public:
     void ClearWindow();
     void DisplayWindow();
     void Draw();
+    void DrawEndStates();
     void Update();
     void DrawParts();
     void UpdateParts();
+    void UpdateInstruction();
     void LoadTextures();
     void SetPointOfView();
+    void SetMinimap();
     void SetdtTime();
     void MyViewControl();
+    void MinMapControl();
     void MapRender();
     void CreatePlayer();
     void CreateInterface();
     void CreateEnvironment();
     void CreateMiniMap();
     void CreateMobs();
+    void CreateStructures();
+    void CreateFarmland();
     void Collisions();
+    void Crushing();
+    void LevelUP();
+    void MobAttack();
+    void Eating();
+    void TheEnd();
 
 
 };

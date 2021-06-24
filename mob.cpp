@@ -30,9 +30,9 @@ Mob* Mob::CreateEnemy(const sf::Vector2f& spawnPosition,CustomTexture* textures,
                 sf::Vector2u(1,1),
                 1.0f,
                 Mob::GetPushBackForce(),
-                Mob::GetRange(),
-                Mob::GetFollowSpeed(),
-                Mob::GetHp()
+                CONSTANTS::MOB_RANGE,
+                CONSTANTS::MOB_FOLLOW_SPEED,
+                CONSTANTS::MOB_HP
                 );
 }
 
@@ -43,7 +43,7 @@ void Mob::Draw(sf::RenderWindow &window)
 
 void Mob::Update(float &dtime, sf::RenderWindow &window)
 {
-    this->Existing(dtime);
+    this->Following(dtime);
 
 }
 
@@ -65,6 +65,54 @@ float Mob::GetFollowSpeed()
 float Mob::GetPushBackForce()
 {
     return CONSTANTS::MOB_PUSH_BACK_FORCE;
+}
+
+void Mob::WhoToFollow(Part* ctoFollow)
+{
+    toFollow=ctoFollow;
+}
+
+void Mob::Following(float& dtime)
+{
+    float DistanceB=CountDistance(this->toFollow->GetPosition(),this->sprite.getPosition());
+    sf::Vector2f PlayerPos=this->toFollow->GetPosition();
+    sf::Vector2f MobPos=this->sprite.getPosition();
+
+    if(DistanceB<=this->range)
+    {
+        if(PlayerPos.x>MobPos.x)
+        {
+            this->sprite.setTexture(this->textures->GettTexture(MyTexture::MobMoveRight));
+            this->sprite.move(CONSTANTS::MOB_SPEED*dtime,0.f);
+            if(PlayerPos.y+20>MobPos.y)
+            {
+                this->sprite.move(0.f,CONSTANTS::MOB_SPEED*dtime);
+            }
+            if(PlayerPos.y+20<MobPos.y)
+            {
+                this->sprite.move(0.f,-CONSTANTS::MOB_SPEED*dtime);
+            }
+        }
+        if(PlayerPos.x+20<MobPos.x)
+        {
+            this->sprite.setTexture(this->textures->GettTexture(MyTexture::MobMoveLeft));
+            this->sprite.move(-CONSTANTS::MOB_SPEED*dtime,0.f);
+            if(PlayerPos.y>MobPos.y)
+            {
+                this->sprite.move(0.f,CONSTANTS::MOB_SPEED*dtime);
+            }
+            if(PlayerPos.y+20<MobPos.y)
+            {
+                this->sprite.move(0.f,-CONSTANTS::MOB_SPEED*dtime);
+            }
+        }
+
+
+    }
+    else
+    {
+        this->Existing(dtime);
+    }
 }
 
 void Mob::switchWhichSide(float& dtime)
@@ -166,6 +214,24 @@ void Mob::Existing(float& dtime)
     }
     break;
     }
+}
+
+float Mob::GetMobPower()
+{
+    return this->mobPower;
+}
+
+void Mob::Dead()
+{
+    if(this->hp<=0)
+    {
+        this->sprite.setPosition(-1000.f,-1000.f);
+    }
+    else
+    {
+        this->hp-=5.f;
+    }
+
 }
 
 Mob::~Mob()

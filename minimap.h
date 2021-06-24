@@ -13,8 +13,6 @@ class minimap:public sf::View
 private:
     float ttime=0;
 
-
-
 public:
     minimap();
     ~minimap();

@@ -55,8 +55,6 @@ IncludedItem environment::GetIncludedItem(const PartType& parttype)
     }
 }
 
-
-
 void environment::Draw(sf::RenderWindow &window)
 {
     window.draw(this->sprite);
@@ -123,6 +121,11 @@ MyTexture environment::Matchtexture(const PartType& type)
         return MyTexture::Stones;
         break;
     }
+    case PartType::Lake:
+    {
+        return MyTexture::Lake;
+        break;
+    }
     case PartType::IronOre:
     {
         return MyTexture::IronOre;
@@ -138,6 +141,25 @@ MyTexture environment::Matchtexture(const PartType& type)
         return MyTexture::CoalOre;
         break;
     }
+
         break;
     }
+}
+
+void environment::GetOut()
+{
+    if(this->GetPartType()!=PartType::Lake)
+    {
+        if(this->strength<=0)
+        {
+                this->sprite.setPosition(sf::Vector2f(-800.f,-800.f));
+        }
+        else
+        {
+            this->strength-=0.25f;
+
+        }
+    }
+
+
 }

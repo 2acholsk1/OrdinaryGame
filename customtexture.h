@@ -10,16 +10,20 @@ enum class MyTexture
     Default,
     Grass,
     Water,
+    Lake,
     Stones,
     Mob,
     Item,
     InterfaceDown,
+    Bel,
     Tree,
     Structure,
+    Instruction,
     IronOre,
     GoldenOre,
     CoalOre,
     Player,
+    PlayerDead,
     PlayerML,
     PlayerMR,
     PlayerMD,
@@ -43,7 +47,14 @@ enum class MyTexture
     Pickaxe,
     Sword,
     MobMoveLeft,
-    MobMoveRight
+    MobMoveRight,
+    Field,
+    CarrotField,
+    PotatoField,
+    BeetField,
+    WoodenFence,
+    Cobble,
+    Boards
 
 };
 

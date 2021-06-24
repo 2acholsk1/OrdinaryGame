@@ -4,7 +4,6 @@ MyPointOfView::MyPointOfView(sf::RenderWindow& window)
 {
     window.setView(static_cast<sf::View>(*this));
     this->setSize(window.getSize().x,window.getSize().y);
-    this->text.setPosition(20.f,20.f);
 }
 
 void MyPointOfView::MouseControl(sf::RenderWindow& window)
@@ -29,13 +28,6 @@ void MyPointOfView::MouseControl(sf::RenderWindow& window)
 
 
 
-//    std::cout<<"Y:"<<mousePositionScreen.x<<std::endl;
-//    std::cout<<"X:"<<mousePositionScreen.y<<std::endl;
-//    this->fontinio.loadFromFile("fonts/Aspergit Bold.otf");
-//    this->text.setCharacterSize(20);
-//    this->text.setFillColor(sf::Color::White);
-//    this->text.setFont(fontinio);
-//    this->text.setString(ss.str());
 
     this->tileSelect.setPosition(mousePosGrid.x*CONSTANTS::GRID_SIZE_F,mousePosGrid.y*CONSTANTS::GRID_SIZE_F);
 

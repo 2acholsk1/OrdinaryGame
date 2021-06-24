@@ -15,18 +15,21 @@ SOURCES += \
         collider.cpp \
         customtexture.cpp \
         environment.cpp \
+        farmland.cpp \
         functions.cpp \
         game.cpp \
         interface.cpp \
         inventory.cpp \
         main.cpp \
         map.cpp \
+        menu.cpp \
         minimap.cpp \
         mob.cpp \
         mousecontrol.cpp \
         mypointofview.cpp \
         part.cpp \
-        player.cpp
+        player.cpp \
+        structures.cpp
 
 HEADERS += \
     Constants.h \
@@ -35,14 +38,17 @@ HEADERS += \
     collider.h \
     customtexture.h \
     environment.h \
+    farmland.h \
     functions.h \
     game.h \
     interface.h \
     inventory.h \
     map.h \
+    menu.h \
     minimap.h \
     mob.h \
     mousecontrol.h \
     mypointofview.h \
     part.h \
-    player.h
+    player.h \
+    structures.h

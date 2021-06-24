@@ -7,8 +7,9 @@
 class Mob:public Part
 {
 private:
-    float range;
-    float followingSpeed;
+    float range=500.f;
+    float followingSpeed=50.f;
+    float mobPower=-10.f;
     float hp;
     Part* toFollow;
     float totaltime=0;
@@ -24,9 +25,9 @@ public:
         const sf::Vector2u& canimationMaxSize=sf::Vector2u(1,1),
         const float& canimationTime=1.0f,
         const float& pushBackForce=0.0f,
-        const float& crange=50.f,
+        const float& crange=500.f,
         const float& cfollowingSpeed=50.f,
-        const float& chp=50.f,
+        const float& chp=500.f,
         Part* ctoFollow=nullptr
         );
 
@@ -39,10 +40,13 @@ public:
     static float GetHp();
     static float GetFollowSpeed();
     static float GetPushBackForce();
+    float GetMobPower();
 
     void switchWhichSide(float& dtime);
-
+    void WhoToFollow(Part* ctoFollow);
+    void Following(float& dtime);
     void Existing(float& dtime);
+    void Dead();
 };
 
 #endif // MOB_H

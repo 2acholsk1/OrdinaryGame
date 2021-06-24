@@ -24,7 +24,6 @@ void minimap::Update(float &dtime,sf::RenderWindow& window)
     float deltaX=mousePosWindow.x-PLAYER_MIDDLE_POSITION.x;
     float deltaY=mousePosWindow.y-PLAYER_MIDDLE_POSITION.y;
     float fi=atan2f(deltaX,deltaY);
-//    this->sprite.setRotation(-fi*180.f/3.14f);
 
 
 }

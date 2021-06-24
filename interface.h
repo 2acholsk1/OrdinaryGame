@@ -3,26 +3,14 @@
 #include "part.h"
 
 
-enum class items
-{
-    Default,
-    Sword,
-    Pickaxe,
-    Axe,
-    Shovel,
-    Wood,
-    SmallStones,
-    Iron,
-    Coal,
-    Gold
 
-};
 
 
 
 class Interface: public Part
 {
-
+private:
+    sf::RectangleShape box;
 public:
     Interface(const sf::Vector2f& position,
               const PartType& type,
@@ -38,14 +26,6 @@ public:
     void InitializeInterface();
     virtual void Update(float& dtime,sf::RenderWindow& window);
     virtual void Draw(sf::RenderWindow& window);
-//    virtual Collider GetCollider();
-//    virtual sf::Vector2f GetPositionCol();
-public:
-    sf::RectangleShape box;
-
-private:
-
-
 
 };
 

@@ -17,8 +17,6 @@ void Mymap::SetMyMap(CustomTexture* AllTextures)
         {
             tileMap[x][y].setSize(sf::Vector2f(CONSTANTS::GRID_SIZE_F,CONSTANTS::GRID_SIZE_F));
             tileMap[x][y].setTexture(&AllTextures->GettTexture(texture));
-            //tileMap[x][y].setOutlineColor(sf::Color::Blue);
-            //tileMap[x][y].setOutlineThickness(1.f);
             tileMap[x][y].setPosition(x*CONSTANTS::GRID_SIZE_F,y*CONSTANTS::GRID_SIZE_F);
 
         }

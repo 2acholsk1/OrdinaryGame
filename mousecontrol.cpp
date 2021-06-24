@@ -1,18 +1,5 @@
 #include "mousecontrol.h"
 
-//void PrintPosition(sf::RenderWindow& window)
-//{
-//    std::stringstream ss;
-//    sf::Text text;
-//    sf::Font fontinio;
-//    fontinio.loadFromFile("fonts/Ace Records.ttf");
-//    text.setCharacterSize(100);
-//    text.setFillColor(sf::Color::White);
-//    text.setFont(fontinio);
-//    text.setPosition(20.f,20.f);
-//    text.setString(ss.str());
-//    window.draw(text);
-//}
 
 void MouseControl(sf::RenderWindow& window)
 {
@@ -35,7 +22,4 @@ void MouseControl(sf::RenderWindow& window)
       <<"Window: "<<mousePosWindow.x<<" "<<mousePosWindow.y<<"\n"
       <<"View: "<<mousePosView.x<<" "<<mousePosView.y<<"\n"
       <<"Grid: "<<mousePosGrid.x<<" "<<mousePosGrid.y<<"\n";
-
-//    std::cout<<"Y:"<<mousePositionScreen.x<<std::endl;
-//    std::cout<<"X:"<<mousePositionScreen.y<<std::endl;
 }
