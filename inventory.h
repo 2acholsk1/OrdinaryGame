@@ -23,6 +23,7 @@ private:
 
 public:
     Inventory();
+    ~Inventory()=default;
     void Draw(sf::RenderWindow& window);
     void Update(float& dtime,sf::RenderWindow& window);
     void UpdatePos(Part* Player);
@@ -32,9 +33,6 @@ public:
     bool Building(PartType& type);
     int GetItemInUse();
 
-
-
-    ~Inventory()=default;
 
 };
 

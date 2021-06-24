@@ -55,8 +55,6 @@ IncludedItem environment::GetIncludedItem(const PartType& parttype)
     }
 }
 
-
-
 void environment::Draw(sf::RenderWindow &window)
 {
     window.draw(this->sprite);

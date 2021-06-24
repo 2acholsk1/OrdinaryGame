@@ -34,10 +34,6 @@ public:
                 );
     ~environment();
     virtual void Draw(sf::RenderWindow& window) override;
-
-
-
-
     static environment* PrintEnvironment(const sf::Vector2f& cexistingPosition,CustomTexture* ctextures,
                                          const PartType& cparttype,const MyTexture& ctexture);
     static IncludedItem GetIncludedItem(const PartType& parttype);
@@ -45,11 +41,6 @@ public:
     static MyTexture Matchtexture(const PartType& type);
     static PartType RandomPartEnv();
     void GetOut();
-//    virtual Collider GetCollider();
-//    virtual sf::Vector2f GetPositionCol();
-
-
-
 };
 
 #endif // ENVIRONMENT_H

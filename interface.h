@@ -9,7 +9,8 @@
 
 class Interface: public Part
 {
-
+private:
+    sf::RectangleShape box;
 public:
     Interface(const sf::Vector2f& position,
               const PartType& type,
@@ -25,13 +26,6 @@ public:
     void InitializeInterface();
     virtual void Update(float& dtime,sf::RenderWindow& window);
     virtual void Draw(sf::RenderWindow& window);
-
-
-
-private:
-    sf::RectangleShape box;
-
-
 
 };
 

@@ -45,7 +45,6 @@ public:
     void switchWhichSide(float& dtime);
     void WhoToFollow(Part* ctoFollow);
     void Following(float& dtime);
-
     void Existing(float& dtime);
     void Dead();
 };
