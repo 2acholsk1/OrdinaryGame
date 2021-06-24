@@ -4,5 +4,5 @@
 ## Gameplay
 link
 
-## Some ScreenShots
+## Some Screenshots
 screeny
