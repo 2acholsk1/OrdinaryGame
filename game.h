@@ -53,6 +53,7 @@ private:
     bool Rpressed=true;
     bool Tpressed=true;
     bool Ipressed=true;
+    bool Bpressed=true;
     bool Onepressed=true;
     bool Twopressed=true;
     bool Threepressed=true;

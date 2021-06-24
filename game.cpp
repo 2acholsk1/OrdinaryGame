@@ -121,27 +121,30 @@ void Game::CreateStructures()
 {
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::B))
     {
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
-        {
-            if(this->Onepressed)
+
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
             {
-                this->Onepressed=false;
-
-                sf::Vector2f pos;
-                PartType type=PartType::Boards;
-                if(this->inventory.Building(type))
+                if(this->Onepressed)
                 {
-                    if((this->MainPlayer->MLeft())&&(!this->MainPlayer->IMove()))
-                    {
-                        pos=this->MainPlayer->GetPosition()+sf::Vector2f(-120.f,0.f);
+                    this->Onepressed=false;
 
-                    }
-                    else if((!this->MainPlayer->MLeft())&&(!this->MainPlayer->IMove()))
+                    sf::Vector2f pos;
+                    PartType type=PartType::Boards;
+                    if(this->inventory.Building(type))
                     {
-                       pos=this->MainPlayer->GetPosition()+sf::Vector2f(120.f,0.f);
+                        if((this->MainPlayer->MLeft())&&(!this->MainPlayer->IMove()))
+                        {
+                            pos=this->MainPlayer->GetPosition()+sf::Vector2f(-120.f,0.f);
+
+                        }
+                        else if((!this->MainPlayer->MLeft())&&(!this->MainPlayer->IMove()))
+                        {
+                           pos=this->MainPlayer->GetPosition()+sf::Vector2f(120.f,0.f);
+                        }
+                        Structures* structure=Structures::PrintStructures(pos,&this->AllTextures,PartType::Boards,MyTexture::Boards);
+                        this->AllStructures.emplace_back(structure);
                     }
-                    Structures* structure=Structures::PrintStructures(pos,&this->AllTextures,PartType::Boards,MyTexture::Boards);
-                    this->AllStructures.emplace_back(structure);
+
                 }
 
             }
@@ -149,27 +152,28 @@ void Game::CreateStructures()
             {
                 this->Onepressed=true;
             }
-        }
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
-        {
-            if(this->Twopressed)
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
             {
-                this->Twopressed=false;
-                sf::Vector2f pos;
-                PartType type=PartType::Cobble;
-                if(this->inventory.Building(type))
+                if(this->Twopressed)
                 {
-                    if((this->MainPlayer->MLeft())&&(!this->MainPlayer->IMove()))
+                    this->Twopressed=false;
+                    sf::Vector2f pos;
+                    PartType type=PartType::Cobble;
+                    if(this->inventory.Building(type))
                     {
-                        pos=this->MainPlayer->GetPosition()+sf::Vector2f(-120.f,0.f);
+                        if((this->MainPlayer->MLeft())&&(!this->MainPlayer->IMove()))
+                        {
+                            pos=this->MainPlayer->GetPosition()+sf::Vector2f(-120.f,0.f);
 
+                        }
+                        else if((!this->MainPlayer->MLeft())&&(!this->MainPlayer->IMove()))
+                        {
+                           pos=this->MainPlayer->GetPosition()+sf::Vector2f(120.f,0.f);
+                        }
+                        Structures* structure=Structures::PrintStructures(pos,&this->AllTextures,PartType::Cobble,MyTexture::Cobble);
+                        this->AllStructures.emplace_back(structure);
                     }
-                    else if((!this->MainPlayer->MLeft())&&(!this->MainPlayer->IMove()))
-                    {
-                       pos=this->MainPlayer->GetPosition()+sf::Vector2f(120.f,0.f);
-                    }
-                    Structures* structure=Structures::PrintStructures(pos,&this->AllTextures,PartType::Cobble,MyTexture::Cobble);
-                    this->AllStructures.emplace_back(structure);
+
                 }
 
             }
@@ -177,27 +181,28 @@ void Game::CreateStructures()
             {
                 this->Twopressed=true;
             }
-        }
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num3))
-        {
-            if(this->Threepressed)
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num3))
             {
-                this->Threepressed=false;
-                sf::Vector2f pos;
-                PartType type=PartType::WoodenFence;
-                if(this->inventory.Building(type))
+                if(this->Threepressed)
                 {
-                    if((this->MainPlayer->MLeft())&&(!this->MainPlayer->IMove()))
+                    this->Threepressed=false;
+                    sf::Vector2f pos;
+                    PartType type=PartType::WoodenFence;
+                    if(this->inventory.Building(type))
                     {
-                        pos=this->MainPlayer->GetPosition()+sf::Vector2f(-80.f,0.f);
+                        if((this->MainPlayer->MLeft())&&(!this->MainPlayer->IMove()))
+                        {
+                            pos=this->MainPlayer->GetPosition()+sf::Vector2f(-80.f,0.f);
 
+                        }
+                        else if((!this->MainPlayer->MLeft())&&(!this->MainPlayer->IMove()))
+                        {
+                           pos=this->MainPlayer->GetPosition()+sf::Vector2f(50.f,0.f);
+                        }
+                        Structures* structure=Structures::PrintStructures(pos,&this->AllTextures,PartType::WoodenFence,MyTexture::WoodenFence);
+                        this->AllStructures.emplace_back(structure);
                     }
-                    else if((!this->MainPlayer->MLeft())&&(!this->MainPlayer->IMove()))
-                    {
-                       pos=this->MainPlayer->GetPosition()+sf::Vector2f(50.f,0.f);
-                    }
-                    Structures* structure=Structures::PrintStructures(pos,&this->AllTextures,PartType::WoodenFence,MyTexture::WoodenFence);
-                    this->AllStructures.emplace_back(structure);
+
                 }
 
             }
@@ -206,7 +211,11 @@ void Game::CreateStructures()
                 this->Threepressed=true;
             }
         }
-    }
+
+
+
+
+
 }
 
 void Game::CreateFarmland()
@@ -595,8 +604,29 @@ void Game::Collisions()
             }
         }
         }
+    //Collider Mobs and Structures
+    for(auto& mob:this->AllMobs)
+    {
+        Collider MobCollider=mob->GetCollider();
+        float MobPF=mob->GetPushForce();
+        for(auto& part:this->AllStructures)
+        {
+            Collider StrupartCollider=part->GetCollider();
+            float StrupartPF=part->GetPushForce();
+            if(MobPF>StrupartPF)
+            {
+                MobCollider.CheckCollision(StrupartCollider,MobPF);
 
-    //Collider Mobs with player
+
+            }
+            else
+            {
+                StrupartCollider.CheckCollision(MobCollider,StrupartPF);
+            }
+        }
+        }
+
+
     //Collider All environments parts with Player
     for(auto& mob:this->AllMobs)
     {
