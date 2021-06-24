@@ -39,15 +39,27 @@ namespace CONSTANTS
     const int COAL_ORE_QUANTITY=40;
     const int IRON_ORE_QUANTITY=50;
     const int STONES_QUANTITY=100;
+    const int LAKES_QUANTITY=20;
 
     const float EXP_OF_CHOPPING_OR_DIGGING=1.0f;
     const float EXP_OF_FIGHT=2.0f;
+    const float EXP_OF_FARMING=5.0f;
 
     const float LOST_HP_IN_CHOPPING_AND_DIGGIND_WITHOUT_TOOL=-1.0f;
     const float ZOMBIE_ATTACK=-0.1f;
 
     const float STARVE_OR_THIRST=-1.0f;
     const float TIME_TO_STARVE_AND_THIRST=8.f;
+
+    const float DRINKING=1.0f;
+    const float EATING_CARROT=0.25f;
+    const float EATING_POTATO=1.f;
+    const float EATING_BEET=0.75f;
+    const float TIME_TO_PLANTS_GROW_UP=3.f;
+
+    const float HEALING_CARROT=1.f;
+    const float HEALING_POTATO=0.25;
+    const float HEALING_BEET=0.5;
 
 
     const sf::FloatRect MINIMAMP_SIZE=sf::FloatRect(0.883f, 0.87f, 0.064f, 0.1f);

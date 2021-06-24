@@ -1,6 +1,7 @@
 #ifndef INVENTORY_H
 #define INVENTORY_H
 #include "part.h"
+#include "farmland.h"
 
 
 sf::Vector2f operator *(const int& l, sf::Vector2f& hector);
@@ -26,6 +27,8 @@ public:
     void Update(float& dtime,sf::RenderWindow& window);
     void UpdatePos(Part* Player);
     void AddingItem(PartType& type);
+    void AddingItem(FieldType& type);
+    bool Eating(FieldType& type);
     int GetItemInUse();
 
 

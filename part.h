@@ -22,6 +22,7 @@ enum class PartType
     Structure,
     Tree,
     Stone,
+    Lake,
     IronOre,
     CoalOre,
     GoldenOre,

@@ -52,8 +52,8 @@ void Bars::Update(float &dtime,sf::RenderWindow& window)
      this->sprite.setTextureRect(rect);
      if(fill>100)
      {
-         this->filling=0.f;
-         fill=0;
+         this->filling=100.f;
+         fill=100;
      }
      if(fill<0)
      {

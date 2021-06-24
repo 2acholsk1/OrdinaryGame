@@ -7,6 +7,7 @@ farmland::farmland(CustomTexture* ctextures, sf::Vector2f& cPosition): Position(
     this->field.setScale(0.5f,0.5f);
     srand(time(NULL));
     int los=rand()&3;
+    this->howManyInside=los+1;
     switch(los)
     {
         case 0:
@@ -36,8 +37,9 @@ void farmland::Draw(sf::RenderWindow &window)
 void farmland::Update(float &dtime, sf::RenderWindow &window)
 {
     this->ttime+=dtime;
-    if(ttime>=3.f)
+    if(ttime>=CONSTANTS::TIME_TO_PLANTS_GROW_UP)
     {
+        ttime=0;
         switch(this->type)
         {
         case FieldType::Beet:
@@ -59,6 +61,29 @@ void farmland::Update(float &dtime, sf::RenderWindow &window)
         }
 
 
-        ttime=0;
+
+    }
+}
+
+sf::FloatRect farmland::GetSize()
+{
+    return this->field.getGlobalBounds();
+}
+
+FieldType farmland::GetFieldType()
+{
+    return this->type;
+}
+
+void farmland::Remove()
+{
+    if(this->howManyInside<=0)
+    {
+            this->field.setPosition(sf::Vector2f(-800.f,-800.f));
+    }
+    else
+    {
+        this->howManyInside-=1;
+
     }
 }

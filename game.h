@@ -41,7 +41,12 @@ private:
     int oneOverTwo=0;
     int ExpGained=0;
     int ereasingEnvironment=0;
+
     bool click=true;
+    bool Zpressed=true;
+    bool Epressed=true;
+    bool Rpressed=true;
+    bool Tpressed=true;
     bool miniorNot=true;
 
 
@@ -74,6 +79,7 @@ public:
     void Collisions();
     void Crushing();
     void MobAttack();
+    void Eating();
 
 
 };

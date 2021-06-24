@@ -54,7 +54,7 @@ void Inventory::AddingItem(PartType& type)
     {
     case PartType::GoldenOre:
     {
-        if(ItemInUse==3)
+        if(this->ItemInUse==3)
         {
             this->howMuch[0]++;
             std::string change=std::to_string(this->howMuch[0]);
@@ -65,7 +65,7 @@ void Inventory::AddingItem(PartType& type)
     }
     case PartType::Stone:
     {
-        if(ItemInUse==3)
+        if(this->ItemInUse==3)
         {
             this->howMuch[1]++;
             std::string change=std::to_string(this->howMuch[1]);
@@ -76,7 +76,7 @@ void Inventory::AddingItem(PartType& type)
     }
     case PartType::IronOre:
     {
-        if(ItemInUse==3)
+        if(this->ItemInUse==3)
         {
             this->howMuch[4]++;
             std::string change=std::to_string(this->howMuch[4]);
@@ -87,7 +87,7 @@ void Inventory::AddingItem(PartType& type)
     }
     case PartType::CoalOre:
     {
-        if(ItemInUse==3)
+        if(this->ItemInUse==3)
         {
             this->howMuch[5]++;
             std::string change=std::to_string(this->howMuch[5]);
@@ -98,7 +98,7 @@ void Inventory::AddingItem(PartType& type)
     }
     case PartType::Tree:
     {
-        if(ItemInUse==2)
+        if(this->ItemInUse==2)
         {
             this->howMuch[6]++;
             std::string change=std::to_string(this->howMuch[6]);
@@ -109,6 +109,40 @@ void Inventory::AddingItem(PartType& type)
     }
 
     break;
+    }
+}
+
+void Inventory::AddingItem(FieldType &type)
+{
+    if(this->ItemInUse==0)
+    {
+    switch(type)
+    {
+
+    case FieldType::Carrot:
+    {
+        this->howMuch[2]++;
+        std::string change=std::to_string(this->howMuch[2]);
+        this->statesInv[2].setString(change);
+        break;
+    }
+    case FieldType::Potato:
+    {
+        this->howMuch[3]++;
+        std::string change=std::to_string(this->howMuch[3]);
+        this->statesInv[3].setString(change);
+        break;
+    }
+    case FieldType::Beet:
+    {
+        this->howMuch[7]++;
+        std::string change=std::to_string(this->howMuch[7]);
+        this->statesInv[7].setString(change);
+        break;
+    }
+
+    }
+
     }
 }
 
@@ -191,6 +225,48 @@ void Inventory::Update(float &dtime, sf::RenderWindow &window)
         this->underlinedItems[2].setFillColor(sf::Color::Transparent);
         this->underlinedItems[3].setFillColor(sf::Color::Transparent);
     }
+}
+
+bool Inventory::Eating(FieldType &type)
+{
+    switch(type)
+    {
+    case FieldType::Carrot:
+    {
+        if(this->howMuch[2]>0)
+        {
+            this->howMuch[2]--;
+            std::string change=std::to_string(this->howMuch[2]);
+            this->statesInv[2].setString(change);
+            return true;
+        }
+        break;
+    }
+    case FieldType::Potato:
+    {
+        if(this->howMuch[3]>0)
+        {
+            this->howMuch[3]--;
+            std::string change=std::to_string(this->howMuch[3]);
+            this->statesInv[3].setString(change);
+            return true;
+        }
+        break;
+    }
+    case FieldType::Beet:
+    {
+        if(this->howMuch[7]>0)
+        {
+            this->howMuch[7]--;
+            std::string change=std::to_string(this->howMuch[7]);
+            this->statesInv[7].setString(change);
+            return true;
+        }
+        break;
+    }
+    return false;
+    }
+
 }
 
 int Inventory::GetItemInUse()

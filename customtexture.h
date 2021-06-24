@@ -10,6 +10,7 @@ enum class MyTexture
     Default,
     Grass,
     Water,
+    Lake,
     Stones,
     Mob,
     Item,

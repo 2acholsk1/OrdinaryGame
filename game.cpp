@@ -56,13 +56,13 @@ void Game::CreateEnvironment()
     using namespace CONSTANTS;
     srand(time(NULL));
 
-    for(int i=0;i<TREE_QUANTITY;i++)
+    for(int i=0;i<LAKES_QUANTITY;i++)
     {
         int losowa1=rand()%10000;
         int losowa2=rand()%10000;
 
-        environment* Tree=environment::PrintEnvironment({(float)losowa1,(float)losowa2},&this->AllTextures,PartType::Tree,MyTexture::Tree);
-        this->AllEnvironments.emplace_back(Tree);
+        environment* Lake=environment::PrintEnvironment({(float)losowa1,(float)losowa2},&this->AllTextures,PartType::Lake,MyTexture::Lake);
+        this->AllEnvironments.emplace_back(Lake);
     }
     for(int i=0;i<GOLDEN_ORE_QUANTITY;i++)
     {
@@ -96,6 +96,15 @@ void Game::CreateEnvironment()
         environment* Stone=environment::PrintEnvironment({(float)losowa1,(float)losowa2},&this->AllTextures,PartType::Stone,MyTexture::Stones);
         this->AllEnvironments.emplace_back(Stone);
     }
+    for(int i=0;i<TREE_QUANTITY;i++)
+    {
+        int losowa1=rand()%10000;
+        int losowa2=rand()%10000;
+
+        environment* Tree=environment::PrintEnvironment({(float)losowa1,(float)losowa2},&this->AllTextures,PartType::Tree,MyTexture::Tree);
+        this->AllEnvironments.emplace_back(Tree);
+    }
+
 }
 
 void Game::CreateMobs()
@@ -115,19 +124,84 @@ void Game::CreateFarmland()
 {
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
     {
-        sf::Vector2f pos;
-        if((this->MainPlayer->MLeft())&&(!this->MainPlayer->IMove()))
-        {
-            pos=this->MainPlayer->GetPosition()+sf::Vector2f(-80.f,0.f);
 
-        }
-        else if((!this->MainPlayer->MLeft())&&(!this->MainPlayer->IMove()))
+        if(this->Zpressed)
         {
-           pos=this->MainPlayer->GetPosition()+sf::Vector2f(50.f,0.f);
-        }
+            this->Zpressed=false;
+            sf::Vector2f pos;
+            if((this->MainPlayer->MLeft())&&(!this->MainPlayer->IMove()))
+            {
+                pos=this->MainPlayer->GetPosition()+sf::Vector2f(-80.f,0.f);
 
-        farmland field=farmland(&this->AllTextures,pos);
-        this->miniFarm.emplace_back(field);
+            }
+            else if((!this->MainPlayer->MLeft())&&(!this->MainPlayer->IMove()))
+            {
+               pos=this->MainPlayer->GetPosition()+sf::Vector2f(50.f,0.f);
+            }
+
+            farmland field=farmland(&this->AllTextures,pos);
+            this->miniFarm.emplace_back(field);
+        }
+    }
+    else
+    {
+        this->Zpressed=true;
+    }
+
+}
+
+void Game::Eating()
+{
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::E))
+    {
+        if(this->Epressed)
+        {
+            this->Epressed=false;
+            FieldType type=FieldType::Carrot;
+            if(this->inventory.Eating(type))
+            {
+                this->AllBars[0]->ChangeFilling(CONSTANTS::HEALING_CARROT);
+                this->AllBars[2]->ChangeFilling(CONSTANTS::EATING_CARROT);
+            }
+        }
+    }
+    else
+    {
+        this->Epressed=true;
+    }
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::R))
+    {
+        if(this->Rpressed)
+        {
+            this->Rpressed=false;
+            FieldType type=FieldType::Potato;
+            if(this->inventory.Eating(type))
+            {
+                this->AllBars[0]->ChangeFilling(CONSTANTS::HEALING_POTATO);
+                this->AllBars[2]->ChangeFilling(CONSTANTS::EATING_POTATO);
+            }
+        }
+    }
+    else
+    {
+        this->Rpressed=true;
+    }
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::T))
+    {
+        if(this->Tpressed)
+        {
+            this->Tpressed=false;
+            FieldType type=FieldType::Beet;
+            if(this->inventory.Eating(type))
+            {
+                this->AllBars[0]->ChangeFilling(CONSTANTS::HEALING_BEET);
+                this->AllBars[2]->ChangeFilling(CONSTANTS::EATING_BEET);
+            }
+        }
+    }
+    else
+    {
+        this->Tpressed=true;
     }
 }
 
@@ -264,8 +338,9 @@ void Game::UpdateParts()
     }
 
     this->Crushing();
-    this->MainPlayer->Update(this->dtime,this->window);
     this->CreateFarmland();
+    this->Eating();
+    this->MainPlayer->Update(this->dtime,this->window);
     this->Collisions();
     this->inventory.UpdatePos(this->MainPlayer);
     this->inventory.Update(this->dtime,this->window);
@@ -363,10 +438,13 @@ void Game::Crushing()
                     std::cout<<"WORKS"<<std::endl;
                     PartType type=i->GetPartType();
                     this->inventory.AddingItem(type);
-                    this->AllBars[1]->ChangeFilling(CONSTANTS::EXP_OF_CHOPPING_OR_DIGGING);
-                    if(this->inventory.GetItemInUse()==0)
+                    if((this->inventory.GetItemInUse()==0)&&(type!=PartType::Lake))
                     {
                         this->AllBars[0]->ChangeFilling(CONSTANTS::LOST_HP_IN_CHOPPING_AND_DIGGIND_WITHOUT_TOOL);
+                    }
+                    if((this->inventory.GetItemInUse()==0)&&(type==PartType::Lake))
+                    {
+                        this->AllBars[3]->ChangeFilling(CONSTANTS::DRINKING);
                     }
                     i->GetOut();
 
@@ -383,6 +461,26 @@ void Game::Crushing()
 
                 }
             }
+
+            for(auto& field:this->miniFarm)
+            {
+                if((IsInRange)&&(MousePosition.x>=field.GetSize().left-cur.x)&&(MousePosition.x<=field.GetSize().left+field.GetSize().width-cur.x)&&
+                        (MousePosition.y>=field.GetSize().top-cur.y)&&(MousePosition.y<+field.GetSize().top+field.GetSize().height-cur.y))
+                {
+                    std::cout<<"WORKS"<<std::endl;
+                    if((this->inventory.GetItemInUse()==0)&&(field.GetFieldType()!=FieldType::Common))
+                    {
+                        this->AllBars[1]->ChangeFilling(CONSTANTS::EXP_OF_FARMING);
+                    }
+
+                    FieldType type=field.GetFieldType();
+                    this->inventory.AddingItem(type);
+                    field.Remove();
+                }
+            }
+
+
+
         }
 
 
@@ -455,6 +553,7 @@ void Game::LoadTextures()
     this->AllTextures.AddTexture(MyTexture::Grass,"textures/Environment/grass.png");
     this->AllTextures.AddTexture(MyTexture::Water,"textures/Environment/water.png");
     this->AllTextures.AddTexture(MyTexture::Tree,"textures/Environment/baum.png");
+    this->AllTextures.AddTexture(MyTexture::Lake,"textures/Environment/lake.png");
     this->AllTextures.AddTexture(MyTexture::Stones,"textures/Environment/stone.png");
     this->AllTextures.AddTexture(MyTexture::CoalOre,"textures/Environment/coalore.png");
     this->AllTextures.AddTexture(MyTexture::IronOre,"textures/Environment/ironore.png");
@@ -512,6 +611,10 @@ Game::~Game()
     for(auto& i:this->AllBars)
     {
         delete i;
+    }
+    for(auto& i:this->miniFarm)
+    {
+        delete &i;
     }
 
 }
