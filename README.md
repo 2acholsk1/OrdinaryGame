@@ -1,8 +1,8 @@
 # OrdinaryGame
 2D game created in C++/SFML
 
-#Gameplay
+##Gameplay
 link
 
-#Some ScreenShots
+##Some ScreenShots
 screeny
