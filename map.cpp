@@ -7,27 +7,27 @@ Mymap::Mymap()
 
 void Mymap::SetMyMap(CustomTexture* AllTextures)
 {
-    this->tileMap.resize(CONSTANTS::MAP_SIZE,std::vector<sf::RectangleShape>());
+    this->tileMap.resize(MAP_SIZE,std::vector<sf::RectangleShape>());
 
 
-    for(int x=0;x<CONSTANTS::MAP_SIZE;x++)
+    for(int x=0;x<MAP_SIZE;x++)
     {
-        tileMap[x].resize(CONSTANTS::MAP_SIZE,sf::RectangleShape());
-        for(int y=0;y<CONSTANTS::MAP_SIZE;y++)
+        tileMap[x].resize(MAP_SIZE,sf::RectangleShape());
+        for(int y=0;y<MAP_SIZE;y++)
         {
-            tileMap[x][y].setSize(sf::Vector2f(CONSTANTS::GRID_SIZE_F,CONSTANTS::GRID_SIZE_F));
+            tileMap[x][y].setSize(sf::Vector2f(GRID_SIZE_F,GRID_SIZE_F));
             tileMap[x][y].setTexture(&AllTextures->GettTexture(texture));
-            tileMap[x][y].setPosition(x*CONSTANTS::GRID_SIZE_F,y*CONSTANTS::GRID_SIZE_F);
+            tileMap[x][y].setPosition(x*GRID_SIZE_F,y*GRID_SIZE_F);
 
         }
     }
-    this->BigBox.setSize(sf::Vector2f(CONSTANTS::GRID_SIZE_F*CONSTANTS::MAP_SIZE,CONSTANTS::GRID_SIZE_F*CONSTANTS::MAP_SIZE));
-    this->Landscape.setSize(sf::Vector2f(CONSTANTS::GRID_SIZE_F*CONSTANTS::MAP_SIZE*1.25f,CONSTANTS::GRID_SIZE_F*CONSTANTS::MAP_SIZE*1.25f));
+    this->BigBox.setSize(sf::Vector2f( GRID_SIZE_F* MAP_SIZE, GRID_SIZE_F* MAP_SIZE));
+    this->Landscape.setSize(sf::Vector2f( GRID_SIZE_F* MAP_SIZE*1.25f, GRID_SIZE_F* MAP_SIZE*1.25f));
     this->textureWater=AllTextures->GettTexture(MyTexture::Water);
     this->textureWater.setRepeated(true);
     this->Landscape.setTexture(&textureWater);
     this->Landscape.setOrigin(this->Landscape.getSize().x/2.f,this->Landscape.getSize().y/2.f);
-    this->Landscape.setPosition(sf::Vector2f(CONSTANTS::GRID_SIZE_F*CONSTANTS::MAP_SIZE/2.f,CONSTANTS::GRID_SIZE_F*CONSTANTS::MAP_SIZE/2.f));
+    this->Landscape.setPosition(sf::Vector2f( GRID_SIZE_F* MAP_SIZE/2.f, GRID_SIZE_F* MAP_SIZE/2.f));
 
 }
 
@@ -36,16 +36,16 @@ void Mymap::Draw(sf::RenderWindow& window)
 
     window.draw(this->BigBox);
     window.draw(this->Landscape);
-    sf::Vector2i PlayerCenterPoint(CONSTANTS::WINDOW_WIDTH/2.f,CONSTANTS::WINDOW_HEIGHT/2.f);
+    sf::Vector2i PlayerCenterPoint( WINDOW_WIDTH/2.f, WINDOW_HEIGHT/2.f);
     sf::Vector2f PlayerPosView=window.mapPixelToCoords(PlayerCenterPoint);
     sf::Vector2u PlayerPosGrid;
     if(PlayerPosView.x>=0.f)
     {
-        PlayerPosGrid.x=PlayerPosView.x/CONSTANTS::GRID_SIZE_U;
+        PlayerPosGrid.x=PlayerPosView.x/ GRID_SIZE_U;
     }
     if(PlayerPosView.y>=0.f)
     {
-        PlayerPosGrid.y=PlayerPosView.y/CONSTANTS::GRID_SIZE_U;
+        PlayerPosGrid.y=PlayerPosView.y/ GRID_SIZE_U;
     }
 
     fromX=PlayerPosGrid.x-12;
@@ -58,33 +58,33 @@ void Mymap::Draw(sf::RenderWindow& window)
     {
         fromX=0;
     }
-    else if(fromX>=CONSTANTS::MAP_SIZE)
+    else if(fromX>=MAP_SIZE)
     {
-        fromX=CONSTANTS::MAP_SIZE-1;
+        fromX=MAP_SIZE-1;
     }
     if(toX<0)
     {
         toX=0;
     }
-    else if(toX>=CONSTANTS::MAP_SIZE)
+    else if(toX>=MAP_SIZE)
     {
-        toX=CONSTANTS::MAP_SIZE-1;
+        toX=MAP_SIZE-1;
     }
     if(fromY<0)
     {
         fromY=0;
     }
-    else if(fromY>=CONSTANTS::MAP_SIZE)
+    else if(fromY>=MAP_SIZE)
     {
-        fromY=CONSTANTS::MAP_SIZE-1;
+        fromY=MAP_SIZE-1;
     }
     if(toY<0)
     {
         toY=0;
     }
-    else if(toY>=CONSTANTS::MAP_SIZE)
+    else if(toY>=MAP_SIZE)
     {
-        toY=CONSTANTS::MAP_SIZE-1;
+        toY=MAP_SIZE-1;
     }
 
 

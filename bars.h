@@ -1,7 +1,8 @@
 #ifndef BARS_H
 #define BARS_H
 #include "part.h"
-
+#define STARVE_OR_THIRST -1.0f
+#define TIME_TO_STARVE_AND_THIRST 8.f
 enum class BarType
 {
     Default,

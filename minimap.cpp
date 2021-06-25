@@ -19,7 +19,6 @@ void minimap::Draw(sf::RenderWindow& window)
 
 void minimap::Update(float &dtime,sf::RenderWindow& window)
 {
-    using namespace CONSTANTS;
     sf::Vector2i mousePosWindow=sf::Mouse::getPosition(window);
     float deltaX=mousePosWindow.x-PLAYER_MIDDLE_POSITION.x;
     float deltaY=mousePosWindow.y-PLAYER_MIDDLE_POSITION.y;

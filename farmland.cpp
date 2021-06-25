@@ -37,7 +37,7 @@ void farmland::Draw(sf::RenderWindow &window)
 void farmland::Update(float &dtime, sf::RenderWindow &window)
 {
     this->ttime+=dtime;
-    if(ttime>=CONSTANTS::TIME_TO_PLANTS_GROW_UP)
+    if(ttime>=TIME_TO_PLANTS_GROW_UP)
     {
         ttime=0;
         switch(this->type)

@@ -56,10 +56,10 @@ void Bars::Update(float &dtime,sf::RenderWindow& window)
          fill=0;
      }
      this->totalTime+=dtime;
-     if((totalTime>CONSTANTS::TIME_TO_STARVE_AND_THIRST)&&(this->type==BarType::StarveBar||this->type==BarType::WaterBar))
+     if((totalTime>TIME_TO_STARVE_AND_THIRST)&&(this->type==BarType::StarveBar||this->type==BarType::WaterBar))
      {
          totalTime=0.f;
-         this->ChangeFilling(CONSTANTS::STARVE_OR_THIRST);
+         this->ChangeFilling(STARVE_OR_THIRST);
      }
 
 

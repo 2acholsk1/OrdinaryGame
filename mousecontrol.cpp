@@ -9,11 +9,11 @@ void MouseControl(sf::RenderWindow& window)
     sf::Vector2u mousePosGrid;
     if(mousePosView.x>=0.f)
     {
-        mousePosGrid.x=mousePosView.x/CONSTANTS::GRID_SIZE_U;
+        mousePosGrid.x=mousePosView.x/ GRID_SIZE_U;
     }
     if(mousePosView.y>=0.f)
     {
-        mousePosGrid.y=mousePosView.y/CONSTANTS::GRID_SIZE_U;
+        mousePosGrid.y=mousePosView.y/ GRID_SIZE_U;
     }
     window.setView(window.getDefaultView());
 

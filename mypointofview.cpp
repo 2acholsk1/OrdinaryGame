@@ -14,11 +14,11 @@ void MyPointOfView::MouseControl(sf::RenderWindow& window)
     this->mousePosView=window.mapPixelToCoords(this->mousePosWindow);
     if(this->mousePosView.x>=0.f)
     {
-        this->mousePosGrid.x=this->mousePosView.x/CONSTANTS::GRID_SIZE_U;
+        this->mousePosGrid.x=this->mousePosView.x/GRID_SIZE_U;
     }
     if(this->mousePosView.y>=0.f)
     {
-        this->mousePosGrid.y=this->mousePosView.y/CONSTANTS::GRID_SIZE_U;
+        this->mousePosGrid.y=this->mousePosView.y/GRID_SIZE_U;
     }
     ss<<"Screen: "<<mousePositionScreen.x<<" "<<mousePositionScreen.y<<"\n"
       <<"Window: "<<mousePosWindow.x<<" "<<mousePosWindow.y<<"\n"
@@ -29,7 +29,7 @@ void MyPointOfView::MouseControl(sf::RenderWindow& window)
 
 
 
-    this->tileSelect.setPosition(mousePosGrid.x*CONSTANTS::GRID_SIZE_F,mousePosGrid.y*CONSTANTS::GRID_SIZE_F);
+    this->tileSelect.setPosition(mousePosGrid.x*GRID_SIZE_F,mousePosGrid.y*GRID_SIZE_F);
 
 }
 
@@ -43,7 +43,7 @@ void MyPointOfView::PrintPosition(sf::RenderWindow& window)
 
 void MyPointOfView::SetRect()
 {
-    sf::RectangleShape specialShape(sf::Vector2f(CONSTANTS::GRID_SIZE_F,CONSTANTS::GRID_SIZE_F));
+    sf::RectangleShape specialShape(sf::Vector2f(GRID_SIZE_F,GRID_SIZE_F));
     specialShape.setFillColor(sf::Color::Transparent);
     specialShape.setOutlineThickness(1.f);
     specialShape.setOutlineColor(sf::Color::Red);
@@ -57,7 +57,7 @@ void MyPointOfView::SetRect()
 void MyPointOfView::Resize(sf::RenderWindow &window)
 {
     float ratio=static_cast<float>(window.getSize().x)/static_cast<float>(window.getSize().y);
-    this->setSize(sf::Vector2f(ratio*CONSTANTS::MY_POINT_OF_VIEW_HEIGHT,CONSTANTS::MY_POINT_OF_VIEW_HEIGHT));
+    this->setSize(sf::Vector2f(ratio*MY_POINT_OF_VIEW_HEIGHT,MY_POINT_OF_VIEW_HEIGHT));
 }
 
 

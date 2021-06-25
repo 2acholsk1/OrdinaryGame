@@ -30,9 +30,9 @@ Mob* Mob::CreateEnemy(const sf::Vector2f& spawnPosition,CustomTexture* textures,
                 sf::Vector2u(1,1),
                 1.0f,
                 Mob::GetPushBackForce(),
-                CONSTANTS::MOB_RANGE,
-                CONSTANTS::MOB_FOLLOW_SPEED,
-                CONSTANTS::MOB_HP
+                 MOB_RANGE,
+                 MOB_FOLLOW_SPEED,
+                 MOB_HP
                 );
 }
 
@@ -49,22 +49,22 @@ void Mob::Update(float &dtime, sf::RenderWindow &window)
 
 float Mob::GetRange()
 {
-    return CONSTANTS::MOB_RANGE;
+    return  MOB_RANGE;
 }
 
 float Mob::GetHp()
 {
-    return CONSTANTS::MOB_HP;
+    return  MOB_HP;
 }
 
 float Mob::GetFollowSpeed()
 {
-    return CONSTANTS::MOB_FOLLOW_SPEED;
+    return  MOB_FOLLOW_SPEED;
 }
 
 float Mob::GetPushBackForce()
 {
-    return CONSTANTS::MOB_PUSH_BACK_FORCE;
+    return  MOB_PUSH_BACK_FORCE;
 }
 
 void Mob::WhoToFollow(Part* ctoFollow)
@@ -83,27 +83,27 @@ void Mob::Following(float& dtime)
         if(PlayerPos.x>MobPos.x)
         {
             this->sprite.setTexture(this->textures->GettTexture(MyTexture::MobMoveRight));
-            this->sprite.move(CONSTANTS::MOB_SPEED*dtime,0.f);
+            this->sprite.move( MOB_SPEED*dtime,0.f);
             if(PlayerPos.y+20>MobPos.y)
             {
-                this->sprite.move(0.f,CONSTANTS::MOB_SPEED*dtime);
+                this->sprite.move(0.f, MOB_SPEED*dtime);
             }
             if(PlayerPos.y+20<MobPos.y)
             {
-                this->sprite.move(0.f,-CONSTANTS::MOB_SPEED*dtime);
+                this->sprite.move(0.f,- MOB_SPEED*dtime);
             }
         }
         if(PlayerPos.x+20<MobPos.x)
         {
             this->sprite.setTexture(this->textures->GettTexture(MyTexture::MobMoveLeft));
-            this->sprite.move(-CONSTANTS::MOB_SPEED*dtime,0.f);
+            this->sprite.move(- MOB_SPEED*dtime,0.f);
             if(PlayerPos.y>MobPos.y)
             {
-                this->sprite.move(0.f,CONSTANTS::MOB_SPEED*dtime);
+                this->sprite.move(0.f, MOB_SPEED*dtime);
             }
             if(PlayerPos.y+20<MobPos.y)
             {
-                this->sprite.move(0.f,-CONSTANTS::MOB_SPEED*dtime);
+                this->sprite.move(0.f,- MOB_SPEED*dtime);
             }
         }
 
@@ -128,7 +128,7 @@ void Mob::switchWhichSide(float& dtime)
     case 6:
     case 7:
     {
-        this->sprite.move(-CONSTANTS::MOB_SPEED*dtime*2,0.f);
+        this->sprite.move(- MOB_SPEED*dtime*2,0.f);
         this->sprite.setTexture(this->textures->GettTexture(MyTexture::MobMoveLeft));
         break;
     }
@@ -141,7 +141,7 @@ void Mob::switchWhichSide(float& dtime)
     case 14:
     case 15:
     {
-        this->sprite.move(CONSTANTS::MOB_SPEED*dtime*2,0.f);
+        this->sprite.move( MOB_SPEED*dtime*2,0.f);
         this->sprite.setTexture(this->textures->GettTexture(MyTexture::MobMoveRight));
         break;
 
@@ -149,13 +149,13 @@ void Mob::switchWhichSide(float& dtime)
     case 16:
     case 17:
     {
-        this->sprite.move(0.f,-CONSTANTS::MOB_SPEED*dtime*2);
+        this->sprite.move(0.f,- MOB_SPEED*dtime*2);
         break;
     }
     case 18:
     case 19:
     {
-        this->sprite.move(0.f,CONSTANTS::MOB_SPEED*dtime*2);
+        this->sprite.move(0.f, MOB_SPEED*dtime*2);
         break;
 
     }
@@ -183,7 +183,7 @@ void Mob::Existing(float& dtime)
     case 6:
     case 7:
     {
-        this->sprite.move(CONSTANTS::MOB_SPEED*dtime,0.f);
+        this->sprite.move( MOB_SPEED*dtime,0.f);
         this->sprite.setTexture(this->textures->GettTexture(MyTexture::MobMoveRight));
         break;
     }
@@ -196,20 +196,20 @@ void Mob::Existing(float& dtime)
     case 14:
     case 15:
     {
-        this->sprite.move(-CONSTANTS::MOB_SPEED*dtime,0.f);
+        this->sprite.move(- MOB_SPEED*dtime,0.f);
         this->sprite.setTexture(this->textures->GettTexture(MyTexture::MobMoveLeft));
         break;
     }
     case 16:
     case 17:
     {
-        this->sprite.move(0.f,CONSTANTS::MOB_SPEED*dtime);
+        this->sprite.move(0.f, MOB_SPEED*dtime);
         break;
     }
     case 18:
     case 19:
     {
-        this->sprite.move(0.f,-CONSTANTS::MOB_SPEED*dtime);
+        this->sprite.move(0.f,- MOB_SPEED*dtime);
         break;
     }
     break;

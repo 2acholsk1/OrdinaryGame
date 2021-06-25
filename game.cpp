@@ -1,10 +1,13 @@
 #include "game.h"
 
 
-Game::Game():window(sf::VideoMode(CONSTANTS::WINDOW_WIDTH, CONSTANTS::WINDOW_HEIGHT), "OrdinaryGame"),dtime(0.0f),MyView(window),MiniMapView1(window)
+Game::Game():window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "OrdinaryGame"),dtime(0.0f),MyView(window),MiniMapView1(window)
 {
+
     window.setFramerateLimit(120);
+
     this->LoadTextures();
+
 
     MainMap.SetMyMap(&this->AllTextures);
     MiniMapView.UpdatingMiniMap(MiniMapView,window);
@@ -13,36 +16,48 @@ Game::Game():window(sf::VideoMode(CONSTANTS::WINDOW_WIDTH, CONSTANTS::WINDOW_HEI
     this->CreateInterface();
     this->CreateMobs();
 
+
+}
+
+void Game::MenuWorking()
+{
+    Menu menu;
+    while(menu.IsWorking())
+    {
+        menu.Update();
+        menu.Draw();
+
+    }
 }
 
 void Game::CreatePlayer()
 {
-    Player* player=Player::PrintPlayer(CONSTANTS::PLAYER_MIDDLE_POSITION,&this->AllTextures,PartType::Player,MyTexture::Player);
+    Player* player=Player::PrintPlayer(PLAYER_MIDDLE_POSITION,&this->AllTextures,PartType::Player,MyTexture::Player);
     this->MainPlayer=player;
 }
 
 void Game::CreateInterface()
 {
-    Interface* interface=Interface::PrintInterface(CONSTANTS::INTERFACE_POSITION,&this->AllTextures,PartType::InterfacePart,MyTexture::InterfaceDown);
+    Interface* interface=Interface::PrintInterface(INTERFACE_POSITION,&this->AllTextures,PartType::InterfacePart,MyTexture::InterfaceDown);
     this->AllParts.emplace_back(interface);
 
-    Bars* HpBar=Bars::PrintBar(CONSTANTS::HP_BAR_POSITION,&this->AllTextures,PartType::HpBar,MyTexture::HpBar,BarType::HpBar,100.f);
+    Bars* HpBar=Bars::PrintBar(HP_BAR_POSITION,&this->AllTextures,PartType::HpBar,MyTexture::HpBar,BarType::HpBar,100.f);
     this->AllParts.emplace_back(HpBar);
     this->AllBars.emplace_back(HpBar);
-    Bars* ExpBar=Bars::PrintBar(CONSTANTS::EXP_BAR_POSITION,&this->AllTextures,PartType::ExpBar,MyTexture::ExpBar,BarType::ExpBar,0.f);
+    Bars* ExpBar=Bars::PrintBar(EXP_BAR_POSITION,&this->AllTextures,PartType::ExpBar,MyTexture::ExpBar,BarType::ExpBar,0.f);
     this->AllParts.emplace_back(ExpBar);
     this->AllBars.emplace_back(ExpBar);
-    Bars* StarveBar=Bars::PrintBar(CONSTANTS::STARVE_BAR_POSITION,&this->AllTextures,PartType::StarveBar,MyTexture::StarveBar,BarType::StarveBar,100.f);
+    Bars* StarveBar=Bars::PrintBar(STARVE_BAR_POSITION,&this->AllTextures,PartType::StarveBar,MyTexture::StarveBar,BarType::StarveBar,100.f);
     this->AllParts.emplace_back(StarveBar);
     this->AllBars.emplace_back(StarveBar);
-    Bars* WaterBar=Bars::PrintBar(CONSTANTS::WATER_BAR_POSITION,&this->AllTextures,PartType::WaterBar,MyTexture::WaterBar,BarType::WaterBar,100.f);
+    Bars* WaterBar=Bars::PrintBar(WATER_BAR_POSITION,&this->AllTextures,PartType::WaterBar,MyTexture::WaterBar,BarType::WaterBar,100.f);
     this->AllParts.emplace_back(WaterBar);
     this->AllBars.emplace_back(WaterBar);
 
-    Interface* GPS=Interface::PrintInterface(CONSTANTS::ARROW_MINIMAP_POSITION,&this->AllTextures,PartType::GPSArrow,MyTexture::GPSArrow);
+    Interface* GPS=Interface::PrintInterface(ARROW_MINIMAP_POSITION,&this->AllTextures,PartType::GPSArrow,MyTexture::GPSArrow);
     this->AllParts.emplace_back(GPS);
 
-    this->instruction=Interface::PrintInterface(CONSTANTS::INSTRUCTION_START_POSITION,&this->AllTextures,PartType::Instruction,MyTexture::Instruction);
+    this->instruction=Interface::PrintInterface(INSTRUCTION_START_POSITION,&this->AllTextures,PartType::Instruction,MyTexture::Instruction);
 
 }
 
@@ -50,7 +65,7 @@ void Game::CreateInterface()
 
 void Game::CreateEnvironment()
 {
-    using namespace CONSTANTS;
+
     srand(time(NULL));
 
     for(int i=0;i<LAKES_QUANTITY;i++)
@@ -239,7 +254,7 @@ void Game::CreateFarmland()
 
             farmland field=farmland(&this->AllTextures,pos);
             this->miniFarm.emplace_back(field);
-            this->totalPoints+=CONSTANTS::POINTS_FOR_FARMLAND;
+            this->totalPoints+=POINTS_FOR_FARMLAND;
         }
     }
     else
@@ -259,8 +274,8 @@ void Game::Eating()
             FieldType type=FieldType::Carrot;
             if(this->inventory.Eating(type))
             {
-                this->AllBars[0]->ChangeFilling(CONSTANTS::HEALING_CARROT);
-                this->AllBars[2]->ChangeFilling(CONSTANTS::EATING_CARROT);
+                this->AllBars[0]->ChangeFilling(HEALING_CARROT);
+                this->AllBars[2]->ChangeFilling(EATING_CARROT);
             }
         }
     }
@@ -276,8 +291,8 @@ void Game::Eating()
             FieldType type=FieldType::Potato;
             if(this->inventory.Eating(type))
             {
-                this->AllBars[0]->ChangeFilling(CONSTANTS::HEALING_POTATO);
-                this->AllBars[2]->ChangeFilling(CONSTANTS::EATING_POTATO);
+                this->AllBars[0]->ChangeFilling(HEALING_POTATO);
+                this->AllBars[2]->ChangeFilling(EATING_POTATO);
             }
         }
     }
@@ -293,8 +308,8 @@ void Game::Eating()
             FieldType type=FieldType::Beet;
             if(this->inventory.Eating(type))
             {
-                this->AllBars[0]->ChangeFilling(CONSTANTS::HEALING_BEET);
-                this->AllBars[2]->ChangeFilling(CONSTANTS::EATING_BEET);
+                this->AllBars[0]->ChangeFilling(HEALING_BEET);
+                this->AllBars[2]->ChangeFilling(EATING_BEET);
             }
         }
     }
@@ -416,7 +431,7 @@ void Game::DrawParts()
         this->MainPlayer->Draw(this->window);
         if(!this->Ipressed)
         {
-            sf::Vector2f pos=this->MainPlayer->GetPosition()+CONSTANTS::INSTRUCTION_POSITION;
+            sf::Vector2f pos=this->MainPlayer->GetPosition()+INSTRUCTION_POSITION;
             this->instruction->SetPosition(pos);
             this->instruction->Draw(this->window);
         }
@@ -444,7 +459,7 @@ void Game::DrawEndStates()
         case 0:
         {
             std::string string="GAME OVER";
-            text[i].setPosition(CONSTANTS::GAME_OVER_POSITION+this->MainPlayer->GetPosition());
+            text[i].setPosition(GAME_OVER_POSITION+this->MainPlayer->GetPosition());
             text[i].setCharacterSize(100);
             text[i].setString(string);
             break;
@@ -452,7 +467,7 @@ void Game::DrawEndStates()
         case 1:
         {
             std::string string="TOTAL POINTS";
-            text[i].setPosition(CONSTANTS::TOTAL_POINTS_POSITION+this->MainPlayer->GetPosition());
+            text[i].setPosition(TOTAL_POINTS_POSITION+this->MainPlayer->GetPosition());
             text[i].setCharacterSize(60);
             text[i].setString(string);
             break;
@@ -460,7 +475,7 @@ void Game::DrawEndStates()
         case 2:
         {
             std::string string=std::to_string(this->totalPoints);
-            text[i].setPosition(CONSTANTS::POINTS_POSITION+this->MainPlayer->GetPosition());
+            text[i].setPosition(POINTS_POSITION+this->MainPlayer->GetPosition());
             text[i].setCharacterSize(60);
             text[i].setString(string);
             break;
@@ -468,7 +483,7 @@ void Game::DrawEndStates()
         case 3:
         {
             std::string string="PRESS  X  TO QUIT";
-            text[i].setPosition(CONSTANTS::PRESS_X_POSITION+this->MainPlayer->GetPosition());
+            text[i].setPosition(PRESS_X_POSITION+this->MainPlayer->GetPosition());
             text[i].setCharacterSize(35);
             text[i].setString(string);
             break;
@@ -659,7 +674,7 @@ void Game::Crushing()
             this->click=false;
             sf::Vector2i mousePosWindow=sf::Mouse::getPosition(window);
             sf::Vector2f copyMouse=window.mapPixelToCoords(mousePosWindow);
-            sf::Vector2f cur=this->MainPlayer->GetCurrentPosition()+sf::Vector2f(-CONSTANTS::PLAYER_MIDDLE_POSITION);
+            sf::Vector2f cur=this->MainPlayer->GetCurrentPosition()+sf::Vector2f(-PLAYER_MIDDLE_POSITION);
             sf::Vector2f MousePosition=sf::Vector2f((float)copyMouse.x,(float)copyMouse.y);
             bool IsInRange=this->MainPlayer->InRange(this->window);
             for(auto& i:this->AllEnvironments)
@@ -671,14 +686,14 @@ void Game::Crushing()
                     this->inventory.AddingItem(type);
                     if((this->inventory.GetItemInUse()==0)&&(type!=PartType::Lake))
                     {
-                        this->AllBars[0]->ChangeFilling(CONSTANTS::LOST_HP_IN_CHOPPING_AND_DIGGIND_WITHOUT_TOOL);
+                        this->AllBars[0]->ChangeFilling(LOST_HP_IN_CHOPPING_AND_DIGGIND_WITHOUT_TOOL);
                     }
                     if((this->inventory.GetItemInUse()==0)&&(type==PartType::Lake))
                     {
-                        this->AllBars[3]->ChangeFilling(CONSTANTS::DRINKING);
+                        this->AllBars[3]->ChangeFilling(DRINKING);
                     }
                     i->GetOut();
-                    this->totalPoints+=CONSTANTS::POINT_FOR_CHOPPING_AND_DIGGING;
+                    this->totalPoints+=POINT_FOR_CHOPPING_AND_DIGGING;
 
                 }
             }
@@ -687,9 +702,9 @@ void Game::Crushing()
                 if((IsInRange)&&(MousePosition.x>=mob->GetSize().left-cur.x)&&(MousePosition.x<=mob->GetSize().left+mob->GetSize().width-cur.x)&&
                         (MousePosition.y>=mob->GetSize().top-cur.y)&&(MousePosition.y<+mob->GetSize().top+mob->GetSize().height-cur.y))
                 {
-                    this->AllBars[1]->ChangeFilling(CONSTANTS::EXP_OF_FIGHT);
+                    this->AllBars[1]->ChangeFilling(EXP_OF_FIGHT);
                     mob->Dead();
-                    this->totalPoints+=CONSTANTS::POINTS_FOR_FIGHT;
+                    this->totalPoints+=POINTS_FOR_FIGHT;
 
                 }
             }
@@ -701,13 +716,13 @@ void Game::Crushing()
                 {
                     if((this->inventory.GetItemInUse()==0)&&(field.GetFieldType()!=FieldType::Common))
                     {
-                        this->AllBars[1]->ChangeFilling(CONSTANTS::EXP_OF_FARMING);
+                        this->AllBars[1]->ChangeFilling(EXP_OF_FARMING);
                     }
 
                     FieldType type=field.GetFieldType();
                     this->inventory.AddingItem(type);
                     field.Remove();
-                    this->totalPoints+=CONSTANTS::POINT_FOR_HARVEST;
+                    this->totalPoints+=POINT_FOR_HARVEST;
                 }
             }
 
@@ -728,7 +743,7 @@ void Game::LevelUP()
 {
     if(this->AllBars[1]->GetFilling()>=100)
     {
-        this->totalPoints+=CONSTANTS::POINTS_FOR_LEVEL_UP;
+        this->totalPoints+=POINTS_FOR_LEVEL_UP;
     }
 }
 
@@ -742,7 +757,7 @@ void Game::MobAttack()
                 (PlayerBounds.top+PlayerBounds.height>=i->GetSize().top-5)&&
                 (PlayerBounds.top<i->GetSize().top+i->GetSize().height+5))
         {
-            this->AllBars[0]->ChangeFilling(CONSTANTS::ZOMBIE_ATTACK);
+            this->AllBars[0]->ChangeFilling(ZOMBIE_ATTACK);
         }
     }
 }
@@ -751,14 +766,14 @@ void Game::SetPointOfView()
 {
 
     this->window.setView(MyView);
-    this->MyView.setViewport(CONSTANTS::VIEW_SIZE);
+    this->MyView.setViewport(VIEW_SIZE);
 
 }
 
 void Game::SetMinimap()
 {
     this->window.setView(MiniMapView1);
-    this->MiniMapView1.setViewport(CONSTANTS::MINIMAMP_SIZE);
+    this->MiniMapView1.setViewport(MINIMAMP_SIZE);
 }
 
 void Game::SetdtTime()

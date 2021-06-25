@@ -9,18 +9,13 @@ int main()
 {
     //MAIN LOOP
 
-    Menu menu;
-    while(menu.IsWorking())
-    {
-        menu.Update();
-        menu.Draw();
 
-    }
     Game game;
+    game.MenuWorking();
     while(game.IsWorking())
     {
-        game.Update();
         game.Draw();
+        game.Update();
 
     }
 

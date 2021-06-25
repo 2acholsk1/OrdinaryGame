@@ -1,7 +1,6 @@
 #ifndef FUNCTIONS_H
 #define FUNCTIONS_H
 #include <SFML/Graphics.hpp>
-#include "Constants.h"
 #include <iostream>
 #include <cmath>
 #include "customtexture.h"

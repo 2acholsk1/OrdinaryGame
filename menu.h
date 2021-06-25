@@ -3,8 +3,8 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 
-#include "Constants.h"
-
+#define WINDOW_WIDTH 1600.f
+#define WINDOW_HEIGHT 900.f
 
 class Menu
 {
