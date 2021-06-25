@@ -1,5 +1,7 @@
 # OrdinaryGame
- 2D game created in C++/SFML
+ It is a simple 2D game created in C++/SFML
+ Minecraft was of course my inspiration
+ The game is easily expandable
 
 ## Gameplay
 link
