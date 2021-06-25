@@ -9,7 +9,7 @@ The game was written for the purpose of passing and improving structured and obj
  The game is easily expandable
 
 ## Gameplay
-[Link](https://youtu.be/_y611rD-gLo)
+[Youtube Link](https://youtu.be/_y611rD-gLo)
 
 ## Some Screenshots
 On Start:
