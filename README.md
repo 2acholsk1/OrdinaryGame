@@ -1,4 +1,7 @@
-# OrdinaryGame
+# OrdinaryGame- 2D game
+
+The game was written for the purpose of passing and improving structured and object-oriented programming
+
  It is a simple 2D game created in C++/SFML
 
  Minecraft was of course my inspiration
@@ -6,7 +9,7 @@
  The game is easily expandable
 
 ## Gameplay
-link
+https://youtu.be/_y611rD-gLo
 
 ## Some Screenshots
 On Start:
@@ -20,4 +23,8 @@ Farm:
 
 Build Structures:
 ![Structure](https://user-images.githubusercontent.com/81316606/123417776-78a96c00-d5b8-11eb-9458-035d267d8614.png)
+
+Game over:
+![Over](https://user-images.githubusercontent.com/81316606/123419867-0dad6480-d5bb-11eb-9989-4f6ae7b6e073.png)
+
 
