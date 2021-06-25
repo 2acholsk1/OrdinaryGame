@@ -3,6 +3,12 @@
 #include "part.h"
 
 
+#define MOB_RANGE 500.f
+#define MOB_HP 50.f
+#define MOB_SPEED 35.f
+#define MOB_FOLLOW_SPEED 100.f
+#define MOB_PUSH_BACK_FORCE 0.51f;
+
 
 class Mob:public Part
 {

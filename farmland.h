@@ -2,7 +2,8 @@
 #define FARMLAND_H
 #include <SFML/Graphics.hpp>
 #include "customtexture.h"
-#include "Constants.h"
+#define TIME_TO_PLANTS_GROW_UP 20.f
+
 
 enum class FieldType
 {

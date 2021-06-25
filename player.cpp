@@ -46,7 +46,7 @@ void Player::AnimationUp(float &dtime)
 
 void Player::Update(float& dtime,sf::RenderWindow& window)
 {
-    this->acceleration=CONSTANTS::PLAYER_MOVING_SPEED/dtime;
+    this->acceleration= PLAYER_MOVING_SPEED/dtime;
     this->ShowPosition();
     int i=0;
     sf::Vector2u animMaxS=sf::Vector2u(2,1);
@@ -58,7 +58,7 @@ void Player::Update(float& dtime,sf::RenderWindow& window)
         this->animation.Initialize(this->textures->GettTexture(MyTexture::PlayerML));
         this->animation.Update(i,dtime);
         sprite.setTextureRect(animation.GetFrameIntRect());
-        this->sprite.move(-CONSTANTS::PLAYER_MOVING_SPEED*dtime,0.f);
+        this->sprite.move(- PLAYER_MOVING_SPEED*dtime,0.f);
     }
     else if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))//right
     {
@@ -68,7 +68,7 @@ void Player::Update(float& dtime,sf::RenderWindow& window)
         this->animation.Initialize(this->textures->GettTexture(MyTexture::PlayerMR));
         this->animation.Update(i,dtime);
         sprite.setTextureRect(animation.GetFrameIntRect());
-        this->sprite.move(CONSTANTS::PLAYER_MOVING_SPEED*dtime,0.f);
+        this->sprite.move( PLAYER_MOVING_SPEED*dtime,0.f);
     }
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))//Down
     {
@@ -77,7 +77,7 @@ void Player::Update(float& dtime,sf::RenderWindow& window)
         this->animation.Initialize(this->textures->GettTexture(MyTexture::PlayerMD));
         this->animation.Update(i,dtime);
         sprite.setTextureRect(animation.GetFrameIntRect());
-        this->sprite.move(0.f,CONSTANTS::PLAYER_MOVING_SPEED*dtime);
+        this->sprite.move(0.f, PLAYER_MOVING_SPEED*dtime);
     }
     else if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))//Up
     {
@@ -86,7 +86,7 @@ void Player::Update(float& dtime,sf::RenderWindow& window)
         this->animation.Initialize(this->textures->GettTexture(MyTexture::PlayerMU));
         this->animation.Update(i,dtime);
         sprite.setTextureRect(animation.GetFrameIntRect());
-        this->sprite.move(0.f,-CONSTANTS::PLAYER_MOVING_SPEED*dtime);
+        this->sprite.move(0.f,- PLAYER_MOVING_SPEED*dtime);
     }
 
     if(this->MovingLeft)
@@ -303,10 +303,10 @@ void Player::IsMoving()
 bool Player::InRange(sf::RenderWindow& window)
 {
     sf::Vector2i MousePosition=sf::Mouse::getPosition(window);
-    if((MousePosition.x>CONSTANTS::PLAYER_MIDDLE_POSITION.x-this->range)&&
-            (MousePosition.x<CONSTANTS::PLAYER_MIDDLE_POSITION.x+this->range)&&
-            (MousePosition.y>CONSTANTS::PLAYER_MIDDLE_POSITION.y-this->range)&&
-            (MousePosition.y<CONSTANTS::PLAYER_MIDDLE_POSITION.y+this->range))
+    if((MousePosition.x> PLAYER_MIDDLE_POSITION.x-this->range)&&
+            (MousePosition.x< PLAYER_MIDDLE_POSITION.x+this->range)&&
+            (MousePosition.y> PLAYER_MIDDLE_POSITION.y-this->range)&&
+            (MousePosition.y< PLAYER_MIDDLE_POSITION.y+this->range))
     {
         return true;
     }

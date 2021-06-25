@@ -1,9 +1,9 @@
 #include "menu.h"
 
-Menu::Menu():window(sf::VideoMode(CONSTANTS::WINDOW_WIDTH, CONSTANTS::WINDOW_HEIGHT),"OrdinaryGame")
+Menu::Menu():window(sf::VideoMode( WINDOW_WIDTH,  WINDOW_HEIGHT),"OrdinaryGame")
 {
     this->background.setFillColor(sf::Color::Cyan);
-    this->background.setSize(sf::Vector2f(CONSTANTS::WINDOW_WIDTH,CONSTANTS::WINDOW_HEIGHT));
+    this->background.setSize(sf::Vector2f( WINDOW_WIDTH, WINDOW_HEIGHT));
 
     this->StartButton.setFillColor(sf::Color::Red);
     this->StartButton.setPosition(700.f,550.f);

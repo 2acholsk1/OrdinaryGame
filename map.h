@@ -3,10 +3,15 @@
 #include <vector>
 #include<SFML/Graphics.hpp>
 
-#include "Constants.h"
 #include "customtexture.h"
 
+#define WINDOW_WIDTH 1600.f
+#define WINDOW_HEIGHT 900.f
 
+#define GRID_SIZE_F 100.f
+#define GRID_SIZE_U static_cast<unsigned>(GRID_SIZE_F)
+
+#define MAP_SIZE 100
 
 
 class Mymap

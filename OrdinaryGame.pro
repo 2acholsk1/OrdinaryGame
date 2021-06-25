@@ -32,7 +32,6 @@ SOURCES += \
         structures.cpp
 
 HEADERS += \
-    Constants.h \
     animation.h \
     bars.h \
     collider.h \
